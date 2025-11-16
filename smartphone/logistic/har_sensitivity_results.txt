@@ -1,0 +1,28 @@
+LOGISTIC REGRESSION HYPERPARAMETER SENSITIVITY ANALYSIS - HAR DATASET
+
+TEST 1: C SENSITIVITY (Regularization Strength)
+
+Individual C value results:
+C = 0.001: Train Acc = 0.9627, Test Acc = 0.9342
+C = 0.01: Train Acc = 0.9837, Test Acc = 0.9450
+C = 0.1: Train Acc = 0.9910, Test Acc = 0.9501
+C = 1: Train Acc = 0.9963, Test Acc = 0.9535
+C = 10: Train Acc = 0.9992, Test Acc = 0.9498
+C = 100: Train Acc = 1.0000, Test Acc = 0.9460
+
+Relative sensitivity to C: 2.0705%
+Min accuracy: 0.9342
+Max accuracy: 0.9535
+Plot saved as: har_c_sensitivity_plot.png
+
+TEST 2: L1 vs L2 PENALTY (with C=1.0)
+L1 Train Accuracy: 0.9954
+L1 Test Accuracy: 0.9583
+L2 Train Accuracy: 0.9944
+L2 Test Accuracy: 0.9613
+Absolute difference: 0.0031
+Relative difference: 0.3187%
+Plot saved as: har_penalty_comparison_plot.png
+
+SUMMARY
+More sensitive to: C values (2.07% vs 0.32%)

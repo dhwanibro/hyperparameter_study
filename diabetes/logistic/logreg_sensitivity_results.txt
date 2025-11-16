@@ -1,13 +1,24 @@
 LOGISTIC REGRESSION HYPERPARAMETER SENSITIVITY ANALYSIS
 
 TEST 1: C SENSITIVITY (Regularization Strength)
+
+Individual C value results:
+C = 0.001: Train Acc = 0.8505, Test Acc = 0.8508
+C = 0.01: Train Acc = 0.8504, Test Acc = 0.8505
+C = 0.1: Train Acc = 0.8504, Test Acc = 0.8505
+C = 1: Train Acc = 0.8504, Test Acc = 0.8505
+C = 10: Train Acc = 0.8504, Test Acc = 0.8505
+C = 100: Train Acc = 0.8504, Test Acc = 0.8505
+
 Relative sensitivity to C: 0.0333%
 Min accuracy: 0.8505
 Max accuracy: 0.8508
 Plot saved as: c_sensitivity_plot.png
 
 TEST 2: L1 vs L2 PENALTY (with C=1.0)
+L1 Train Accuracy: 0.8504
 L1 Test Accuracy: 0.8506
+L2 Train Accuracy: 0.8504
 L2 Test Accuracy: 0.8506
 Absolute difference: 0.0000
 Relative difference: 0.0000%

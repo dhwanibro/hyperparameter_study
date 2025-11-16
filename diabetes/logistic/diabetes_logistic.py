@@ -71,6 +71,7 @@ def test_C_sensitivity(X_train, X_test, Y_train, Y_test, C_values=[0.001, 0.01, 
     high C → weak penalty → model fits more → maybe overfit
     """
     test_acc_list = []
+    c_results = {}  # store results for each C value
     
     for C in C_values:
         model = LogisticRegression(C=C, max_iter=2000)
@@ -83,6 +84,7 @@ def test_C_sensitivity(X_train, X_test, Y_train, Y_test, C_values=[0.001, 0.01, 
         test_acc = accuracy_score(Y_test, Y_test_pred)
         
         test_acc_list.append(test_acc)
+        c_results[C] = {'train': train_acc, 'test': test_acc}
     
     min_acc = min(test_acc_list)
     max_acc = max(test_acc_list)
@@ -107,7 +109,7 @@ def test_C_sensitivity(X_train, X_test, Y_train, Y_test, C_values=[0.001, 0.01, 
     plt.savefig("c_sensitivity_plot.png", dpi=150, bbox_inches='tight')
     plt.show()
     
-    return min_acc, max_acc, percent_change
+    return c_results, min_acc, max_acc, percent_change
 
 def test_penalty_types(X_train, X_test, Y_train, Y_test, C_fixed=1.0):
     """
@@ -119,7 +121,7 @@ def test_penalty_types(X_train, X_test, Y_train, Y_test, C_fixed=1.0):
     results = {}
     
     for penalty in penalties:
-        # solver depends on penalty: both work w  liblinear
+        # solver depends on penalty: both work w liblinear
         
         model = LogisticRegression(penalty=penalty, C=C_fixed, max_iter=2000, solver='liblinear')
         model.fit(X_train, Y_train)
@@ -168,24 +170,29 @@ if __name__ == "__main__":
     
     # run tests
     print("\nRunning C sensitivity test...")
-    min_acc, max_acc, c_percent_change = test_C_sensitivity(X_train, X_test, Y_train, Y_test)
+    c_results, min_acc, max_acc, c_percent_change = test_C_sensitivity(X_train, X_test, Y_train, Y_test)
     
     print("\nRunning L1 vs L2 penalty test...")
-    results, acc_diff, relative_diff = test_penalty_types(X_train, X_test, Y_train, Y_test)
+    penalty_results, acc_diff, relative_diff = test_penalty_types(X_train, X_test, Y_train, Y_test)
     
     # write everything to single txt file
     with open("logreg_sensitivity_results.txt", "w") as f:
         f.write("LOGISTIC REGRESSION HYPERPARAMETER SENSITIVITY ANALYSIS\n\n")
         
-        f.write("TEST 1: C SENSITIVITY (Regularization Strength)\n")
-        f.write(f"Relative sensitivity to C: {c_percent_change:.4f}%\n")
+        f.write("TEST 1: C SENSITIVITY (Regularization Strength)\n\n")
+        f.write("Individual C value results:\n")
+        for C, acc in c_results.items():
+            f.write(f"C = {C}: Train Acc = {acc['train']:.4f}, Test Acc = {acc['test']:.4f}\n")
+        f.write(f"\nRelative sensitivity to C: {c_percent_change:.4f}%\n")
         f.write(f"Min accuracy: {min_acc:.4f}\n")
         f.write(f"Max accuracy: {max_acc:.4f}\n")
         f.write(f"Plot saved as: c_sensitivity_plot.png\n\n")
         
         f.write("TEST 2: L1 vs L2 PENALTY (with C=1.0)\n")
-        f.write(f"L1 Test Accuracy: {results['l1']['test']:.4f}\n")
-        f.write(f"L2 Test Accuracy: {results['l2']['test']:.4f}\n")
+        f.write(f"L1 Train Accuracy: {penalty_results['l1']['train']:.4f}\n")
+        f.write(f"L1 Test Accuracy: {penalty_results['l1']['test']:.4f}\n")
+        f.write(f"L2 Train Accuracy: {penalty_results['l2']['train']:.4f}\n")
+        f.write(f"L2 Test Accuracy: {penalty_results['l2']['test']:.4f}\n")
         f.write(f"Absolute difference: {acc_diff:.4f}\n")
         f.write(f"Relative difference: {relative_diff:.4f}%\n")
         f.write(f"Plot saved as: penalty_comparison_plot.png\n\n")
