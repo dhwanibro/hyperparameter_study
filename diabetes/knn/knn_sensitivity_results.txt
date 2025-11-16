@@ -1,0 +1,47 @@
+KNN HYPERPARAMETER SENSITIVITY ANALYSIS - DIABETES DATASET
+
+TEST 1: n_neighbors (k) SENSITIVITY
+
+Individual k value results:
+k = 1: Train Acc = 0.9946, Test Acc = 0.7814
+k = 3: Train Acc = 0.8932, Test Acc = 0.8192
+k = 5: Train Acc = 0.8750, Test Acc = 0.8322
+k = 7: Train Acc = 0.8682, Test Acc = 0.8380
+k = 9: Train Acc = 0.8643, Test Acc = 0.8413
+k = 11: Train Acc = 0.8621, Test Acc = 0.8430
+k = 15: Train Acc = 0.8597, Test Acc = 0.8456
+k = 20: Train Acc = 0.8565, Test Acc = 0.8489
+k = 25: Train Acc = 0.8562, Test Acc = 0.8492
+k = 30: Train Acc = 0.8547, Test Acc = 0.8500
+k = 50: Train Acc = 0.8531, Test Acc = 0.8507
+
+Relative sensitivity to k: 8.8759%
+Min accuracy: 0.7814
+Max accuracy: 0.8507
+Plot saved as: knn_k_sensitivity_plot.png
+
+TEST 2: WEIGHTS COMPARISON (k=5)
+
+uniform: Train Acc = 0.8750, Test Acc = 0.8322
+distance: Train Acc = 0.9946, Test Acc = 0.8244
+
+Absolute difference: 0.0078
+Relative difference: 0.9435%
+Plot saved as: knn_weights_comparison_plot.png
+
+TEST 3: DISTANCE METRIC COMPARISON (k=5)
+
+euclidean: Train Acc = 0.8750, Test Acc = 0.8322
+manhattan: Train Acc = 0.8747, Test Acc = 0.8320
+
+Absolute difference: 0.0002
+Relative difference: 0.0262%
+Plot saved as: knn_metric_comparison_plot.png
+
+SUMMARY
+Most sensitive to: n_neighbors (8.88%)
+
+Sensitivity ranking:
+n_neighbors: 8.88%
+weights: 0.94%
+metric: 0.03%

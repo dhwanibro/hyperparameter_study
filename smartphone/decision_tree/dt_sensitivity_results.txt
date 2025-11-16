@@ -1,0 +1,68 @@
+DECISION TREE HYPERPARAMETER SENSITIVITY ANALYSIS - HAR DATASET
+
+TEST 1: max_depth SENSITIVITY
+
+Individual max_depth results:
+max_depth = 1: Train Acc = 0.3783, Test Acc = 0.3627
+max_depth = 2: Train Acc = 0.5450, Test Acc = 0.5310
+max_depth = 3: Train Acc = 0.7879, Test Acc = 0.7224
+max_depth = 5: Train Acc = 0.9204, Test Acc = 0.8385
+max_depth = 7: Train Acc = 0.9596, Test Acc = 0.8629
+max_depth = 10: Train Acc = 0.9906, Test Acc = 0.8605
+max_depth = 15: Train Acc = 0.9993, Test Acc = 0.8524
+max_depth = 20: Train Acc = 1.0000, Test Acc = 0.8541
+max_depth = None: Train Acc = 1.0000, Test Acc = 0.8541
+
+Relative sensitivity to max_depth: 137.8859%
+Min accuracy: 0.3627
+Max accuracy: 0.8629
+Plot saved as: dt_depth_sensitivity_plot.png
+
+TEST 2: min_samples_split SENSITIVITY
+
+Individual min_samples_split results:
+min_samples_split = 2: Train Acc = 1.0000, Test Acc = 0.8541
+min_samples_split = 5: Train Acc = 0.9976, Test Acc = 0.8585
+min_samples_split = 10: Train Acc = 0.9940, Test Acc = 0.8626
+min_samples_split = 20: Train Acc = 0.9869, Test Acc = 0.8602
+min_samples_split = 50: Train Acc = 0.9699, Test Acc = 0.8561
+min_samples_split = 100: Train Acc = 0.9450, Test Acc = 0.8371
+
+Relative sensitivity to min_samples_split: 3.0401%
+Min accuracy: 0.8371
+Max accuracy: 0.8626
+Plot saved as: dt_split_sensitivity_plot.png
+
+TEST 3: min_samples_leaf SENSITIVITY
+
+Individual min_samples_leaf results:
+min_samples_leaf = 1: Train Acc = 1.0000, Test Acc = 0.8541
+min_samples_leaf = 2: Train Acc = 0.9947, Test Acc = 0.8514
+min_samples_leaf = 5: Train Acc = 0.9880, Test Acc = 0.8666
+min_samples_leaf = 10: Train Acc = 0.9740, Test Acc = 0.8711
+min_samples_leaf = 20: Train Acc = 0.9600, Test Acc = 0.8571
+min_samples_leaf = 50: Train Acc = 0.9344, Test Acc = 0.8571
+
+Relative sensitivity to min_samples_leaf: 2.3117%
+Min accuracy: 0.8514
+Max accuracy: 0.8711
+Plot saved as: dt_leaf_sensitivity_plot.png
+
+TEST 4: CRITERION COMPARISON
+
+gini: Train Acc = 1.0000, Test Acc = 0.8541
+entropy: Train Acc = 1.0000, Test Acc = 0.8524
+log_loss: Train Acc = 1.0000, Test Acc = 0.8524
+
+Absolute difference: 0.0017
+Relative difference: 0.1990%
+Plot saved as: dt_criterion_comparison_plot.png
+
+SUMMARY
+Most sensitive to: max_depth (137.89%)
+
+Sensitivity ranking:
+max_depth: 137.89%
+min_samples_split: 3.04%
+min_samples_leaf: 2.31%
+criterion: 0.20%

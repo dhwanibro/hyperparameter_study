@@ -1,0 +1,47 @@
+KNN HYPERPARAMETER SENSITIVITY ANALYSIS - OBESITY DATASET
+
+TEST 1: n_neighbors (k) SENSITIVITY
+
+Individual k value results:
+k = 1: Train Acc = 1.0000, Test Acc = 0.8548
+k = 3: Train Acc = 0.9924, Test Acc = 0.8741
+k = 5: Train Acc = 0.9842, Test Acc = 0.8843
+k = 7: Train Acc = 0.9789, Test Acc = 0.8897
+k = 9: Train Acc = 0.9765, Test Acc = 0.8941
+k = 11: Train Acc = 0.9742, Test Acc = 0.8880
+k = 15: Train Acc = 0.9669, Test Acc = 0.8907
+k = 20: Train Acc = 0.9656, Test Acc = 0.8918
+k = 25: Train Acc = 0.9595, Test Acc = 0.8863
+k = 30: Train Acc = 0.9570, Test Acc = 0.8863
+k = 50: Train Acc = 0.9437, Test Acc = 0.8765
+
+Relative sensitivity to k: 4.6050%
+Min accuracy: 0.8548
+Max accuracy: 0.8941
+Plot saved as: knn_k_sensitivity_plot.png
+
+TEST 2: WEIGHTS COMPARISON (k=5)
+
+uniform: Train Acc = 0.9842, Test Acc = 0.8843
+distance: Train Acc = 1.0000, Test Acc = 0.8856
+
+Absolute difference: 0.0014
+Relative difference: 0.1535%
+Plot saved as: knn_weights_comparison_plot.png
+
+TEST 3: DISTANCE METRIC COMPARISON (k=5)
+
+euclidean: Train Acc = 0.9842, Test Acc = 0.8843
+manhattan: Train Acc = 0.9916, Test Acc = 0.9019
+
+Absolute difference: 0.0176
+Relative difference: 1.9954%
+Plot saved as: knn_metric_comparison_plot.png
+
+SUMMARY
+Most sensitive to: n_neighbors (4.61%)
+
+Sensitivity ranking:
+n_neighbors: 4.61%
+metric: 2.00%
+weights: 0.15%
