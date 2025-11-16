@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv("diabetes_binary.csv")
 
+
 X = df.drop("Diabetes_binary", axis = 1) #drop the column which has all ans to prevent peeking and all
 Y = df["Diabetes_binary"]
 # if OG data has imbalance then test and train data has same imbalance ratio using stratisfy. test_size = 0.2 means .2 test .8 train

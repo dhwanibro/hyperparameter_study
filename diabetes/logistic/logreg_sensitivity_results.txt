@@ -1,0 +1,17 @@
+LOGISTIC REGRESSION HYPERPARAMETER SENSITIVITY ANALYSIS
+
+TEST 1: C SENSITIVITY (Regularization Strength)
+Relative sensitivity to C: 0.0333%
+Min accuracy: 0.8505
+Max accuracy: 0.8508
+Plot saved as: c_sensitivity_plot.png
+
+TEST 2: L1 vs L2 PENALTY (with C=1.0)
+L1 Test Accuracy: 0.8506
+L2 Test Accuracy: 0.8506
+Absolute difference: 0.0000
+Relative difference: 0.0000%
+Plot saved as: penalty_comparison_plot.png
+
+SUMMARY
+More sensitive to: C values (0.03% vs 0.00%)
