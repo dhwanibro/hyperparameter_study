@@ -3,15 +3,15 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 import matplotlib.pyplot as plt
 
 # ### The target variable is "Diabetes_binary"
 # 0 = no diabetes
-# 1 = diabetes
+# 1 = diabetes (BINARY Classification)
 
 def load_and_preprocess(filepath, target_col):
-    """Load data and do preprocessing"""
+    """Load data and do preprocessing (no Label Encoding needed for features in this numerical dataset)"""
     df = pd.read_csv(filepath)
     
     print(f"Original shape: {df.shape}")
@@ -20,7 +20,7 @@ def load_and_preprocess(filepath, target_col):
     missing = df.isnull().sum()
     if missing.sum() > 0:
         print(f"Missing values found:\n{missing[missing > 0]}")
-        df = df.dropna()  # drop rows with missing values
+        df = df.dropna()
         print(f"Shape after dropping NaN: {df.shape}")
     else:
         print("No missing values found")
@@ -38,171 +38,275 @@ def load_and_preprocess(filepath, target_col):
     
     # check class balance
     print(f"\nClass distribution:")
-    print(Y.value_counts())
-    print(f"Class balance: {Y.value_counts(normalize=True)}")
+    unique, counts = np.unique(Y, return_counts=True)
+    for val, count in zip(unique, counts):
+        print(f"Class {val}: {count} ({count/len(Y)*100:.2f}%)")
     
     return X, Y
 
 def split_and_scale(X, Y):
-    """Split data and scale features"""
-    # if OG data has imbalance then test and train data has same imbalance ratio using stratify
+    """Split data and scale features (CRITICAL for Regularized Models like Logistic Regression)"""
+    # use stratify to maintain class ratio
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42, stratify=Y)
     
     print(f"\nTrain set size: {X_train.shape[0]}")
     print(f"Test set size: {X_test.shape[0]}")
     
-    # creating an instance of the standardscaler class
-    # scales features to mean=0, std=1 so extreme values don't distort training
+    # scales features to mean=0, std=1
     scaler = StandardScaler()
     
     X_train = scaler.fit_transform(X_train)
-    # the scaler object stores the mean and std of every column inside itself. transform just applies it
-    
-    # applying the train data's mean and sd to this, will not fit it cause that causes leakage
     X_test = scaler.transform(X_test)
     
     return X_train, X_test, Y_train, Y_test
+
+def calculate_all_metrics(Y_true, Y_pred, Y_proba=None):
+    """Calculate comprehensive metrics for BINARY classification"""
+    metrics = {
+        'accuracy': accuracy_score(Y_true, Y_pred),
+        'precision': precision_score(Y_true, Y_pred, average='binary', zero_division=0),
+        'recall': recall_score(Y_true, Y_pred, average='binary', zero_division=0),
+        'f1': f1_score(Y_true, Y_pred, average='binary', zero_division=0)
+    }
+    if Y_proba is not None:
+        try:
+            # for binary classification, use the probability of the positive class (column 1)
+            metrics['auc'] = roc_auc_score(Y_true, Y_proba[:, 1])
+        except Exception as e:
+            metrics['auc'] = 0.0
+            print(f"AUC calculation failed: {e}")
+    else:
+        metrics['auc'] = 0.0
+    return metrics
 
 def test_C_sensitivity(X_train, X_test, Y_train, Y_test, C_values=[0.001, 0.01, 0.1, 1, 10, 100]):
     """
     Test sensitivity to regularization strength C
     C = 1/lambda (inverse regularization strength)
-    low C → strong penalty → simpler model
-    high C → weak penalty → model fits more → maybe overfit
     """
-    test_acc_list = []
-    c_results = {}  # store results for each C value
+    results_list = []
+    c_results = {}
+    metrics_to_check = ['accuracy', 'precision', 'recall', 'f1', 'auc']
     
     for C in C_values:
-        model = LogisticRegression(C=C, max_iter=2000)
+        # Logistic Regression is binary by default, solver='liblinear' is a good robust choice for small datasets
+        model = LogisticRegression(C=C, max_iter=2000, solver='liblinear', random_state=42)
         model.fit(X_train, Y_train)
         
         Y_train_pred = model.predict(X_train)
         Y_test_pred = model.predict(X_test)
+        Y_test_proba = model.predict_proba(X_test)
         
-        train_acc = accuracy_score(Y_train, Y_train_pred)
-        test_acc = accuracy_score(Y_test, Y_test_pred)
+        train_metrics = calculate_all_metrics(Y_train, Y_train_pred)
+        test_metrics = calculate_all_metrics(Y_test, Y_test_pred, Y_test_proba)
         
-        test_acc_list.append(test_acc)
-        c_results[C] = {'train': train_acc, 'test': test_acc}
+        results_list.append(test_metrics)
+        c_results[C] = {'train': train_metrics, 'test': test_metrics}
+        
+        print(f"C={C}: Acc={test_metrics['accuracy']:.4f}, F1={test_metrics['f1']:.4f}, AUC={test_metrics['auc']:.4f}")
     
-    min_acc = min(test_acc_list)
-    max_acc = max(test_acc_list)
+    # calculate variance for each metric
+    metric_variances = {}
+    for metric in metrics_to_check:
+        values = [r[metric] for r in results_list]
+        metric_variances[metric] = np.var(values)
     
-    relative_change = (max_acc - min_acc) / min_acc
-    percent_change = relative_change * 100
+    # find best performing C for different metrics
+    best_by_metric = {}
+    for metric in metrics_to_check:
+        best_idx = max(range(len(results_list)), key=lambda i: results_list[i][metric])
+        best_by_metric[metric] = C_values[best_idx]
     
-    print(f"\nC Sensitivity: {percent_change:.4f}%")
+    # plot multiple metrics
+    plt.figure(figsize=(12, 6))
     
-    # plot and save
-    plt.figure()
-    plt.plot(C_values, test_acc_list, marker="o")
+    for metric in ['accuracy', 'f1', 'auc']:
+        values = [r[metric] for r in results_list]
+        plt.plot(C_values, values, marker="o", label=metric.upper())
     
-    # Because C jumps like: 0.001 → 0.01 → 0.1 → 1 → 10 → 100
-    # A log scale spreads them evenly.
-    plt.xscale("log")
-    
-    plt.xlabel("C value")
-    plt.ylabel("Test Accuracy")
-    plt.title("Sensitivity of Logistic Regression to C")
+    plt.xscale("log") # Use log scale for C values
+    plt.xlabel("Regularization Strength C (log scale)")
+    plt.ylabel("Score")
+    plt.title("Sensitivity to C (Multiple Metrics) - Diabetes")
+    plt.legend()
     plt.grid(True)
-    plt.savefig("c_sensitivity_plot.png", dpi=150, bbox_inches='tight')
-    plt.show()
+    plt.savefig("lr_c_sensitivity_plot.png", dpi=150, bbox_inches='tight')
+    plt.show() # Can comment this out if running in non-interactive environment
     
-    return c_results, min_acc, max_acc, percent_change
+    return c_results, metric_variances, best_by_metric
 
 def test_penalty_types(X_train, X_test, Y_train, Y_test, C_fixed=1.0):
     """
     Test L1 vs L2 penalty with fixed C
-    L1 (lasso) → can zero out features, does feature selection
-    L2 (ridge) → shrinks all weights, keeps all features
+    L1 (lasso) → feature selection, sets weights to zero
+    L2 (ridge) → weight shrinkage, keeps all features
     """
     penalties = ['l1', 'l2']
     results = {}
+    results_list = []
+    metrics_to_check = ['accuracy', 'precision', 'recall', 'f1', 'auc']
     
     for penalty in penalties:
-        # solver depends on penalty: both work w liblinear
-        
-        model = LogisticRegression(penalty=penalty, C=C_fixed, max_iter=2000, solver='liblinear')
+        # 'liblinear' solver supports both L1 and L2 penalties for binary classification
+        model = LogisticRegression(penalty=penalty, C=C_fixed, max_iter=2000, solver='liblinear', random_state=42)
         model.fit(X_train, Y_train)
         
         Y_train_pred = model.predict(X_train)
         Y_test_pred = model.predict(X_test)
+        Y_test_proba = model.predict_proba(X_test)
         
-        train_acc = accuracy_score(Y_train, Y_train_pred)
-        test_acc = accuracy_score(Y_test, Y_test_pred)
+        train_metrics = calculate_all_metrics(Y_train, Y_train_pred)
+        test_metrics = calculate_all_metrics(Y_test, Y_test_pred, Y_test_proba)
         
-        results[penalty] = {'train': train_acc, 'test': test_acc}
-        print(f"{penalty.upper()} - Train Acc: {train_acc:.4f}, Test Acc: {test_acc:.4f}")
+        results[penalty] = {'train': train_metrics, 'test': test_metrics}
+        results_list.append(test_metrics)
+        
+        print(f"{penalty.upper()}: Acc={test_metrics['accuracy']:.4f}, F1={test_metrics['f1']:.4f}, AUC={test_metrics['auc']:.4f}")
     
-    # calculate difference in test accuracy between L1 and L2
-    acc_diff = abs(results['l1']['test'] - results['l2']['test'])
-    relative_diff = (acc_diff / min(results['l1']['test'], results['l2']['test'])) * 100
+    # calculate variance (difference) for each metric
+    metric_variances = {}
+    for metric in metrics_to_check:
+        values = [r[metric] for r in results_list]
+        # Variance for two values is simple: np.var([a, b]) = ((a-b)^2)/4
+        metric_variances[metric] = np.var(values)
     
-    # bar plot comparing L1 vs L2
-    plt.figure(figsize=(8, 5))
-    penalties_plot = ['L1', 'L2']
-    test_accs = [results['l1']['test'], results['l2']['test']]
+    # find best performing penalty type for different metrics
+    best_by_metric = {}
+    for metric in metrics_to_check:
+        best_idx = max(range(len(results_list)), key=lambda i: results_list[i][metric])
+        best_by_metric[metric] = penalties[best_idx]
     
-    plt.bar(penalties_plot, test_accs, color=['lightcoral', 'skyblue'])
-    plt.ylabel("Test Accuracy")
-    plt.title(f"L1 vs L2 Regularization (C={C_fixed})")
-    plt.ylim([min(test_accs) - 0.01, max(test_accs) + 0.01])
+    # grouped bar plot for multiple metrics
+    plt.figure(figsize=(10, 6))
+    metrics_to_plot = ['accuracy', 'precision', 'recall', 'f1', 'auc']
+    x = np.arange(len(metrics_to_plot))
+    width = 0.35
+    
+    for i, penalty in enumerate(penalties):
+        values = [results[penalty]['test'][m] for m in metrics_to_plot]
+        plt.bar(x + i*width, values, width, label=penalty.upper())
+    
+    plt.xlabel('Metrics')
+    plt.ylabel('Score')
+    plt.title(f'L1 vs L2 Penalty Comparison (C={C_fixed}, All Metrics) - Diabetes')
+    plt.xticks(x + width/2, metrics_to_plot)
+    plt.legend()
     plt.grid(True, axis='y', alpha=0.3)
-    
-    # add values on top of bars
-    for i, v in enumerate(test_accs):
-        plt.text(i, v + 0.001, f'{v:.4f}', ha='center', va='bottom')
-    
     plt.tight_layout()
-    plt.savefig("penalty_comparison_plot.png", dpi=150, bbox_inches='tight')
-    plt.show()
+    plt.savefig("lr_penalty_comparison_plot.png", dpi=150, bbox_inches='tight')
+    plt.show() # Can comment this out if running in non-interactive environment
     
-    return results, acc_diff, relative_diff
+    return results, metric_variances, best_by_metric
+
 
 # ========== MAIN EXECUTION ==========
 if __name__ == "__main__":
     # load and preprocess
     X, Y = load_and_preprocess("../diabetes_binary.csv", "Diabetes_binary")
     
-    # split and scale
+    # split and scale (CRITICAL for Regularized Logistic Regression!)
     X_train, X_test, Y_train, Y_test = split_and_scale(X, Y)
     
     # run tests
-    print("\nRunning C sensitivity test...")
-    c_results, min_acc, max_acc, c_percent_change = test_C_sensitivity(X_train, X_test, Y_train, Y_test)
+    print("\n" + "="*60)
+    print("Running C (Regularization) sensitivity test...")
+    print("="*60)
+    c_results, c_variances, best_c = test_C_sensitivity(X_train, X_test, Y_train, Y_test)
     
-    print("\nRunning L1 vs L2 penalty test...")
-    penalty_results, acc_diff, relative_diff = test_penalty_types(X_train, X_test, Y_train, Y_test)
+    print("\n" + "="*60)
+    print("Running L1 vs L2 penalty comparison...")
+    print("="*60)
+    penalty_results, penalty_variances, best_penalty = test_penalty_types(X_train, X_test, Y_train, Y_test)
     
     # write everything to single txt file
-    with open("logreg_sensitivity_results.txt", "w") as f:
-        f.write("LOGISTIC REGRESSION HYPERPARAMETER SENSITIVITY ANALYSIS\n\n")
+    with open("lr_sensitivity_results_diabetes.txt", "w") as f:
+        f.write("="*80 + "\n")
+        f.write("LOGISTIC REGRESSION HYPERPARAMETER SENSITIVITY ANALYSIS - DIABETES DATASET\n")
+        f.write("="*80 + "\n\n")
         
-        f.write("TEST 1: C SENSITIVITY (Regularization Strength)\n\n")
+        # TEST 1: C sensitivity
+        f.write("TEST 1: C SENSITIVITY (Regularization Strength)\n")
+        f.write("-"*80 + "\n\n")
         f.write("Individual C value results:\n")
-        for C, acc in c_results.items():
-            f.write(f"C = {C}: Train Acc = {acc['train']:.4f}, Test Acc = {acc['test']:.4f}\n")
-        f.write(f"\nRelative sensitivity to C: {c_percent_change:.4f}%\n")
-        f.write(f"Min accuracy: {min_acc:.4f}\n")
-        f.write(f"Max accuracy: {max_acc:.4f}\n")
-        f.write(f"Plot saved as: c_sensitivity_plot.png\n\n")
+        for C, metrics in c_results.items():
+            test = metrics['test']
+            f.write(f"C = {C}:\n")
+            f.write(f"  Test Metrics: Acc={test['accuracy']:.4f}, Prec={test['precision']:.4f}, "
+                   f"Rec={test['recall']:.4f}, F1={test['f1']:.4f}, AUC={test['auc']:.4f}\n")
         
-        f.write("TEST 2: L1 vs L2 PENALTY (with C=1.0)\n")
-        f.write(f"L1 Train Accuracy: {penalty_results['l1']['train']:.4f}\n")
-        f.write(f"L1 Test Accuracy: {penalty_results['l1']['test']:.4f}\n")
-        f.write(f"L2 Train Accuracy: {penalty_results['l2']['train']:.4f}\n")
-        f.write(f"L2 Test Accuracy: {penalty_results['l2']['test']:.4f}\n")
-        f.write(f"Absolute difference: {acc_diff:.4f}\n")
-        f.write(f"Relative difference: {relative_diff:.4f}%\n")
-        f.write(f"Plot saved as: penalty_comparison_plot.png\n\n")
+        f.write(f"\nVariance for each metric (over different C values):\n")
+        for metric, var in c_variances.items():
+            f.write(f"  {metric}: {var:.6f}\n")
+        f.write(f"\nBest C by metric:\n")
+        for metric, c_val in best_c.items():
+            f.write(f"  {metric}: {c_val}\n")
+        f.write(f"Plot saved as: lr_c_sensitivity_plot.png\n\n")
         
-        f.write("SUMMARY\n")
-        f.write(f"More sensitive to: ")
-        if c_percent_change > relative_diff:
-            f.write(f"C values ({c_percent_change:.2f}% vs {relative_diff:.2f}%)\n")
-        else:
-            f.write(f"Penalty type ({relative_diff:.2f}% vs {c_percent_change:.2f}%)\n")
-    
-    print("\nResults saved to: logreg_sensitivity_results.txt")
-    print("Plots saved as: c_sensitivity_plot.png, penalty_comparison_plot.png")
+        f.write("WHY: C controls the inverse of the regularization strength. Small C means strong\n")
+        f.write("regularization (simpler model, mitigates overfitting), large C means weak regularization\n")
+        f.write("(model fits data closely, risks overfitting). This balances bias-variance tradeoff.\n\n")
+        
+        # TEST 2: Penalty type
+        f.write("TEST 2: L1 vs L2 PENALTY COMPARISON (C=1.0)\n")
+        f.write("-"*80 + "\n\n")
+        for penalty, metrics in penalty_results.items():
+            test = metrics['test']
+            f.write(f"{penalty.upper()}:\n")
+            f.write(f"  Test Metrics: Acc={test['accuracy']:.4f}, Prec={test['precision']:.4f}, "
+                   f"Rec={test['recall']:.4f}, F1={test['f1']:.4f}, AUC={test['auc']:.4f}\n")
+        
+        f.write(f"\nVariance (difference) for each metric between L1 and L2:\n")
+        for metric, var in penalty_variances.items():
+            f.write(f"  {metric}: {var:.6f}\n")
+        f.write(f"\nBest Penalty by metric:\n")
+        for metric, penalty in best_penalty.items():
+            f.write(f"  {metric}: {penalty.upper()}\n")
+        f.write(f"Plot saved as: lr_penalty_comparison_plot.png\n\n")
+        
+        f.write("WHY: L2 (Ridge) shrinks weights but keeps all features. L1 (Lasso) can drive weights to\n")
+        f.write("exactly zero, effectively performing feature selection. Choice depends on feature importance.\n\n")
+        
+        # SUMMARY
+        f.write("="*80 + "\n")
+        f.write("COMPREHENSIVE SUMMARY\n")
+        f.write("="*80 + "\n\n")
+        
+        # calculate average variance across all metrics for each parameter
+        avg_variances = {
+            'C_value': np.mean(list(c_variances.values())),
+            'penalty_type': np.mean(list(penalty_variances.values()))
+        }
+        
+        most_sensitive = max(avg_variances, key=avg_variances.get)
+        least_sensitive = min(avg_variances, key=avg_variances.get)
+        
+        f.write(f"Most sensitive parameter: {most_sensitive} (avg variance = {avg_variances[most_sensitive]:.6f})\n")
+        f.write(f"Least sensitive parameter: {least_sensitive} (avg variance = {avg_variances[least_sensitive]:.6f})\n\n")
+        
+        f.write("Sensitivity ranking (by average variance across all metrics):\n")
+        for param, var in sorted(avg_variances.items(), key=lambda x: x[1], reverse=True):
+            f.write(f"  {param}: {var:.6f}\n")
+        
+        f.write(f"\nBest hyperparameters by metric:\n")
+        f.write(f"\n  For ACCURACY (overall correctness):\n")
+        f.write(f"    C_value: {best_c['accuracy']}\n")
+        f.write(f"    penalty_type: {best_penalty['accuracy'].upper()}\n")
+        
+        f.write(f"\n  For PRECISION (true positives / predicted positives):\n")
+        f.write(f"    C_value: {best_c['precision']}\n")
+        f.write(f"    penalty_type: {best_penalty['precision'].upper()}\n")
+        
+        f.write(f"\n  For RECALL (true positives / actual positives):\n")
+        f.write(f"    C_value: {best_c['recall']}\n")
+        f.write(f"    penalty_type: {best_penalty['recall'].upper()}\n")
+        
+        f.write(f"\n  For F1-SCORE (balance of precision and recall):\n")
+        f.write(f"    C_value: {best_c['f1']}\n")
+        f.write(f"    penalty_type: {best_penalty['f1'].upper()}\n")
+        
+        f.write(f"\n  For AUC (Area Under Curve):\n")
+        f.write(f"    C_value: {best_c['auc']}\n")
+        f.write(f"    penalty_type: {best_penalty['auc'].upper()}\n")
+        
+    print("\nResults saved to: lr_sensitivity_results_diabetes.txt")
+    print("Plots saved as: lr_c_sensitivity_plot.png, lr_penalty_comparison_plot.png")

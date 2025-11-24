@@ -3,8 +3,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 import matplotlib.pyplot as plt
+
 # ### The target variable is "NObeyesdad" (obesity level)
 # Normal_Weight, Overweight_Level_I, Overweight_Level_II, Obesity_Type_I, Obesity_Type_II, Obesity_Type_III
 
@@ -76,6 +77,21 @@ def split_and_scale(X, Y):
     
     return X_train, X_test, Y_train, Y_test
 
+def calculate_all_metrics(Y_true, Y_pred, Y_proba=None):
+    """Calculate comprehensive metrics for multiclass"""
+    metrics = {
+        'accuracy': accuracy_score(Y_true, Y_pred),
+        'precision': precision_score(Y_true, Y_pred, average='weighted', zero_division=0),
+        'recall': recall_score(Y_true, Y_pred, average='weighted', zero_division=0),
+        'f1': f1_score(Y_true, Y_pred, average='weighted', zero_division=0)
+    }
+    if Y_proba is not None:
+        try:
+            metrics['auc'] = roc_auc_score(Y_true, Y_proba, multi_class='ovr', average='weighted')
+        except:
+            metrics['auc'] = 0.0
+    return metrics
+
 def test_max_depth_sensitivity(X_train, X_test, Y_train, Y_test, depth_values=[1, 2, 3, 5, 7, 10, 15, 20, None]):
     """
     Test sensitivity to max_depth hyperparameter
@@ -86,7 +102,7 @@ def test_max_depth_sensitivity(X_train, X_test, Y_train, Y_test, depth_values=[1
     
     Depth controls model complexity
     """
-    test_acc_list = []
+    results_list = []
     depth_results = {}
     
     for depth in depth_values:
@@ -98,40 +114,47 @@ def test_max_depth_sensitivity(X_train, X_test, Y_train, Y_test, depth_values=[1
         # predict() takes FEATURES (X), not labels (Y)
         Y_train_pred = model.predict(X_train)  # predict on training features
         Y_test_pred = model.predict(X_test)    # predict on test features
+        Y_test_proba = model.predict_proba(X_test)
         
-        train_acc = accuracy_score(Y_train, Y_train_pred)
-        test_acc = accuracy_score(Y_test, Y_test_pred)
+        train_metrics = calculate_all_metrics(Y_train, Y_train_pred)
+        test_metrics = calculate_all_metrics(Y_test, Y_test_pred, Y_test_proba)
         
-        test_acc_list.append(test_acc)
-        depth_results[depth] = {'train': train_acc, 'test': test_acc}
+        results_list.append(test_metrics)
+        depth_results[depth] = {'train': train_metrics, 'test': test_metrics}
         
-        print(f"Depth={depth}: Train={train_acc:.4f}, Test={test_acc:.4f}")
+        print(f"Depth={depth}: Acc={test_metrics['accuracy']:.4f}, F1={test_metrics['f1']:.4f}, AUC={test_metrics['auc']:.4f}")
     
-    min_acc = min(test_acc_list)
-    max_acc = max(test_acc_list)
+    # calculate variance for each metric
+    metric_variances = {}
+    for metric in ['accuracy', 'precision', 'recall', 'f1', 'auc']:
+        values = [r[metric] for r in results_list]
+        metric_variances[metric] = np.var(values)
     
-    relative_change = (max_acc - min_acc) / min_acc
-    percent_change = relative_change * 100
+    # find best performing depth for different metrics
+    best_by_metric = {}
+    for metric in ['accuracy', 'precision', 'recall', 'f1', 'auc']:
+        best_idx = max(range(len(results_list)), key=lambda i: results_list[i][metric])
+        best_by_metric[metric] = depth_values[best_idx]
     
-    print(f"\nmax_depth Sensitivity: {percent_change:.4f}%")
-    
-    # plot
-    plt.figure(figsize=(10, 6))
-    # Convert None to string for plotting
+    # plot multiple metrics
+    plt.figure(figsize=(12, 6))
     x_labels = [str(d) for d in depth_values]
     x_positions = range(len(depth_values))
     
-    plt.plot(x_positions, test_acc_list, marker="o", label="Test Accuracy")
+    for metric in ['accuracy', 'f1', 'auc']:
+        values = [r[metric] for r in results_list]
+        plt.plot(x_positions, values, marker="o", label=metric.upper())
+    
     plt.xticks(x_positions, x_labels)
     plt.xlabel("max_depth")
-    plt.ylabel("Accuracy")
-    plt.title("Sensitivity to max_depth")
+    plt.ylabel("Score")
+    plt.title("Sensitivity to max_depth (Multiple Metrics)")
     plt.legend()
     plt.grid(True)
     plt.savefig("dt_depth_sensitivity_plot.png", dpi=150, bbox_inches='tight')
     plt.show()
     
-    return depth_results, min_acc, max_acc, percent_change
+    return depth_results, metric_variances, best_by_metric
 
 def test_min_samples_split_sensitivity(X_train, X_test, Y_train, Y_test, split_values=[2, 5, 10, 20, 50, 100]):
     """
@@ -142,7 +165,7 @@ def test_min_samples_split_sensitivity(X_train, X_test, Y_train, Y_test, split_v
     
     This controls how "eager" the tree is to split nodes
     """
-    test_acc_list = []
+    results_list = []
     split_results = {}
     
     for split in split_values:
@@ -152,35 +175,44 @@ def test_min_samples_split_sensitivity(X_train, X_test, Y_train, Y_test, split_v
         
         Y_train_pred = model.predict(X_train)
         Y_test_pred = model.predict(X_test)
+        Y_test_proba = model.predict_proba(X_test)
         
-        train_acc = accuracy_score(Y_train, Y_train_pred)
-        test_acc = accuracy_score(Y_test, Y_test_pred)
+        train_metrics = calculate_all_metrics(Y_train, Y_train_pred)
+        test_metrics = calculate_all_metrics(Y_test, Y_test_pred, Y_test_proba)
         
-        test_acc_list.append(test_acc)
-        split_results[split] = {'train': train_acc, 'test': test_acc}
+        results_list.append(test_metrics)
+        split_results[split] = {'train': train_metrics, 'test': test_metrics}
         
-        print(f"min_samples_split={split}: Train={train_acc:.4f}, Test={test_acc:.4f}")
+        print(f"split={split}: Acc={test_metrics['accuracy']:.4f}, F1={test_metrics['f1']:.4f}, AUC={test_metrics['auc']:.4f}")
     
-    min_acc = min(test_acc_list)
-    max_acc = max(test_acc_list)
+    # calculate variance for each metric
+    metric_variances = {}
+    for metric in ['accuracy', 'precision', 'recall', 'f1', 'auc']:
+        values = [r[metric] for r in results_list]
+        metric_variances[metric] = np.var(values)
     
-    relative_change = (max_acc - min_acc) / min_acc
-    percent_change = relative_change * 100
+    # find best performing split for different metrics
+    best_by_metric = {}
+    for metric in ['accuracy', 'precision', 'recall', 'f1', 'auc']:
+        best_idx = max(range(len(results_list)), key=lambda i: results_list[i][metric])
+        best_by_metric[metric] = split_values[best_idx]
     
-    print(f"\nmin_samples_split Sensitivity: {percent_change:.4f}%")
+    # plot multiple metrics
+    plt.figure(figsize=(12, 6))
     
-    # plot
-    plt.figure(figsize=(10, 6))
-    plt.plot(split_values, test_acc_list, marker="o", label="Test Accuracy")
+    for metric in ['accuracy', 'f1', 'auc']:
+        values = [r[metric] for r in results_list]
+        plt.plot(split_values, values, marker="o", label=metric.upper())
+    
     plt.xlabel("min_samples_split")
-    plt.ylabel("Accuracy")
-    plt.title("Sensitivity to min_samples_split")
+    plt.ylabel("Score")
+    plt.title("Sensitivity to min_samples_split (Multiple Metrics)")
     plt.legend()
     plt.grid(True)
     plt.savefig("dt_split_sensitivity_plot.png", dpi=150, bbox_inches='tight')
     plt.show()
     
-    return split_results, min_acc, max_acc, percent_change
+    return split_results, metric_variances, best_by_metric
 
 def test_min_samples_leaf_sensitivity(X_train, X_test, Y_train, Y_test, leaf_values=[1, 2, 5, 10, 20, 50]):
     """
@@ -191,7 +223,7 @@ def test_min_samples_leaf_sensitivity(X_train, X_test, Y_train, Y_test, leaf_val
     
     This is another way to prevent overfitting
     """
-    test_acc_list = []
+    results_list = []
     leaf_results = {}
     
     for leaf in leaf_values:
@@ -200,35 +232,44 @@ def test_min_samples_leaf_sensitivity(X_train, X_test, Y_train, Y_test, leaf_val
         
         Y_train_pred = model.predict(X_train)
         Y_test_pred = model.predict(X_test)
+        Y_test_proba = model.predict_proba(X_test)
         
-        train_acc = accuracy_score(Y_train, Y_train_pred)
-        test_acc = accuracy_score(Y_test, Y_test_pred)
+        train_metrics = calculate_all_metrics(Y_train, Y_train_pred)
+        test_metrics = calculate_all_metrics(Y_test, Y_test_pred, Y_test_proba)
         
-        test_acc_list.append(test_acc)
-        leaf_results[leaf] = {'train': train_acc, 'test': test_acc}
+        results_list.append(test_metrics)
+        leaf_results[leaf] = {'train': train_metrics, 'test': test_metrics}
         
-        print(f"min_samples_leaf={leaf}: Train={train_acc:.4f}, Test={test_acc:.4f}")
+        print(f"leaf={leaf}: Acc={test_metrics['accuracy']:.4f}, F1={test_metrics['f1']:.4f}, AUC={test_metrics['auc']:.4f}")
     
-    min_acc = min(test_acc_list)
-    max_acc = max(test_acc_list)
+    # calculate variance for each metric
+    metric_variances = {}
+    for metric in ['accuracy', 'precision', 'recall', 'f1', 'auc']:
+        values = [r[metric] for r in results_list]
+        metric_variances[metric] = np.var(values)
     
-    relative_change = (max_acc - min_acc) / min_acc
-    percent_change = relative_change * 100
+    # find best performing leaf for different metrics
+    best_by_metric = {}
+    for metric in ['accuracy', 'precision', 'recall', 'f1', 'auc']:
+        best_idx = max(range(len(results_list)), key=lambda i: results_list[i][metric])
+        best_by_metric[metric] = leaf_values[best_idx]
     
-    print(f"\nmin_samples_leaf Sensitivity: {percent_change:.4f}%")
+    # plot multiple metrics
+    plt.figure(figsize=(12, 6))
     
-    # plot
-    plt.figure(figsize=(10, 6))
-    plt.plot(leaf_values, test_acc_list, marker="o", label="Test Accuracy")
+    for metric in ['accuracy', 'f1', 'auc']:
+        values = [r[metric] for r in results_list]
+        plt.plot(leaf_values, values, marker="o", label=metric.upper())
+    
     plt.xlabel("min_samples_leaf")
-    plt.ylabel("Accuracy")
-    plt.title("Sensitivity to min_samples_leaf")
+    plt.ylabel("Score")
+    plt.title("Sensitivity to min_samples_leaf (Multiple Metrics)")
     plt.legend()
     plt.grid(True)
     plt.savefig("dt_leaf_sensitivity_plot.png", dpi=150, bbox_inches='tight')
     plt.show()
     
-    return leaf_results, min_acc, max_acc, percent_change
+    return leaf_results, metric_variances, best_by_metric
 
 def test_criterion_sensitivity(X_train, X_test, Y_train, Y_test):
     """
@@ -243,6 +284,7 @@ def test_criterion_sensitivity(X_train, X_test, Y_train, Y_test):
     """
     criteria = ['gini', 'entropy', 'log_loss']
     results = {}
+    results_list = []
     
     for crit in criteria:
         model = DecisionTreeClassifier(criterion=crit, random_state=42)
@@ -250,37 +292,49 @@ def test_criterion_sensitivity(X_train, X_test, Y_train, Y_test):
         
         Y_train_pred = model.predict(X_train)
         Y_test_pred = model.predict(X_test)
+        Y_test_proba = model.predict_proba(X_test)
         
-        train_acc = accuracy_score(Y_train, Y_train_pred)
-        test_acc = accuracy_score(Y_test, Y_test_pred)
+        train_metrics = calculate_all_metrics(Y_train, Y_train_pred)
+        test_metrics = calculate_all_metrics(Y_test, Y_test_pred, Y_test_proba)
         
-        results[crit] = {'train': train_acc, 'test': test_acc}
-        print(f"{crit}: Train={train_acc:.4f}, Test={test_acc:.4f}")
+        results[crit] = {'train': train_metrics, 'test': test_metrics}
+        results_list.append(test_metrics)
+        
+        print(f"{crit}: Acc={test_metrics['accuracy']:.4f}, F1={test_metrics['f1']:.4f}, AUC={test_metrics['auc']:.4f}")
     
-    # calculate difference between best and worst
-    test_accs = [results[c]['test'] for c in criteria]
-    acc_diff = max(test_accs) - min(test_accs)
-    relative_diff = (acc_diff / min(test_accs)) * 100
+    # calculate variance for each metric
+    metric_variances = {}
+    for metric in ['accuracy', 'precision', 'recall', 'f1', 'auc']:
+        values = [r[metric] for r in results_list]
+        metric_variances[metric] = np.var(values)
     
-    # bar plot
-    plt.figure(figsize=(8, 5))
-    test_accs_list = [results[c]['test'] for c in criteria]
+    # find best performing criterion for different metrics
+    best_by_metric = {}
+    for metric in ['accuracy', 'precision', 'recall', 'f1', 'auc']:
+        best_idx = max(range(len(results_list)), key=lambda i: results_list[i][metric])
+        best_by_metric[metric] = criteria[best_idx]
     
-    plt.bar(criteria, test_accs_list, color=['lightcoral', 'skyblue', 'lightgreen'])
-    plt.ylabel("Test Accuracy")
-    plt.title("Criterion Comparison")
-    plt.ylim([min(test_accs_list) - 0.01, max(test_accs_list) + 0.01])
+    # grouped bar plot for multiple metrics
+    plt.figure(figsize=(10, 6))
+    metrics_to_plot = ['accuracy', 'precision', 'recall', 'f1', 'auc']
+    x = np.arange(len(metrics_to_plot))
+    width = 0.25
+    
+    for i, crit in enumerate(criteria):
+        values = [results[crit]['test'][m] for m in metrics_to_plot]
+        plt.bar(x + i*width, values, width, label=crit)
+    
+    plt.xlabel('Metrics')
+    plt.ylabel('Score')
+    plt.title('Criterion Comparison (All Metrics)')
+    plt.xticks(x + width, metrics_to_plot)
+    plt.legend()
     plt.grid(True, axis='y', alpha=0.3)
-    
-    # add values on bars
-    for i, v in enumerate(test_accs_list):
-        plt.text(i, v + 0.001, f'{v:.4f}', ha='center', va='bottom')
-    
     plt.tight_layout()
     plt.savefig("dt_criterion_comparison_plot.png", dpi=150, bbox_inches='tight')
     plt.show()
     
-    return results, acc_diff, relative_diff
+    return results, metric_variances, best_by_metric
 
 # ========== MAIN EXECUTION ==========
 if __name__ == "__main__":
@@ -291,73 +345,173 @@ if __name__ == "__main__":
     X_train, X_test, Y_train, Y_test = split_and_scale(X, Y)
     
     # run tests
-    print("\nRunning max_depth sensitivity test...")
-    depth_results, depth_min, depth_max, depth_sensitivity = test_max_depth_sensitivity(X_train, X_test, Y_train, Y_test)
+    print("\n" + "="*60)
+    print("Running max_depth sensitivity test...")
+    print("="*60)
+    depth_results, depth_variances, best_depth = test_max_depth_sensitivity(X_train, X_test, Y_train, Y_test)
     
-    print("\nRunning min_samples_split sensitivity test...")
-    split_results, split_min, split_max, split_sensitivity = test_min_samples_split_sensitivity(X_train, X_test, Y_train, Y_test)
+    print("\n" + "="*60)
+    print("Running min_samples_split sensitivity test...")
+    print("="*60)
+    split_results, split_variances, best_split = test_min_samples_split_sensitivity(X_train, X_test, Y_train, Y_test)
     
-    print("\nRunning min_samples_leaf sensitivity test...")
-    leaf_results, leaf_min, leaf_max, leaf_sensitivity = test_min_samples_leaf_sensitivity(X_train, X_test, Y_train, Y_test)
+    print("\n" + "="*60)
+    print("Running min_samples_leaf sensitivity test...")
+    print("="*60)
+    leaf_results, leaf_variances, best_leaf = test_min_samples_leaf_sensitivity(X_train, X_test, Y_train, Y_test)
     
-    print("\nRunning criterion comparison...")
-    criterion_results, criterion_diff, criterion_sensitivity = test_criterion_sensitivity(X_train, X_test, Y_train, Y_test)
+    print("\n" + "="*60)
+    print("Running criterion comparison...")
+    print("="*60)
+    criterion_results, criterion_variances, best_criterion = test_criterion_sensitivity(X_train, X_test, Y_train, Y_test)
     
     # write everything to single txt file
     with open("dt_sensitivity_results.txt", "w") as f:
-        f.write("DECISION TREE HYPERPARAMETER SENSITIVITY ANALYSIS - OBESITY DATASET\n\n")
+        f.write("="*80 + "\n")
+        f.write("DECISION TREE HYPERPARAMETER SENSITIVITY ANALYSIS - OBESITY DATASET\n")
+        f.write("="*80 + "\n\n")
         
         # TEST 1: max_depth
-        f.write("TEST 1: max_depth SENSITIVITY\n\n")
+        f.write("TEST 1: max_depth SENSITIVITY\n")
+        f.write("-"*80 + "\n\n")
         f.write("Individual max_depth results:\n")
-        for depth, acc in depth_results.items():
-            f.write(f"max_depth = {depth}: Train Acc = {acc['train']:.4f}, Test Acc = {acc['test']:.4f}\n")
-        f.write(f"\nRelative sensitivity to max_depth: {depth_sensitivity:.4f}%\n")
-        f.write(f"Min accuracy: {depth_min:.4f}\n")
-        f.write(f"Max accuracy: {depth_max:.4f}\n")
+        for depth, metrics in depth_results.items():
+            test = metrics['test']
+            f.write(f"max_depth = {depth}:\n")
+            f.write(f"  Test Metrics: Acc={test['accuracy']:.4f}, Prec={test['precision']:.4f}, "
+                   f"Rec={test['recall']:.4f}, F1={test['f1']:.4f}, AUC={test['auc']:.4f}\n")
+        
+        f.write(f"\nVariance for each metric:\n")
+        for metric, var in depth_variances.items():
+            f.write(f"  {metric}: {var:.6f}\n")
+        f.write(f"\nBest max_depth by metric:\n")
+        for metric, depth in best_depth.items():
+            f.write(f"  {metric}: {depth}\n")
         f.write(f"Plot saved as: dt_depth_sensitivity_plot.png\n\n")
         
+        f.write("WHY: max_depth controls tree complexity directly. Low values underfit (can't capture patterns),\n")
+        f.write("high values overfit (memorize training noise). Sweet spot balances bias-variance tradeoff.\n")
+        f.write("This is typically the MOST impactful parameter for decision trees.\n\n")
+        
         # TEST 2: min_samples_split
-        f.write("TEST 2: min_samples_split SENSITIVITY\n\n")
+        f.write("TEST 2: min_samples_split SENSITIVITY\n")
+        f.write("-"*80 + "\n\n")
         f.write("Individual min_samples_split results:\n")
-        for split, acc in split_results.items():
-            f.write(f"min_samples_split = {split}: Train Acc = {acc['train']:.4f}, Test Acc = {acc['test']:.4f}\n")
-        f.write(f"\nRelative sensitivity to min_samples_split: {split_sensitivity:.4f}%\n")
-        f.write(f"Min accuracy: {split_min:.4f}\n")
-        f.write(f"Max accuracy: {split_max:.4f}\n")
+        for split, metrics in split_results.items():
+            test = metrics['test']
+            f.write(f"min_samples_split = {split}:\n")
+            f.write(f"  Test Metrics: Acc={test['accuracy']:.4f}, Prec={test['precision']:.4f}, "
+                   f"Rec={test['recall']:.4f}, F1={test['f1']:.4f}, AUC={test['auc']:.4f}\n")
+        
+        f.write(f"\nVariance for each metric:\n")
+        for metric, var in split_variances.items():
+            f.write(f"  {metric}: {var:.6f}\n")
+        f.write(f"\nBest min_samples_split by metric:\n")
+        for metric, split in best_split.items():
+            f.write(f"  {metric}: {split}\n")
         f.write(f"Plot saved as: dt_split_sensitivity_plot.png\n\n")
         
+        f.write("WHY: Controls minimum samples to create a split. Lower values allow more granular splits,\n")
+        f.write("higher values create smoother decision boundaries. Acts as regularization.\n\n")
+        
         # TEST 3: min_samples_leaf
-        f.write("TEST 3: min_samples_leaf SENSITIVITY\n\n")
+        f.write("TEST 3: min_samples_leaf SENSITIVITY\n")
+        f.write("-"*80 + "\n\n")
         f.write("Individual min_samples_leaf results:\n")
-        for leaf, acc in leaf_results.items():
-            f.write(f"min_samples_leaf = {leaf}: Train Acc = {acc['train']:.4f}, Test Acc = {acc['test']:.4f}\n")
-        f.write(f"\nRelative sensitivity to min_samples_leaf: {leaf_sensitivity:.4f}%\n")
-        f.write(f"Min accuracy: {leaf_min:.4f}\n")
-        f.write(f"Max accuracy: {leaf_max:.4f}\n")
+        for leaf, metrics in leaf_results.items():
+            test = metrics['test']
+            f.write(f"min_samples_leaf = {leaf}:\n")
+            f.write(f"  Test Metrics: Acc={test['accuracy']:.4f}, Prec={test['precision']:.4f}, "
+                   f"Rec={test['recall']:.4f}, F1={test['f1']:.4f}, AUC={test['auc']:.4f}\n")
+        
+        f.write(f"\nVariance for each metric:\n")
+        for metric, var in leaf_variances.items():
+            f.write(f"  {metric}: {var:.6f}\n")
+        f.write(f"\nBest min_samples_leaf by metric:\n")
+        for metric, leaf in best_leaf.items():
+            f.write(f"  {metric}: {leaf}\n")
         f.write(f"Plot saved as: dt_leaf_sensitivity_plot.png\n\n")
         
+        f.write("WHY: Enforces minimum leaf size, preventing overfitting to outliers. Similar effect to\n")
+        f.write("min_samples_split but applied at leaves. Good for noisy datasets.\n\n")
+        
         # TEST 4: criterion
-        f.write("TEST 4: CRITERION COMPARISON\n\n")
-        for crit, acc in criterion_results.items():
-            f.write(f"{crit}: Train Acc = {acc['train']:.4f}, Test Acc = {acc['test']:.4f}\n")
-        f.write(f"\nAbsolute difference: {criterion_diff:.4f}\n")
-        f.write(f"Relative difference: {criterion_sensitivity:.4f}%\n")
+        f.write("TEST 4: CRITERION COMPARISON\n")
+        f.write("-"*80 + "\n\n")
+        for crit, metrics in criterion_results.items():
+            test = metrics['test']
+            f.write(f"{crit}:\n")
+            f.write(f"  Test Metrics: Acc={test['accuracy']:.4f}, Prec={test['precision']:.4f}, "
+                   f"Rec={test['recall']:.4f}, F1={test['f1']:.4f}, AUC={test['auc']:.4f}\n")
+        
+        f.write(f"\nVariance for each metric:\n")
+        for metric, var in criterion_variances.items():
+            f.write(f"  {metric}: {var:.6f}\n")
+        f.write(f"\nBest criterion by metric:\n")
+        for metric, crit in best_criterion.items():
+            f.write(f"  {metric}: {crit}\n")
         f.write(f"Plot saved as: dt_criterion_comparison_plot.png\n\n")
         
+        f.write("WHY: Different impurity measures. Gini is computationally faster, entropy more theoretically\n")
+        f.write("grounded. Usually minimal practical difference. Typically LEAST sensitive parameter.\n\n")
+        
         # SUMMARY
-        f.write("SUMMARY\n")
-        sensitivities = {
-            'max_depth': depth_sensitivity,
-            'min_samples_split': split_sensitivity,
-            'min_samples_leaf': leaf_sensitivity,
-            'criterion': criterion_sensitivity
+        f.write("="*80 + "\n")
+        f.write("COMPREHENSIVE SUMMARY\n")
+        f.write("="*80 + "\n\n")
+        
+        # calculate average variance across all metrics for each parameter
+        avg_variances = {
+            'max_depth': np.mean(list(depth_variances.values())),
+            'min_samples_split': np.mean(list(split_variances.values())),
+            'min_samples_leaf': np.mean(list(leaf_variances.values())),
+            'criterion': np.mean(list(criterion_variances.values()))
         }
-        most_sensitive = max(sensitivities, key=sensitivities.get)
-        f.write(f"Most sensitive to: {most_sensitive} ({sensitivities[most_sensitive]:.2f}%)\n")
-        f.write(f"\nSensitivity ranking:\n")
-        for param, sens in sorted(sensitivities.items(), key=lambda x: x[1], reverse=True):
-            f.write(f"{param}: {sens:.2f}%\n")
+        
+        most_sensitive = max(avg_variances, key=avg_variances.get)
+        least_sensitive = min(avg_variances, key=avg_variances.get)
+        
+        f.write(f"Most sensitive parameter: {most_sensitive} (avg variance = {avg_variances[most_sensitive]:.6f})\n")
+        f.write(f"Least sensitive parameter: {least_sensitive} (avg variance = {avg_variances[least_sensitive]:.6f})\n\n")
+        
+        f.write("Sensitivity ranking (by average variance across all metrics):\n")
+        for param, var in sorted(avg_variances.items(), key=lambda x: x[1], reverse=True):
+            f.write(f"  {param}: {var:.6f}\n")
+        
+        f.write(f"\nBest hyperparameters by metric:\n")
+        f.write(f"\n  For ACCURACY (overall correctness):\n")
+        f.write(f"    max_depth: {best_depth['accuracy']}\n")
+        f.write(f"    min_samples_split: {best_split['accuracy']}\n")
+        f.write(f"    min_samples_leaf: {best_leaf['accuracy']}\n")
+        f.write(f"    criterion: {best_criterion['accuracy']}\n")
+        
+        f.write(f"\n  For PRECISION (weighted average across all obesity classes):\n")
+        f.write(f"    max_depth: {best_depth['precision']}\n")
+        f.write(f"    min_samples_split: {best_split['precision']}\n")
+        f.write(f"    min_samples_leaf: {best_leaf['precision']}\n")
+        f.write(f"    criterion: {best_criterion['precision']}\n")
+        
+        f.write(f"\n  For RECALL (weighted average - how well we catch each obesity class):\n")
+        f.write(f"    max_depth: {best_depth['recall']}\n")
+        f.write(f"    min_samples_split: {best_split['recall']}\n")
+        f.write(f"    min_samples_leaf: {best_leaf['recall']}\n")
+        f.write(f"    criterion: {best_criterion['recall']}\n")
+        
+        f.write(f"\n  For F1 (balance precision & recall):\n")
+        f.write(f"    max_depth: {best_depth['f1']}\n")
+        f.write(f"    min_samples_split: {best_split['f1']}\n")
+        f.write(f"    min_samples_leaf: {best_leaf['f1']}\n")
+        f.write(f"    criterion: {best_criterion['f1']}\n")
+        
+        f.write(f"\n  For AUC (threshold-independent performance, one-vs-rest):\n")
+        f.write(f"    max_depth: {best_depth['auc']}\n")
+        f.write(f"    min_samples_split: {best_split['auc']}\n")
+        f.write(f"    min_samples_leaf: {best_leaf['auc']}\n")
+        f.write(f"    criterion: {best_criterion['auc']}\n")
+        
     
-    print("\nResults saved to: dt_sensitivity_results.txt")
-    print("Plots saved as: dt_depth_sensitivity_plot.png, dt_split_sensitivity_plot.png, dt_leaf_sensitivity_plot.png, dt_criterion_comparison_plot.png")
+    print("\n" + "="*60)
+    print("Results saved to: dt_sensitivity_results.txt")
+    print("Plots saved as: dt_depth_sensitivity_plot.png, dt_split_sensitivity_plot.png,")
+    print("                dt_leaf_sensitivity_plot.png, dt_criterion_comparison_plot.png")
+    print("="*60)
