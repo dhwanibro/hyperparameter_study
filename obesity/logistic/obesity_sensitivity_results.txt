@@ -1,0 +1,28 @@
+LOGISTIC REGRESSION HYPERPARAMETER SENSITIVITY ANALYSIS - OBESITY DATASET
+
+TEST 1: C SENSITIVITY (Regularization Strength)
+
+Individual C value results:
+C = 0.001: Train Acc = 0.5632, Test Acc = 0.5694
+C = 0.01: Train Acc = 0.6711, Test Acc = 0.6603
+C = 0.1: Train Acc = 0.7879, Test Acc = 0.7679
+C = 1: Train Acc = 0.8951, Test Acc = 0.8900
+C = 10: Train Acc = 0.9587, Test Acc = 0.9426
+C = 100: Train Acc = 0.9790, Test Acc = 0.9617
+
+Relative sensitivity to C: 68.9076%
+Min accuracy: 0.5694
+Max accuracy: 0.9617
+Plot saved as: obesity_c_sensitivity_plot.png
+
+TEST 2: L1 vs L2 PENALTY (with C=1.0)
+L1 Train Accuracy: 0.7855
+L1 Test Accuracy: 0.7823
+L2 Train Accuracy: 0.7627
+L2 Test Accuracy: 0.7584
+Absolute difference: 0.0239
+Relative difference: 3.1546%
+Plot saved as: obesity_penalty_comparison_plot.png
+
+SUMMARY
+More sensitive to: C values (68.91% vs 3.15%)

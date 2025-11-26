@@ -1,0 +1,91 @@
+================================================================================
+LOGISTIC REGRESSION HYPERPARAMETER SENSITIVITY ANALYSIS - HAR DATASET (MULTICLASS)
+================================================================================
+
+TEST 1: C SENSITIVITY (Regularization Strength) - L2 Penalty (multinomial)
+--------------------------------------------------------------------------------
+
+Individual C value results (Test Metrics):
+C = 0.001:
+  Acc=0.9342, Prec=0.9364, Rec=0.9342, F1=0.9340, AUC=0.9969
+C = 0.01:
+  Acc=0.9450, Prec=0.9468, Rec=0.9450, F1=0.9451, AUC=0.9971
+C = 0.1:
+  Acc=0.9501, Prec=0.9526, Rec=0.9501, F1=0.9502, AUC=0.9970
+C = 1:
+  Acc=0.9511, Prec=0.9538, Rec=0.9511, F1=0.9511, AUC=0.9973
+C = 10:
+  Acc=0.9522, Prec=0.9535, Rec=0.9522, F1=0.9519, AUC=0.9971
+C = 100:
+  Acc=0.9450, Prec=0.9468, Rec=0.9450, F1=0.9447, AUC=0.9969
+
+Variance for each metric (over different C values):
+  accuracy: 0.000037
+  precision: 0.000037
+  recall: 0.000037
+  f1: 0.000037
+  auc: 0.000000
+
+Best C by metric:
+  accuracy: 10
+  precision: 1
+  recall: 10
+  f1: 10
+  auc: 1
+Plot saved as: har_lr_c_sensitivity_plot.png
+
+TEST 2: L1 vs L2 PENALTY COMPARISON (C=1.0) - OVR Scheme
+--------------------------------------------------------------------------------
+
+L1:
+  Test Metrics: Acc=0.9583, Prec=0.9601, Rec=0.9583, F1=0.9580, AUC=0.9954
+L2:
+  Test Metrics: Acc=0.9613, Prec=0.9638, Rec=0.9613, F1=0.9614, AUC=0.9946
+
+Variance (difference) for each metric between L1 and L2:
+  accuracy: 0.000002
+  precision: 0.000003
+  recall: 0.000002
+  f1: 0.000003
+  auc: 0.000000
+
+Best Penalty by metric:
+  accuracy: L2
+  precision: L2
+  recall: L2
+  f1: L2
+  auc: L1
+Plot saved as: har_lr_penalty_comparison_plot.png
+
+================================================================================
+COMPREHENSIVE SUMMARY
+================================================================================
+
+Most sensitive parameter: C_value (avg variance = 0.000030)
+Least sensitive parameter: penalty_type (avg variance = 0.000002)
+
+Sensitivity ranking (by average variance across all metrics):
+  C_value: 0.000030
+  penalty_type: 0.000002
+
+Best hyperparameters by metric:
+
+  For ACCURACY:
+    Best C: 10 (from L2/Multinomial test)
+    Best Penalty: L2 (from L1/L2 OVR test)
+
+  For PRECISION:
+    Best C: 1 (from L2/Multinomial test)
+    Best Penalty: L2 (from L1/L2 OVR test)
+
+  For RECALL:
+    Best C: 10 (from L2/Multinomial test)
+    Best Penalty: L2 (from L1/L2 OVR test)
+
+  For F1:
+    Best C: 10 (from L2/Multinomial test)
+    Best Penalty: L2 (from L1/L2 OVR test)
+
+  For AUC:
+    Best C: 1 (from L2/Multinomial test)
+    Best Penalty: L1 (from L1/L2 OVR test)
