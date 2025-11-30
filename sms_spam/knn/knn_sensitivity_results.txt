@@ -1,0 +1,140 @@
+================================================================================
+KNN HYPERPARAMETER SENSITIVITY ANALYSIS - HAR DATASET
+================================================================================
+
+TEST 1: n_neighbors (k) SENSITIVITY
+--------------------------------------------------------------------------------
+
+Individual k value results:
+k = 1:
+  Test Metrics: Acc=0.9545, Prec=0.9545, Rec=0.9545, F1=0.9508, AUC=0.0000
+k = 3:
+  Test Metrics: Acc=0.9293, Prec=0.9331, Rec=0.9293, F1=0.9170, AUC=0.0000
+k = 5:
+  Test Metrics: Acc=0.9186, Prec=0.9236, Rec=0.9186, F1=0.9012, AUC=0.0000
+k = 7:
+  Test Metrics: Acc=0.9128, Prec=0.9183, Rec=0.9128, F1=0.8920, AUC=0.0000
+k = 9:
+  Test Metrics: Acc=0.9012, Prec=0.9074, Rec=0.9012, F1=0.8721, AUC=0.0000
+k = 11:
+  Test Metrics: Acc=0.8934, Prec=0.9050, Rec=0.8934, F1=0.8563, AUC=0.0000
+k = 15:
+  Test Metrics: Acc=0.8857, Prec=0.8989, Rec=0.8857, F1=0.8403, AUC=0.0000
+k = 20:
+  Test Metrics: Acc=0.8828, Prec=0.8966, Rec=0.8828, F1=0.8339, AUC=0.0000
+k = 25:
+  Test Metrics: Acc=0.8808, Prec=0.8951, Rec=0.8808, F1=0.8295, AUC=0.0000
+k = 30:
+  Test Metrics: Acc=0.8760, Prec=0.7673, Rec=0.8760, F1=0.8181, AUC=0.0000
+k = 50:
+  Test Metrics: Acc=0.8760, Prec=0.7673, Rec=0.8760, F1=0.8181, AUC=0.0000
+
+Variance for each metric:
+  accuracy: 0.000581
+  precision: 0.003516
+  recall: 0.000581
+  f1: 0.001770
+  auc: 0.000000
+
+Best k by metric:
+  accuracy: 1
+  precision: 1
+  recall: 1
+  f1: 1
+  auc: 1
+Plot saved as: knn_k_sensitivity_plot.png
+
+WHY: k controls the number of neighbors used for voting. Low k (1-3) is sensitive to noise
+and overfits, high k (30+) overly smooths decision boundaries and underfits. The optimal k
+balances local sensitivity with generalization. This is the MOST important KNN parameter.
+
+TEST 2: WEIGHTS COMPARISON (k=5)
+--------------------------------------------------------------------------------
+
+uniform:
+  Test Metrics: Acc=0.9186, Prec=0.9236, Rec=0.9186, F1=0.9012, AUC=0.0000
+distance:
+  Test Metrics: Acc=0.9312, Prec=0.9349, Rec=0.9312, F1=0.9198, AUC=0.0000
+
+Variance for each metric:
+  accuracy: 0.000040
+  precision: 0.000032
+  recall: 0.000040
+  f1: 0.000086
+  auc: 0.000000
+
+Best weights by metric:
+  accuracy: distance
+  precision: distance
+  recall: distance
+  f1: distance
+  auc: uniform
+Plot saved as: knn_weights_comparison_plot.png
+
+WHY: 'uniform' treats all k neighbors equally, while 'distance' gives more weight to closer
+neighbors. Distance weighting can help when data density varies across the feature space.
+
+TEST 3: DISTANCE METRIC COMPARISON (k=5)
+--------------------------------------------------------------------------------
+
+euclidean:
+  Test Metrics: Acc=0.9186, Prec=0.9236, Rec=0.9186, F1=0.9012, AUC=0.0000
+manhattan:
+  Test Metrics: Acc=0.8798, Prec=0.8743, Rec=0.8798, F1=0.8289, AUC=0.0000
+
+Variance for each metric:
+  accuracy: 0.000376
+  precision: 0.000606
+  recall: 0.000376
+  f1: 0.001305
+  auc: 0.000000
+
+Best distance metric by metric:
+  accuracy: euclidean
+  precision: euclidean
+  recall: euclidean
+  f1: euclidean
+  auc: euclidean
+Plot saved as: knn_metric_comparison_plot.png
+
+WHY: Euclidean (L2) measures straight-line distance, Manhattan (L1) measures city-block
+distance. Manhattan is less sensitive to outliers. Choice depends on feature space geometry.
+
+================================================================================
+COMPREHENSIVE SUMMARY
+================================================================================
+
+Most sensitive parameter: n_neighbors (avg variance = 0.001290)
+Least sensitive parameter: weights (avg variance = 0.000040)
+
+Sensitivity ranking (by average variance across all metrics):
+  n_neighbors: 0.001290
+  metric: 0.000532
+  weights: 0.000040
+
+Best hyperparameters by metric:
+
+  For ACCURACY (overall correctness):
+    n_neighbors: 1
+    weights: distance
+    metric: euclidean
+
+  For PRECISION (weighted average across all activity classes):
+    n_neighbors: 1
+    weights: distance
+    metric: euclidean
+
+  For RECALL (weighted average - how well we catch each activity):
+    n_neighbors: 1
+    weights: distance
+    metric: euclidean
+
+  For F1 (balance precision & recall):
+    n_neighbors: 1
+    weights: distance
+    metric: euclidean
+
+  For AUC (threshold-independent performance, one-vs-rest):
+    n_neighbors: 1
+    weights: uniform
+    metric: euclidean
