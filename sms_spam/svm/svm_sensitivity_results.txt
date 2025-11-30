@@ -1,0 +1,152 @@
+================================================================================
+SVM HYPERPARAMETER SENSITIVITY ANALYSIS - SMS SPAM DATASET
+================================================================================
+
+TEST 1: C (REGULARIZATION PARAMETER) SENSITIVITY
+--------------------------------------------------------------------------------
+
+Individual C results:
+C = 0.001:
+  Test Metrics: Acc=0.8760, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.9827
+  Train Metrics: Acc=0.8755, F1=0.0000
+  Support Vectors: 1034
+  Training Time: 1.08s
+  Overfitting Gap: -0.0005
+
+C = 0.01:
+  Test Metrics: Acc=0.8760, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.9831
+  Train Metrics: Acc=0.8755, F1=0.0000
+  Support Vectors: 1804
+  Training Time: 1.76s
+  Overfitting Gap: -0.0005
+
+C = 0.1:
+  Test Metrics: Acc=0.8798, Prec=1.0000, Rec=0.0312, F1=0.0606, AUC=0.9832
+  Train Metrics: Acc=0.8803, F1=0.0749
+  Support Vectors: 1987
+  Training Time: 1.93s
+  Overfitting Gap: 0.0005
+
+C = 1:
+  Test Metrics: Acc=0.9738, Prec=0.9810, Rec=0.8047, F1=0.8841, AUC=0.9856
+  Train Metrics: Acc=0.9964, F1=0.9852
+  Support Vectors: 2012
+  Training Time: 2.33s
+  Overfitting Gap: 0.0225
+
+C = 10:
+  Test Metrics: Acc=0.9797, Prec=0.9908, Rec=0.8438, F1=0.9114, AUC=0.9849
+  Train Metrics: Acc=0.9995, F1=0.9981
+  Support Vectors: 2076
+  Training Time: 2.83s
+  Overfitting Gap: 0.0199
+
+C = 100:
+  Test Metrics: Acc=0.9797, Prec=0.9908, Rec=0.8438, F1=0.9114, AUC=0.9849
+  Train Metrics: Acc=0.9995, F1=0.9981
+  Support Vectors: 2077
+  Training Time: 2.74s
+  Overfitting Gap: 0.0199
+
+C = 1000:
+  Test Metrics: Acc=0.9797, Prec=0.9908, Rec=0.8438, F1=0.9114, AUC=0.9849
+  Train Metrics: Acc=0.9995, F1=0.9981
+  Support Vectors: 2076
+  Training Time: 2.74s
+  Overfitting Gap: 0.0199
+
+Variance for each metric:
+  accuracy: 0.002500
+  precision: 0.200324
+  recall: 0.166362
+  f1: 0.191968
+  auc: 0.000001
+
+Best C by metric:
+  accuracy: 10
+  precision: 0.1
+  recall: 10
+  f1: 10
+  auc: 1
+
+Plot saved as: svm_C_sensitivity_plot.png
+
+TEST 2: KERNEL TYPE COMPARISON
+--------------------------------------------------------------------------------
+
+linear:
+  Test Metrics: Acc=0.9767, Prec=0.9561, Rec=0.8516, F1=0.9008, AUC=0.9835
+  Train Metrics: Acc=0.9913, F1=0.9640
+  Support Vectors: 902
+  Training Time: 0.85s
+  Overfitting Gap: 0.0145
+
+rbf:
+  Test Metrics: Acc=0.9738, Prec=0.9810, Rec=0.8047, F1=0.8841, AUC=0.9856
+  Train Metrics: Acc=0.9964, F1=0.9852
+  Support Vectors: 2012
+  Training Time: 2.38s
+  Overfitting Gap: 0.0225
+
+poly:
+  Test Metrics: Acc=0.9380, Prec=0.9848, Rec=0.5078, F1=0.6701, AUC=0.9856
+  Train Metrics: Acc=0.9993, F1=0.9971
+  Support Vectors: 3826
+  Training Time: 3.28s
+  Overfitting Gap: 0.0613
+
+sigmoid:
+  Test Metrics: Acc=0.9748, Prec=0.9474, Rec=0.8438, F1=0.8926, AUC=0.9827
+  Train Metrics: Acc=0.9843, F1=0.9333
+  Support Vectors: 749
+  Training Time: 0.77s
+  Overfitting Gap: 0.0094
+
+Variance for each metric:
+  accuracy: 0.000260
+  precision: 0.000254
+  recall: 0.020184
+  f1: 0.009309
+  auc: 0.000002
+
+Best kernel by metric:
+  accuracy: linear
+  precision: poly
+  recall: linear
+  f1: linear
+  auc: poly
+
+Plot saved as: svm_kernel_comparison_plot.png
+
+================================================================================
+COMPREHENSIVE SUMMARY
+================================================================================
+
+Most sensitive parameter: C (avg variance = 0.112231)
+Least sensitive parameter: kernel (avg variance = 0.006002)
+
+Sensitivity ranking:
+  C: 0.112231
+  kernel: 0.006002
+
+Best hyperparameters by metric:
+
+  For ACCURACY:
+    C: 10
+    kernel: linear
+
+  For PRECISION:
+    C: 0.1
+    kernel: poly
+
+  For RECALL:
+    C: 10
+    kernel: linear
+
+  For F1:
+    C: 10
+    kernel: linear
+
+  For AUC:
+    C: 1
+    kernel: poly

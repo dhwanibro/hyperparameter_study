@@ -34,9 +34,6 @@ Best C by metric:
   auc: 0.001
 Plot saved as: lr_c_sensitivity_plot.png
 
-WHY: C controls the inverse of the regularization strength ($\lambda$). Small C means strong
-regularization (simpler model, mitigates overfitting), large C means weak regularization
-(model fits data closely, risks overfitting). This balances bias-variance tradeoff.
 
 TEST 2: L1 vs L2 PENALTY COMPARISON (C=1.0)
 --------------------------------------------------------------------------------
