@@ -1,0 +1,75 @@
+================================================================================
+HYPERPARAMETER SENSITIVITY ANALYSIS - SUMMARY REPORT
+================================================================================
+
+1. DATASET SENSITIVITY RANKING
+--------------------------------------------------------------------------------
+   1. obesity              - Average Variance: 0.016378
+   2. smartphone           - Average Variance: 0.015448
+   3. heart                - Average Variance: 0.006403
+   4. diabetes             - Average Variance: 0.000952
+   5. sms_spam             - Average Variance: 0.000616
+
+   Most Sensitive:  obesity
+   Least Sensitive: sms_spam
+
+2. ALGORITHM SENSITIVITY RANKING
+--------------------------------------------------------------------------------
+   1. svm                       - Average Variance: 0.025352
+   2. decision_tree             - Average Variance: 0.005350
+   3. logistic_regression       - Average Variance: 0.001544
+   4. knn                       - Average Variance: 0.000399
+
+   Most Sensitive:  svm
+   Least Sensitive: knn
+
+3. MOST IMPORTANT HYPERPARAMETERS PER ALGORITHM
+--------------------------------------------------------------------------------
+
+   DECISION TREE:
+      1. max_depth            - Variance: 0.020021
+      2. min_samples_leaf     - Variance: 0.000658
+      3. min_samples_split    - Variance: 0.000577
+      4. criterion            - Variance: 0.000144
+
+   KNN:
+      1. k                    - Variance: 0.001017
+      2. metric               - Variance: 0.000161
+      3. weights              - Variance: 0.000019
+
+   LOGISTIC REGRESSION:
+      1. C                    - Variance: 0.002578
+      2. penalty              - Variance: 0.001200
+
+   SVM:
+      1. C                    - Variance: 0.045947
+      2. kernel               - Variance: 0.004756
+
+4. MOST SENSITIVE DATASET-ALGORITHM COMBINATIONS
+--------------------------------------------------------------------------------
+   1. obesity         + svm                       = 0.055017
+   2. smartphone      + svm                       = 0.038492
+   3. obesity         + decision_tree             = 0.012895
+   4. smartphone      + decision_tree             = 0.007787
+   5. heart           + svm                       = 0.006403
+   6. diabetes        + logistic_regression       = 0.002992
+   7. sms_spam        + svm                       = 0.001495
+   8. obesity         + knn                       = 0.000658
+   9. diabetes        + decision_tree             = 0.000541
+   10. obesity         + logistic_regression       = 0.000190
+
+5. KEY INSIGHTS
+--------------------------------------------------------------------------------
+   Universally Important Parameters:
+      - C: avg variance = 0.037273
+      - max_depth: avg variance = 0.020021
+      - kernel: avg variance = 0.004756
+
+   Dataset-Specific Behavior:
+      - diabetes: most sensitive to 'penalty' (var=0.003405)
+      - heart: most sensitive to 'C' (var=0.012536)
+      - obesity: most sensitive to 'C' (var=0.092864)
+      - smartphone: most sensitive to 'C' (var=0.075695)
+      - sms_spam: most sensitive to 'C' (var=0.002694)
+
+================================================================================
