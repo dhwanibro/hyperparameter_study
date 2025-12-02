@@ -1,0 +1,195 @@
+================================================================================
+SVM HYPERPARAMETER SENSITIVITY ANALYSIS - HAR DATASET
+================================================================================
+
+TEST 1: C (REGULARIZATION PARAMETER) SENSITIVITY
+--------------------------------------------------------------------------------
+
+Individual C results:
+C = 0.001:
+  Test Metrics: Acc=0.5044, Prec=0.2544, Rec=0.5044, F1=0.3383, AUC=0.0000
+  Train Metrics: Acc=0.5033, F1=0.3370
+  Support Vectors: 448
+  Training Time: 0.02s
+  Overfitting Gap (Train-Test Acc): -0.0011
+
+C = 0.01:
+  Test Metrics: Acc=0.6903, Prec=0.7270, Rec=0.6903, F1=0.6762, AUC=0.0000
+  Train Metrics: Acc=0.6585, F1=0.6418
+  Support Vectors: 448
+  Training Time: 0.02s
+  Overfitting Gap (Train-Test Acc): -0.0317
+
+C = 0.1:
+  Test Metrics: Acc=0.7611, Prec=0.7682, Rec=0.7611, F1=0.7597, AUC=0.0000
+  Train Metrics: Acc=0.7428, F1=0.7403
+  Support Vectors: 321
+  Training Time: 0.01s
+  Overfitting Gap (Train-Test Acc): -0.0183
+
+C = 1:
+  Test Metrics: Acc=0.7611, Prec=0.7633, Rec=0.7611, F1=0.7607, AUC=0.0000
+  Train Metrics: Acc=0.7761, F1=0.7750
+  Support Vectors: 265
+  Training Time: 0.01s
+  Overfitting Gap (Train-Test Acc): 0.0150
+
+C = 10:
+  Test Metrics: Acc=0.7788, Prec=0.7808, Rec=0.7788, F1=0.7782, AUC=0.0000
+  Train Metrics: Acc=0.8182, F1=0.8180
+  Support Vectors: 226
+  Training Time: 0.02s
+  Overfitting Gap (Train-Test Acc): 0.0394
+
+C = 100:
+  Test Metrics: Acc=0.7699, Prec=0.7711, Rec=0.7699, F1=0.7696, AUC=0.0000
+  Train Metrics: Acc=0.8271, F1=0.8268
+  Support Vectors: 224
+  Training Time: 0.04s
+  Overfitting Gap (Train-Test Acc): 0.0571
+
+C = 1000:
+  Test Metrics: Acc=0.6991, Prec=0.6999, Rec=0.6991, F1=0.6986, AUC=0.0000
+  Train Metrics: Acc=0.8559, F1=0.8558
+  Support Vectors: 219
+  Training Time: 0.27s
+  Overfitting Gap (Train-Test Acc): 0.1568
+
+Variance for each metric:
+  accuracy: 0.008042
+  precision: 0.030983
+  recall: 0.008042
+  f1: 0.021088
+  auc: 0.000000
+
+Best C by metric:
+  accuracy: 10
+  precision: 10
+  recall: 10
+  f1: 10
+  auc: 0.001
+
+Plot saved as: svm_C_sensitivity_plot.png
+
+WHY: C controls the regularization strength (inverse relationship).
+- Small C → Strong regularization → Soft margin → More training errors allowed
+  → Simpler model → Better generalization → More support vectors
+- Large C → Weak regularization → Hard margin → Fewer training errors
+  → Complex model → Risk of overfitting → Fewer support vectors
+
+This is typically the MOST IMPORTANT parameter for SVM performance.
+Notice how support vectors decrease as C increases (model gets more strict).
+
+TEST 2: KERNEL TYPE COMPARISON
+--------------------------------------------------------------------------------
+
+linear:
+  Test Metrics: Acc=0.7434, Prec=0.7565, Rec=0.7434, F1=0.7396, AUC=0.0000
+  Train Metrics: Acc=0.7894, F1=0.7869
+  Support Vectors: 253
+  Training Time: 0.01s
+  Overfitting Gap (Train-Test Acc): 0.0460
+
+rbf:
+  Test Metrics: Acc=0.7611, Prec=0.7633, Rec=0.7611, F1=0.7607, AUC=0.0000
+  Train Metrics: Acc=0.7761, F1=0.7750
+  Support Vectors: 265
+  Training Time: 0.01s
+  Overfitting Gap (Train-Test Acc): 0.0150
+
+poly:
+  Test Metrics: Acc=0.7345, Prec=0.7425, Rec=0.7345, F1=0.7326, AUC=0.0000
+  Train Metrics: Acc=0.7650, F1=0.7624
+  Support Vectors: 303
+  Training Time: 0.01s
+  Overfitting Gap (Train-Test Acc): 0.0305
+
+sigmoid:
+  Test Metrics: Acc=0.6991, Prec=0.6993, Rec=0.6991, F1=0.6990, AUC=0.0000
+  Train Metrics: Acc=0.6785, F1=0.6785
+  Support Vectors: 205
+  Training Time: 0.01s
+  Overfitting Gap (Train-Test Acc): -0.0206
+
+Variance for each metric:
+  accuracy: 0.000509
+  precision: 0.000620
+  recall: 0.000509
+  f1: 0.000492
+  auc: 0.000000
+
+Best kernel by metric:
+  accuracy: rbf
+  precision: rbf
+  recall: rbf
+  f1: rbf
+  auc: linear
+
+Plot saved as: svm_kernel_comparison_plot.png
+
+WHY: Kernel choice determines how data is transformed into higher dimensions.
+- linear: No transformation, creates linear decision boundary. Fastest, good for
+  linearly separable data. Can underfit non-linear patterns.
+- rbf: Radial Basis Function, most versatile. Creates smooth, non-linear boundaries.
+  Usually best default choice for unknown data patterns.
+- poly: Polynomial kernel, creates polynomial decision boundaries. Good for
+  modeling feature interactions. Can be slow and numerically unstable.
+- sigmoid: Similar to neural network activation. Less commonly used, can be
+  unstable. Rarely the best choice.
+
+Kernel choice is CRITICAL - wrong kernel = poor performance regardless of tuning.
+
+================================================================================
+COMPREHENSIVE SUMMARY
+================================================================================
+
+Most sensitive parameter: C (avg variance = 0.013631)
+Least sensitive parameter: kernel (avg variance = 0.000426)
+
+Sensitivity ranking (by average variance across all metrics):
+  C: 0.013631
+  kernel: 0.000426
+
+Best hyperparameters by metric:
+
+  For ACCURACY:
+    C: 10
+    kernel: rbf
+
+  For PRECISION:
+    C: 10
+    kernel: rbf
+
+  For RECALL:
+    C: 10
+    kernel: rbf
+
+  For F1:
+    C: 10
+    kernel: rbf
+
+  For AUC:
+    C: 0.001
+    kernel: linear
+
+================================================================================
+KEY INSIGHTS FOR SVM:
+================================================================================
+
+1. FEATURE SCALING: SVM is extremely sensitive to feature scaling. Always use
+   StandardScaler or similar before training.
+
+2. SUPPORT VECTORS: The number of support vectors indicates model complexity.
+   More support vectors = more complex decision boundary.
+
+3. OVERFITTING CHECK: Compare train vs test accuracy. Large gap = overfitting.
+   If overfitting: decrease C (stronger regularization) or use simpler kernel.
+
+4. COMPUTATIONAL COST: RBF and poly kernels are slower than linear. Training time
+   scales poorly with dataset size (roughly O(n^2) to O(n^3)).
+
+5. HYPERPARAMETER TUNING ORDER:
+   a) First: Choose kernel (try RBF as default)
+   b) Second: Tune C (most impactful for performance)
+   c) Third: If using RBF/poly, tune gamma (not done in this analysis)
+

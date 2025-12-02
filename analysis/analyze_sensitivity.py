@@ -28,7 +28,7 @@ def find_result_files(base_path):
     base_path = Path(base_path)
     
     # Look in each dataset folder
-    datasets = ['diabetes', 'heart', 'obesity', 'smartphone', 'sms_spam']
+    datasets = ['diabetes', 'heart', 'obesity', 'smartphone', 'sms_spam', 'mamogram']
     algorithms = ['logistic', 'knn', 'decision_tree', 'svm']
     
     for dataset in datasets:
@@ -252,7 +252,7 @@ def parse_file(file_path):
         return None
     
     # Determine dataset from path
-    for dataset in ['diabetes', 'heart', 'obesity', 'smartphone', 'sms_spam']:
+    for dataset in ['diabetes', 'heart', 'obesity', 'smartphone', 'sms_spam', 'mamogram']:
         if dataset in str(file_path):
             dataset_name = dataset
             break

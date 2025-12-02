@@ -1,0 +1,108 @@
+================================================================================
+SVM HYPERPARAMETER SENSITIVITY ANALYSIS - DIABETES DATASET
+Technique: 5-Fold Cross Validation
+Sample Size: 5000 (Stratified)
+================================================================================
+
+TEST 1: C (REGULARIZATION PARAMETER) SENSITIVITY
+--------------------------------------------------------------------------------
+
+Individual C results (Averages across 5 folds):
+C = 0.01:
+  Test Metrics: Acc=0.8470, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.7101
+  Train Metrics: Acc=0.8470, F1=0.0000
+  Avg Support Vectors: 1253
+  Avg Training Time: 0.35s
+  Overfitting Gap (Train-Test Acc): 0.0000
+  Stability (Test Acc Variance): 0.000000
+
+C = 0.1:
+  Test Metrics: Acc=0.8470, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.6793
+  Train Metrics: Acc=0.8470, F1=0.0000
+  Avg Support Vectors: 1292
+  Avg Training Time: 0.36s
+  Overfitting Gap (Train-Test Acc): 0.0000
+  Stability (Test Acc Variance): 0.000000
+
+C = 1:
+  Test Metrics: Acc=0.8470, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.7196
+  Train Metrics: Acc=0.8470, F1=0.0000
+  Avg Support Vectors: 1618
+  Avg Training Time: 0.60s
+  Overfitting Gap (Train-Test Acc): 0.0000
+  Stability (Test Acc Variance): 0.000000
+
+C = 10:
+  Test Metrics: Acc=0.7210, Prec=0.2615, Rec=0.3922, F1=0.3098, AUC=0.6391
+  Train Metrics: Acc=0.7080, F1=0.2920
+  Avg Support Vectors: 2026
+  Avg Training Time: 1.32s
+  Overfitting Gap (Train-Test Acc): -0.0130
+  Stability (Test Acc Variance): 0.004420
+
+C = 100:
+  Test Metrics: Acc=0.5910, Prec=0.1778, Rec=0.3830, F1=0.2336, AUC=0.5184
+  Train Metrics: Acc=0.5915, F1=0.2406
+  Avg Support Vectors: 1816
+  Avg Training Time: 1.29s
+  Overfitting Gap (Train-Test Acc): 0.0005
+  Stability (Test Acc Variance): 0.018498
+
+
+Best C by metric:
+  accuracy: 0.01
+  precision: 10
+  recall: 10
+  f1: 10
+  auc: 1
+
+Plot saved as: svm_C_sensitivity_plot.png
+
+WHY: C controls the regularization strength.
+With 5-Fold CV, we can see if higher C leads to overfitting (High Train Acc vs Low Test Acc).
+
+TEST 2: KERNEL TYPE COMPARISON
+--------------------------------------------------------------------------------
+
+linear:
+  Test Metrics: Acc=0.8470, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.7196
+  Train Metrics: Acc=0.8470, F1=0.0000
+  Avg Support Vectors: 1618
+  Avg Training Time: 0.59s
+
+rbf:
+  Test Metrics: Acc=0.8520, Prec=0.6333, Rec=0.0876, F1=0.1528, AUC=0.7345
+  Train Metrics: Acc=0.8751, F1=0.3318
+  Avg Support Vectors: 1586
+  Avg Training Time: 1.10s
+
+
+Best kernel by metric:
+  accuracy: rbf
+  precision: rbf
+  recall: rbf
+  f1: rbf
+  auc: rbf
+
+Plot saved as: svm_kernel_comparison_plot.png
+
+================================================================================
+COMPREHENSIVE SUMMARY
+================================================================================
+
+
+Best hyperparameters by metric:
+
+  For ACCURACY:
+    C: 0.01
+    kernel: rbf
+
+  For F1:
+    C: 10
+    kernel: rbf
+
+================================================================================
+KEY OBSERVATIONS:
+1. If C is high and Overfitting Gap is large, reduce C.
+2. 'max_iter' was used to prevent the SVM from hanging on non-converging folds.
+3. If Linear and RBF have similar accuracy, Linear is preferred for speed.

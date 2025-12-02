@@ -1,0 +1,90 @@
+================================================================================
+LOGISTIC REGRESSION HYPERPARAMETER SENSITIVITY ANALYSIS - MAMOGRAM DATASET
+================================================================================
+
+TEST 1: C SENSITIVITY (Regularization Strength)
+--------------------------------------------------------------------------------
+
+Individual C value results:
+C = 0.001: Test Metrics: Acc=0.7699, Prec=0.7419, Rec=0.8214, F1=0.7797, AUC=0.8216
+C = 0.01: Test Metrics: Acc=0.7699, Prec=0.7500, Rec=0.8036, F1=0.7759, AUC=0.8310
+C = 0.1: Test Metrics: Acc=0.7522, Prec=0.7500, Rec=0.7500, F1=0.7500, AUC=0.8460
+C = 1: Test Metrics: Acc=0.7699, Prec=0.7679, Rec=0.7679, F1=0.7679, AUC=0.8466
+C = 10: Test Metrics: Acc=0.7876, Prec=0.7857, Rec=0.7857, F1=0.7857, AUC=0.8463
+C = 100: Test Metrics: Acc=0.7876, Prec=0.7857, Rec=0.7857, F1=0.7857, AUC=0.8463
+
+Variance for each metric (over different C values):
+  accuracy: 0.000148
+  precision: 0.000306
+  recall: 0.000531
+  f1: 0.000154
+  auc: 0.000097
+
+Best C by metric:
+  accuracy: 10
+  precision: 10
+  recall: 0.001
+  f1: 10
+  auc: 1
+Plot saved as: lr_c_sensitivity_plot.png
+
+WHY: C controls the inverse of the regularization strength. Small C means strong
+regularization (simpler model, mitigates overfitting), large C means weak regularization
+(model fits data closely, risks overfitting). This balances bias-variance tradeoff.
+
+TEST 2: L1 vs L2 PENALTY COMPARISON (C=1.0)
+--------------------------------------------------------------------------------
+
+L1: Test Metrics: Acc=0.7876, Prec=0.7857, Rec=0.7857, F1=0.7857, AUC=0.8466
+L2: Test Metrics: Acc=0.7699, Prec=0.7679, Rec=0.7679, F1=0.7679, AUC=0.8466
+
+Variance (difference) for each metric between L1 and L2:
+  accuracy: 0.000078
+  precision: 0.000080
+  recall: 0.000080
+  f1: 0.000080
+  auc: 0.000000
+
+Best Penalty by metric:
+  accuracy: L1
+  precision: L1
+  recall: L1
+  f1: L1
+  auc: L1
+Plot saved as: lr_penalty_comparison_plot.png
+
+WHY: L2 (Ridge) shrinks weights but keeps all features. L1 (Lasso) can drive weights to
+exactly zero, effectively performing feature selection. Choice depends on feature importance.
+
+================================================================================
+COMPREHENSIVE SUMMARY
+================================================================================
+
+Most sensitive parameter: C_value (avg variance = 0.000247)
+Least sensitive parameter: penalty_type (avg variance = 0.000063)
+
+Sensitivity ranking (by average variance across all metrics):
+  C_value: 0.000247
+  penalty_type: 0.000063
+
+Best hyperparameters by metric:
+
+  For ACCURACY (overall correctness):
+    C_value: 10
+    penalty_type: L1
+
+  For PRECISION (true positives / predicted positives):
+    C_value: 10
+    penalty_type: L1
+
+  For RECALL (true positives / actual positives):
+    C_value: 0.001
+    penalty_type: L1
+
+  For F1-SCORE (balance of precision and recall):
+    C_value: 10
+    penalty_type: L1
+
+  For AUC (Area Under Curve):
+    C_value: 1
+    penalty_type: L1

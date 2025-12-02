@@ -1,0 +1,167 @@
+================================================================================
+KNN HYPERPARAMETER SENSITIVITY ANALYSIS - MAMOGRAM DATASET
+================================================================================
+
+TEST 1: n_neighbors (k) SENSITIVITY
+--------------------------------------------------------------------------------
+
+Individual k value results:
+k = 1: Train Acc = 0.9401, Test Acc = 0.6283
+  Test Metrics: Prec=0.6346, Rec=0.5893, F1=0.6111, AUC=0.6280
+  Train Metrics: Prec=0.9301, F1=0.9404
+
+k = 3: Train Acc = 0.8182, Test Acc = 0.7080
+  Test Metrics: Prec=0.7018, Rec=0.7143, F1=0.7080, AUC=0.7243
+  Train Metrics: Prec=0.8114, F1=0.8186
+
+k = 5: Train Acc = 0.7982, Test Acc = 0.7168
+  Test Metrics: Prec=0.7222, Rec=0.6964, F1=0.7091, AUC=0.7716
+  Train Metrics: Prec=0.7904, F1=0.7991
+
+k = 7: Train Acc = 0.7894, Test Acc = 0.7345
+  Test Metrics: Prec=0.7500, Rec=0.6964, F1=0.7222, AUC=0.7979
+  Train Metrics: Prec=0.7867, F1=0.7884
+
+k = 9: Train Acc = 0.7827, Test Acc = 0.7522
+  Test Metrics: Prec=0.7692, Rec=0.7143, F1=0.7407, AUC=0.8098
+  Train Metrics: Prec=0.7692, F1=0.7860
+
+k = 11: Train Acc = 0.7805, Test Acc = 0.7434
+  Test Metrics: Prec=0.7455, Rec=0.7321, F1=0.7387, AUC=0.8170
+  Train Metrics: Prec=0.7593, F1=0.7871
+
+k = 15: Train Acc = 0.7716, Test Acc = 0.7699
+  Test Metrics: Prec=0.7586, Rec=0.7857, F1=0.7719, AUC=0.8152
+  Train Metrics: Prec=0.7410, F1=0.7832
+
+k = 20: Train Acc = 0.7650, Test Acc = 0.7522
+  Test Metrics: Prec=0.7414, Rec=0.7679, F1=0.7544, AUC=0.8139
+  Train Metrics: Prec=0.7438, F1=0.7725
+
+k = 25: Train Acc = 0.7494, Test Acc = 0.7257
+  Test Metrics: Prec=0.6984, Rec=0.7857, F1=0.7395, AUC=0.8321
+  Train Metrics: Prec=0.7211, F1=0.7621
+
+k = 30: Train Acc = 0.7605, Test Acc = 0.7788
+  Test Metrics: Prec=0.7541, Rec=0.8214, F1=0.7863, AUC=0.8322
+  Train Metrics: Prec=0.7339, F1=0.7712
+
+k = 50: Train Acc = 0.7494, Test Acc = 0.7611
+  Test Metrics: Prec=0.7302, Rec=0.8214, F1=0.7731, AUC=0.8349
+  Train Metrics: Prec=0.7160, F1=0.7651
+
+Variance for each metric:
+  accuracy: 0.001544
+  precision: 0.001328
+  recall: 0.004190
+  f1: 0.002066
+  auc: 0.003532
+
+Best k by metric:
+  accuracy: 30
+  precision: 9
+  recall: 30
+  f1: 30
+  auc: 50
+Plot saved as: knn_k_sensitivity_plot.png
+
+WHY: k controls the number of neighbors used for voting. Low k (1-3) is sensitive to noise
+and overfits, high k (30+) overly smooths decision boundaries and underfits. The optimal k
+balances local sensitivity with generalization. This is the MOST important KNN parameter.
+
+TEST 2: WEIGHTS COMPARISON (k=5)
+--------------------------------------------------------------------------------
+
+uniform: Train Acc = 0.7982, Test Acc = 0.7168
+  Test Metrics: Prec=0.7222, Rec=0.6964, F1=0.7091, AUC=0.7716
+  Train Metrics: Prec=0.7904, F1=0.7991
+
+distance: Train Acc = 0.9401, Test Acc = 0.6726
+  Test Metrics: Prec=0.6667, Rec=0.6786, F1=0.6726, AUC=0.6513
+  Train Metrics: Prec=1.0000, F1=0.9359
+
+Variance for each metric:
+  accuracy: 0.000489
+  precision: 0.000772
+  recall: 0.000080
+  f1: 0.000334
+  auc: 0.003618
+
+Best weights by metric:
+  accuracy: uniform
+  precision: uniform
+  recall: uniform
+  f1: uniform
+  auc: uniform
+Plot saved as: knn_weights_comparison_plot.png
+
+WHY: 'uniform' treats all k neighbors equally, while 'distance' gives more weight to closer
+neighbors. Distance weighting can help when data density varies across the feature space.
+
+TEST 3: DISTANCE METRIC COMPARISON (k=5)
+--------------------------------------------------------------------------------
+
+euclidean: Train Acc = 0.7982, Test Acc = 0.7168
+  Test Metrics: Prec=0.7222, Rec=0.6964, F1=0.7091, AUC=0.7716
+  Train Metrics: Prec=0.7904, F1=0.7991
+
+manhattan: Train Acc = 0.8137, Test Acc = 0.7522
+  Test Metrics: Prec=0.7593, Rec=0.7321, F1=0.7455, AUC=0.7769
+  Train Metrics: Prec=0.8125, F1=0.8125
+
+Variance for each metric:
+  accuracy: 0.000313
+  precision: 0.000343
+  recall: 0.000319
+  f1: 0.000331
+  auc: 0.000007
+
+Best distance metric by metric:
+  accuracy: manhattan
+  precision: manhattan
+  recall: manhattan
+  f1: manhattan
+  auc: manhattan
+Plot saved as: knn_metric_comparison_plot.png
+
+WHY: Euclidean (L2) measures straight-line distance, Manhattan (L1) measures city-block
+distance. Manhattan is less sensitive to outliers. Choice depends on feature space geometry.
+
+================================================================================
+COMPREHENSIVE SUMMARY
+================================================================================
+
+Most sensitive parameter: n_neighbors (avg variance = 0.002532)
+Least sensitive parameter: metric (avg variance = 0.000263)
+
+Sensitivity ranking (by average variance across all metrics):
+  n_neighbors: 0.002532
+  weights: 0.001058
+  metric: 0.000263
+
+Best hyperparameters by metric:
+
+  For ACCURACY (overall correctness):
+    n_neighbors: 30
+    weights: uniform
+    metric: manhattan
+
+  For PRECISION (true positives / predicted positives):
+    n_neighbors: 9
+    weights: uniform
+    metric: manhattan
+
+  For RECALL (true positives / actual positives):
+    n_neighbors: 30
+    weights: uniform
+    metric: manhattan
+
+  For F1 (balance precision & recall):
+    n_neighbors: 30
+    weights: uniform
+    metric: manhattan
+
+  For AUC (threshold-independent performance):
+    n_neighbors: 50
+    weights: uniform
+    metric: manhattan
