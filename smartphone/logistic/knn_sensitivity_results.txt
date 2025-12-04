@@ -1,0 +1,54 @@
+================================================================================
+KNN SENSITIVITY RESULTS
+Dataset: smartphone
+Timestamp: 2025-12-03T23:27:17.888724
+================================================================================
+
+PARAMETER: n_neighbors
+--------------------------------------------------------------------------------
+
+n_neighbors = {'accuracy': 0.8547675602307431, 'precision': np.float64(0.8605966936515107), 'recall': np.float64(0.8547675602307431), 'f1': np.float64(0.8542229251426592), 'auc': np.float64(0.9125588484856313)}:
+  Test Metrics: N_neighbors=1.0000
+
+n_neighbors = {'accuracy': 0.8741092636579573, 'precision': np.float64(0.8813442994280952), 'recall': np.float64(0.8741092636579573), 'f1': np.float64(0.8731362356234103), 'auc': np.float64(0.9646204975877005)}:
+  Test Metrics: N_neighbors=3.0000
+
+n_neighbors = {'accuracy': 0.8842891075670173, 'precision': np.float64(0.8920239966777403), 'recall': np.float64(0.8842891075670173), 'f1': np.float64(0.8833645686149975), 'auc': np.float64(0.976234036340699)}:
+  Test Metrics: N_neighbors=5.0000
+
+n_neighbors = {'accuracy': 0.8897183576518494, 'precision': np.float64(0.8978260569323628), 'recall': np.float64(0.8897183576518494), 'f1': np.float64(0.8887225302822348), 'auc': np.float64(0.9827021782633512)}:
+  Test Metrics: N_neighbors=7.0000
+
+n_neighbors = {'accuracy': 0.8941296233457754, 'precision': np.float64(0.901840443605108), 'recall': np.float64(0.8941296233457754), 'f1': np.float64(0.8932486866016656), 'auc': np.float64(0.9861916097731502)}:
+  Test Metrics: N_neighbors=9.0000
+
+n_neighbors = {'accuracy': 0.8880217170003394, 'precision': np.float64(0.8975733091117749), 'recall': np.float64(0.8880217170003394), 'f1': np.float64(0.8869520236438241), 'auc': np.float64(0.9879637972994264)}:
+  Test Metrics: N_neighbors=11.0000
+
+n_neighbors = {'accuracy': 0.8907363420427553, 'precision': np.float64(0.8999187769288569), 'recall': np.float64(0.8907363420427553), 'f1': np.float64(0.8896668183656059), 'auc': np.float64(0.9901063567385604)}:
+  Test Metrics: N_neighbors=15.0000
+
+n_neighbors = {'accuracy': 0.8917543264336614, 'precision': np.float64(0.9014412714955194), 'recall': np.float64(0.8917543264336614), 'f1': np.float64(0.8903625131432717), 'auc': np.float64(0.991143216612943)}:
+  Test Metrics: N_neighbors=20.0000
+
+n_neighbors = {'accuracy': 0.8863250763488293, 'precision': np.float64(0.8979059869864203), 'recall': np.float64(0.8863250763488293), 'f1': np.float64(0.8848770265073915), 'auc': np.float64(0.9924760504754986)}:
+  Test Metrics: N_neighbors=25.0000
+
+n_neighbors = {'accuracy': 0.8863250763488293, 'precision': np.float64(0.8976904496595083), 'recall': np.float64(0.8863250763488293), 'f1': np.float64(0.8848418910723255), 'auc': np.float64(0.9930215655667928)}:
+  Test Metrics: N_neighbors=30.0000
+
+n_neighbors = {'accuracy': 0.8764845605700713, 'precision': np.float64(0.8913834776241637), 'recall': np.float64(0.8764845605700713), 'f1': np.float64(0.8745165653410315), 'auc': np.float64(0.9933575677954293)}:
+  Test Metrics: N_neighbors=50.0000
+
+Statistics:
+  Min Accuracy: 0.0000
+  Max Accuracy: 0.0000
+  Range: 0.0000
+  Mean: 0.0000
+
+================================================================================
+
+PARAMETER: weights
+--------------------------------------------------------------------------------
+
+weights = {'accuracy': 0.8842891075670173, 'precision': np.float64(0.8920239966777403), 'recall': np.float64(0.8842891075670173), 'f1': np.float64(0.8833645686149975), 'auc': np.float64(0.976234036340699)}:

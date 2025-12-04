@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "dataset": "har_smartphone",
+    "algorithm": "logistic_regression",
+    "timestamp": "2025-12-04T11:24:51.480921",
+    "version": "1.0"
+  },
+  "experiments": [
+    {
+      "param_name": "C",
+      "param_value": 0.001,
+      "metrics": {
+        "accuracy": 0.9341703427214116,
+        "precision": 0.9363545560895188,
+        "recall": 0.9341703427214116,
+        "f1": 0.9340460366423501
+      },
+      "timestamp": "2025-12-04T11:24:52.216430"
+    },
+    {
+      "param_name": "C",
+      "param_value": 0.01,
+      "metrics": {
+        "accuracy": 0.9450288428910757,
+        "precision": 0.9468194584933649,
+        "recall": 0.9450288428910757,
+        "f1": 0.9451409959738256
+      },
+      "timestamp": "2025-12-04T11:24:52.606381"
+    },
+    {
+      "param_name": "C",
+      "param_value": 0.1,
+      "metrics": {
+        "accuracy": 0.9501187648456056,
+        "precision": 0.9525930183388966,
+        "recall": 0.9501187648456056,
+        "f1": 0.9502181190402875
+      },
+      "timestamp": "2025-12-04T11:24:52.924000"
+    },
+    {
+      "param_name": "C",
+      "param_value": 1,
+      "metrics": {
+        "accuracy": 0.9535120461486257,
+        "precision": 0.9560980418019894,
+        "recall": 0.9535120461486257,
+        "f1": 0.9535074333675047
+      },
+      "timestamp": "2025-12-04T11:24:53.359644"
+    },
+    {
+      "param_name": "C",
+      "param_value": 10,
+      "metrics": {
+        "accuracy": 0.9497794367153037,
+        "precision": 0.9513672905969366,
+        "recall": 0.9497794367153037,
+        "f1": 0.9495182323920803
+      },
+      "timestamp": "2025-12-04T11:24:54.022478"
+    },
+    {
+      "param_name": "C",
+      "param_value": 100,
+      "metrics": {
+        "accuracy": 0.9460468272819816,
+        "precision": 0.9476330760043227,
+        "recall": 0.9460468272819816,
+        "f1": 0.9457364640325951
+      },
+      "timestamp": "2025-12-04T11:24:54.536257"
+    },
+    {
+      "param_name": "C",
+      "param_value": 1000,
+      "metrics": {
+        "accuracy": 0.9484221241940957,
+        "precision": 0.9501756589151686,
+        "recall": 0.9484221241940957,
+        "f1": 0.9481500180673049
+      },
+      "timestamp": "2025-12-04T11:24:55.032739"
+    },
+    {
+      "param_name": "penalty",
+      "param_value": "l1",
+      "metrics": {
+        "accuracy": 0.9467254835425857,
+        "precision": 0.9493777754746038,
+        "recall": 0.9467254835425857,
+        "f1": 0.9468447010522443
+      },
+      "timestamp": "2025-12-04T11:26:25.412339",
+      "additional_info": {
+        "solver": "saga"
+      }
+    },
+    {
+      "param_name": "penalty",
+      "param_value": "l2",
+      "metrics": {
+        "accuracy": 0.9535120461486257,
+        "precision": 0.9560980418019894,
+        "recall": 0.9535120461486257,
+        "f1": 0.9535074333675047
+      },
+      "timestamp": "2025-12-04T11:26:25.825732",
+      "additional_info": {
+        "solver": "lbfgs"
+      }
+    }
+  ]
+}

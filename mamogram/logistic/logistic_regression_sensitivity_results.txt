@@ -1,0 +1,57 @@
+================================================================================
+LOGISTIC REGRESSION SENSITIVITY RESULTS
+Dataset: mammogram
+Timestamp: 2025-12-03T23:02:39.508269
+================================================================================
+
+PARAMETER: C
+--------------------------------------------------------------------------------
+
+C = 0.001:
+  Test Metrics: Accuracy=0.7611, Precision=0.7458, Recall=0.7857, F1=0.7652, Auc=0.8216
+
+C = 0.01:
+  Test Metrics: Accuracy=0.7611, Precision=0.7458, Recall=0.7857, F1=0.7652, Auc=0.8310
+
+C = 0.1:
+  Test Metrics: Accuracy=0.7522, Precision=0.7500, Recall=0.7500, F1=0.7500, Auc=0.8460
+
+C = 1:
+  Test Metrics: Accuracy=0.7699, Precision=0.7679, Recall=0.7679, F1=0.7679, Auc=0.8466
+
+C = 10:
+  Test Metrics: Accuracy=0.7876, Precision=0.7857, Recall=0.7857, F1=0.7857, Auc=0.8463
+
+C = 100:
+  Test Metrics: Accuracy=0.7876, Precision=0.7857, Recall=0.7857, F1=0.7857, Auc=0.8463
+
+C = 1000:
+  Test Metrics: Accuracy=0.7876, Precision=0.7857, Recall=0.7857, F1=0.7857, Auc=0.8463
+
+Statistics:
+  Min Accuracy: 0.7522
+  Max Accuracy: 0.7876
+  Range: 0.0354
+  Mean: 0.7724
+
+================================================================================
+
+PARAMETER: penalty
+--------------------------------------------------------------------------------
+
+penalty = l1:
+  Test Metrics: Accuracy=0.7876, Precision=0.7857, Recall=0.7857, F1=0.7857, Auc=0.8466
+  Additional: solver=liblinear
+
+penalty = l2:
+  Test Metrics: Accuracy=0.7699, Precision=0.7679, Recall=0.7679, F1=0.7679, Auc=0.8466
+  Additional: solver=lbfgs
+
+Statistics:
+  Min Accuracy: 0.7699
+  Max Accuracy: 0.7876
+  Range: 0.0177
+  Mean: 0.7788
+
+================================================================================
+

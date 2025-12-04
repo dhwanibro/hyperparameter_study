@@ -1,0 +1,57 @@
+================================================================================
+LOGISTIC REGRESSION SENSITIVITY RESULTS
+Dataset: har_smartphone
+Timestamp: 2025-12-04T11:24:51.480921
+================================================================================
+
+PARAMETER: C
+--------------------------------------------------------------------------------
+
+C = 0.001:
+  Test Metrics: Accuracy=0.9342, Precision=0.9364, Recall=0.9342, F1=0.9340
+
+C = 0.01:
+  Test Metrics: Accuracy=0.9450, Precision=0.9468, Recall=0.9450, F1=0.9451
+
+C = 0.1:
+  Test Metrics: Accuracy=0.9501, Precision=0.9526, Recall=0.9501, F1=0.9502
+
+C = 1:
+  Test Metrics: Accuracy=0.9535, Precision=0.9561, Recall=0.9535, F1=0.9535
+
+C = 10:
+  Test Metrics: Accuracy=0.9498, Precision=0.9514, Recall=0.9498, F1=0.9495
+
+C = 100:
+  Test Metrics: Accuracy=0.9460, Precision=0.9476, Recall=0.9460, F1=0.9457
+
+C = 1000:
+  Test Metrics: Accuracy=0.9484, Precision=0.9502, Recall=0.9484, F1=0.9482
+
+Statistics:
+  Min Accuracy: 0.9342
+  Max Accuracy: 0.9535
+  Range: 0.0193
+  Mean: 0.9467
+
+================================================================================
+
+PARAMETER: penalty
+--------------------------------------------------------------------------------
+
+penalty = l1:
+  Test Metrics: Accuracy=0.9467, Precision=0.9494, Recall=0.9467, F1=0.9468
+  Additional: solver=saga
+
+penalty = l2:
+  Test Metrics: Accuracy=0.9535, Precision=0.9561, Recall=0.9535, F1=0.9535
+  Additional: solver=lbfgs
+
+Statistics:
+  Min Accuracy: 0.9467
+  Max Accuracy: 0.9535
+  Range: 0.0068
+  Mean: 0.9501
+
+================================================================================
+

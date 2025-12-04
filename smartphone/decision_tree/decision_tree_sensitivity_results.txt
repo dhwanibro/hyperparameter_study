@@ -1,0 +1,233 @@
+================================================================================
+DECISION TREE SENSITIVITY RESULTS
+Dataset: har_smartphone
+Timestamp: 2025-12-04T10:46:58.611971
+================================================================================
+
+PARAMETER: max_depth
+--------------------------------------------------------------------------------
+
+max_depth = 1:
+  Test Metrics: Accuracy=0.3627, Precision=0.2221, Recall=0.3627, F1=0.2475
+
+max_depth = 2:
+  Test Metrics: Accuracy=0.5310, Precision=0.3363, Recall=0.5310, F1=0.3944
+
+max_depth = 3:
+  Test Metrics: Accuracy=0.7224, Precision=0.6710, Recall=0.7224, F1=0.6769
+
+max_depth = 4:
+  Test Metrics: Accuracy=0.8096, Precision=0.8253, Recall=0.8096, F1=0.8096
+
+max_depth = 5:
+  Test Metrics: Accuracy=0.8385, Precision=0.8468, Recall=0.8385, F1=0.8366
+
+max_depth = 6:
+  Test Metrics: Accuracy=0.8561, Precision=0.8621, Recall=0.8561, F1=0.8546
+
+max_depth = 7:
+  Test Metrics: Accuracy=0.8629, Precision=0.8638, Recall=0.8629, F1=0.8622
+
+max_depth = 8:
+  Test Metrics: Accuracy=0.8734, Precision=0.8768, Recall=0.8734, F1=0.8722
+
+max_depth = 9:
+  Test Metrics: Accuracy=0.8714, Precision=0.8722, Recall=0.8714, F1=0.8705
+
+max_depth = 10:
+  Test Metrics: Accuracy=0.8605, Precision=0.8607, Recall=0.8605, F1=0.8599
+
+max_depth = 11:
+  Test Metrics: Accuracy=0.8643, Precision=0.8654, Recall=0.8643, F1=0.8637
+
+max_depth = 12:
+  Test Metrics: Accuracy=0.8602, Precision=0.8608, Recall=0.8602, F1=0.8594
+
+max_depth = 13:
+  Test Metrics: Accuracy=0.8568, Precision=0.8578, Recall=0.8568, F1=0.8562
+
+max_depth = 14:
+  Test Metrics: Accuracy=0.8565, Precision=0.8573, Recall=0.8565, F1=0.8558
+
+max_depth = 15:
+  Test Metrics: Accuracy=0.8524, Precision=0.8530, Recall=0.8524, F1=0.8517
+
+max_depth = 16:
+  Test Metrics: Accuracy=0.8561, Precision=0.8567, Recall=0.8561, F1=0.8556
+
+max_depth = 17:
+  Test Metrics: Accuracy=0.8612, Precision=0.8625, Recall=0.8612, F1=0.8604
+
+max_depth = 18:
+  Test Metrics: Accuracy=0.8541, Precision=0.8547, Recall=0.8541, F1=0.8536
+
+max_depth = 19:
+  Test Metrics: Accuracy=0.8541, Precision=0.8547, Recall=0.8541, F1=0.8536
+
+max_depth = 20:
+  Test Metrics: Accuracy=0.8541, Precision=0.8547, Recall=0.8541, F1=0.8536
+
+Statistics:
+  Min Accuracy: 0.3627
+  Max Accuracy: 0.8734
+  Range: 0.5107
+  Mean: 0.8079
+
+================================================================================
+
+PARAMETER: min_samples_split
+--------------------------------------------------------------------------------
+
+min_samples_split = 2:
+  Test Metrics: Accuracy=0.8541, Precision=0.8547, Recall=0.8541, F1=0.8536
+
+min_samples_split = 3:
+  Test Metrics: Accuracy=0.8507, Precision=0.8512, Recall=0.8507, F1=0.8500
+
+min_samples_split = 4:
+  Test Metrics: Accuracy=0.8510, Precision=0.8518, Recall=0.8510, F1=0.8505
+
+min_samples_split = 5:
+  Test Metrics: Accuracy=0.8585, Precision=0.8592, Recall=0.8585, F1=0.8574
+
+min_samples_split = 6:
+  Test Metrics: Accuracy=0.8633, Precision=0.8633, Recall=0.8633, F1=0.8629
+
+min_samples_split = 7:
+  Test Metrics: Accuracy=0.8575, Precision=0.8574, Recall=0.8575, F1=0.8569
+
+min_samples_split = 8:
+  Test Metrics: Accuracy=0.8558, Precision=0.8559, Recall=0.8558, F1=0.8551
+
+min_samples_split = 9:
+  Test Metrics: Accuracy=0.8626, Precision=0.8629, Recall=0.8626, F1=0.8620
+
+min_samples_split = 10:
+  Test Metrics: Accuracy=0.8626, Precision=0.8629, Recall=0.8626, F1=0.8620
+
+min_samples_split = 11:
+  Test Metrics: Accuracy=0.8653, Precision=0.8652, Recall=0.8653, F1=0.8649
+
+min_samples_split = 12:
+  Test Metrics: Accuracy=0.8585, Precision=0.8584, Recall=0.8585, F1=0.8578
+
+min_samples_split = 13:
+  Test Metrics: Accuracy=0.8595, Precision=0.8596, Recall=0.8595, F1=0.8589
+
+min_samples_split = 14:
+  Test Metrics: Accuracy=0.8595, Precision=0.8596, Recall=0.8595, F1=0.8589
+
+min_samples_split = 15:
+  Test Metrics: Accuracy=0.8616, Precision=0.8620, Recall=0.8616, F1=0.8611
+
+min_samples_split = 16:
+  Test Metrics: Accuracy=0.8612, Precision=0.8618, Recall=0.8612, F1=0.8607
+
+min_samples_split = 17:
+  Test Metrics: Accuracy=0.8639, Precision=0.8645, Recall=0.8639, F1=0.8635
+
+min_samples_split = 18:
+  Test Metrics: Accuracy=0.8639, Precision=0.8645, Recall=0.8639, F1=0.8635
+
+min_samples_split = 19:
+  Test Metrics: Accuracy=0.8602, Precision=0.8611, Recall=0.8602, F1=0.8598
+
+min_samples_split = 20:
+  Test Metrics: Accuracy=0.8602, Precision=0.8611, Recall=0.8602, F1=0.8598
+
+Statistics:
+  Min Accuracy: 0.8507
+  Max Accuracy: 0.8653
+  Range: 0.0146
+  Mean: 0.8595
+
+================================================================================
+
+PARAMETER: min_samples_leaf
+--------------------------------------------------------------------------------
+
+min_samples_leaf = 1:
+  Test Metrics: Accuracy=0.8541, Precision=0.8547, Recall=0.8541, F1=0.8536
+
+min_samples_leaf = 2:
+  Test Metrics: Accuracy=0.8514, Precision=0.8520, Recall=0.8514, F1=0.8507
+
+min_samples_leaf = 3:
+  Test Metrics: Accuracy=0.8660, Precision=0.8664, Recall=0.8660, F1=0.8657
+
+min_samples_leaf = 4:
+  Test Metrics: Accuracy=0.8711, Precision=0.8714, Recall=0.8711, F1=0.8708
+
+min_samples_leaf = 5:
+  Test Metrics: Accuracy=0.8666, Precision=0.8667, Recall=0.8666, F1=0.8664
+
+min_samples_leaf = 6:
+  Test Metrics: Accuracy=0.8741, Precision=0.8748, Recall=0.8741, F1=0.8735
+
+min_samples_leaf = 7:
+  Test Metrics: Accuracy=0.8622, Precision=0.8626, Recall=0.8622, F1=0.8620
+
+min_samples_leaf = 8:
+  Test Metrics: Accuracy=0.8673, Precision=0.8681, Recall=0.8673, F1=0.8664
+
+min_samples_leaf = 9:
+  Test Metrics: Accuracy=0.8649, Precision=0.8663, Recall=0.8649, F1=0.8642
+
+min_samples_leaf = 10:
+  Test Metrics: Accuracy=0.8711, Precision=0.8725, Recall=0.8711, F1=0.8703
+
+min_samples_leaf = 11:
+  Test Metrics: Accuracy=0.8663, Precision=0.8689, Recall=0.8663, F1=0.8653
+
+min_samples_leaf = 12:
+  Test Metrics: Accuracy=0.8694, Precision=0.8717, Recall=0.8694, F1=0.8682
+
+min_samples_leaf = 13:
+  Test Metrics: Accuracy=0.8670, Precision=0.8701, Recall=0.8670, F1=0.8658
+
+min_samples_leaf = 14:
+  Test Metrics: Accuracy=0.8666, Precision=0.8689, Recall=0.8666, F1=0.8656
+
+min_samples_leaf = 15:
+  Test Metrics: Accuracy=0.8666, Precision=0.8683, Recall=0.8666, F1=0.8657
+
+min_samples_leaf = 16:
+  Test Metrics: Accuracy=0.8653, Precision=0.8656, Recall=0.8653, F1=0.8643
+
+min_samples_leaf = 17:
+  Test Metrics: Accuracy=0.8629, Precision=0.8640, Recall=0.8629, F1=0.8618
+
+min_samples_leaf = 18:
+  Test Metrics: Accuracy=0.8622, Precision=0.8633, Recall=0.8622, F1=0.8611
+
+min_samples_leaf = 19:
+  Test Metrics: Accuracy=0.8609, Precision=0.8624, Recall=0.8609, F1=0.8598
+
+min_samples_leaf = 20:
+  Test Metrics: Accuracy=0.8571, Precision=0.8590, Recall=0.8571, F1=0.8559
+
+Statistics:
+  Min Accuracy: 0.8514
+  Max Accuracy: 0.8741
+  Range: 0.0227
+  Mean: 0.8647
+
+================================================================================
+
+PARAMETER: criterion
+--------------------------------------------------------------------------------
+
+criterion = gini:
+  Test Metrics: Accuracy=0.8541, Precision=0.8547, Recall=0.8541, F1=0.8536
+
+criterion = entropy:
+  Test Metrics: Accuracy=0.8524, Precision=0.8539, Recall=0.8524, F1=0.8512
+
+Statistics:
+  Min Accuracy: 0.8524
+  Max Accuracy: 0.8541
+  Range: 0.0017
+  Mean: 0.8532
+
+================================================================================
+

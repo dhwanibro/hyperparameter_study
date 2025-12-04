@@ -1,0 +1,88 @@
+================================================================================
+KNN SENSITIVITY RESULTS
+Dataset: thoracic
+Timestamp: 2025-12-04T00:05:15.411791
+================================================================================
+
+PARAMETER: n_neighbors
+--------------------------------------------------------------------------------
+
+n_neighbors = 1:
+  Test Metrics: Accuracy=0.7660, Precision=0.7513, Recall=0.7660, F1=0.7584, Auc=0.5089
+
+n_neighbors = 3:
+  Test Metrics: Accuracy=0.8298, Precision=0.7216, Recall=0.8298, F1=0.7719, Auc=0.5393
+
+n_neighbors = 5:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.4603
+
+n_neighbors = 7:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.4719
+
+n_neighbors = 9:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.5446
+
+n_neighbors = 11:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.4790
+
+n_neighbors = 15:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.5402
+
+n_neighbors = 20:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.6121
+
+n_neighbors = 25:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.6183
+
+n_neighbors = 30:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.6174
+
+n_neighbors = 50:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.6107
+
+Statistics:
+  Min Accuracy: 0.7660
+  Max Accuracy: 0.8511
+  Range: 0.0851
+  Mean: 0.8404
+
+================================================================================
+
+PARAMETER: weights
+--------------------------------------------------------------------------------
+
+weights = uniform:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.4603
+  Additional: k=5
+
+weights = distance:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.4683
+  Additional: k=5
+
+Statistics:
+  Min Accuracy: 0.8404
+  Max Accuracy: 0.8404
+  Range: 0.0000
+  Mean: 0.8404
+
+================================================================================
+
+PARAMETER: metric
+--------------------------------------------------------------------------------
+
+metric = euclidean:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.4603
+  Additional: k=5
+
+metric = manhattan:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.4661
+  Additional: k=5
+
+Statistics:
+  Min Accuracy: 0.8404
+  Max Accuracy: 0.8404
+  Range: 0.0000
+  Mean: 0.8404
+
+================================================================================
+

@@ -1,0 +1,298 @@
+{
+  "metadata": {
+    "dataset": "mammogram",
+    "algorithm": "decision_tree",
+    "timestamp": "2025-12-03T23:03:06.317778",
+    "version": "1.0"
+  },
+  "experiments": [
+    {
+      "param_name": "max_depth",
+      "param_value": "1",
+      "metrics": {
+        "accuracy": 0.7433628318584071,
+        "precision": 0.813953488372093,
+        "recall": 0.625,
+        "f1": 0.7070707070707071,
+        "auc": 0.7423245614035088
+      },
+      "timestamp": "2025-12-03T23:03:06.365697"
+    },
+    {
+      "param_name": "max_depth",
+      "param_value": "2",
+      "metrics": {
+        "accuracy": 0.7433628318584071,
+        "precision": 0.813953488372093,
+        "recall": 0.625,
+        "f1": 0.7070707070707071,
+        "auc": 0.7893170426065164
+      },
+      "timestamp": "2025-12-03T23:03:06.368377"
+    },
+    {
+      "param_name": "max_depth",
+      "param_value": "3",
+      "metrics": {
+        "accuracy": 0.7345132743362832,
+        "precision": 0.8095238095238095,
+        "recall": 0.6071428571428571,
+        "f1": 0.6938775510204082,
+        "auc": 0.787437343358396
+      },
+      "timestamp": "2025-12-03T23:03:06.370829"
+    },
+    {
+      "param_name": "max_depth",
+      "param_value": "5",
+      "metrics": {
+        "accuracy": 0.7876106194690266,
+        "precision": 0.82,
+        "recall": 0.7321428571428571,
+        "f1": 0.7735849056603774,
+        "auc": 0.7951127819548872
+      },
+      "timestamp": "2025-12-03T23:03:06.377724"
+    },
+    {
+      "param_name": "max_depth",
+      "param_value": "7",
+      "metrics": {
+        "accuracy": 0.6991150442477876,
+        "precision": 0.7037037037037037,
+        "recall": 0.6785714285714286,
+        "f1": 0.6909090909090909,
+        "auc": 0.6962719298245614
+      },
+      "timestamp": "2025-12-03T23:03:06.386221"
+    },
+    {
+      "param_name": "max_depth",
+      "param_value": "10",
+      "metrics": {
+        "accuracy": 0.6814159292035398,
+        "precision": 0.6923076923076923,
+        "recall": 0.6428571428571429,
+        "f1": 0.6666666666666666,
+        "auc": 0.6729323308270676
+      },
+      "timestamp": "2025-12-03T23:03:06.390164"
+    },
+    {
+      "param_name": "max_depth",
+      "param_value": "15",
+      "metrics": {
+        "accuracy": 0.6106194690265486,
+        "precision": 0.6304347826086957,
+        "recall": 0.5178571428571429,
+        "f1": 0.5686274509803921,
+        "auc": 0.6203007518796992
+      },
+      "timestamp": "2025-12-03T23:03:06.394356"
+    },
+    {
+      "param_name": "max_depth",
+      "param_value": "20",
+      "metrics": {
+        "accuracy": 0.6106194690265486,
+        "precision": 0.625,
+        "recall": 0.5357142857142857,
+        "f1": 0.5769230769230769,
+        "auc": 0.630325814536341
+      },
+      "timestamp": "2025-12-03T23:03:06.396951"
+    },
+    {
+      "param_name": "max_depth",
+      "param_value": "None",
+      "metrics": {
+        "accuracy": 0.6106194690265486,
+        "precision": 0.625,
+        "recall": 0.5357142857142857,
+        "f1": 0.5769230769230769,
+        "auc": 0.630325814536341
+      },
+      "timestamp": "2025-12-03T23:03:06.399806"
+    },
+    {
+      "param_name": "min_samples_split",
+      "param_value": 2,
+      "metrics": {
+        "accuracy": 0.6106194690265486,
+        "precision": 0.625,
+        "recall": 0.5357142857142857,
+        "f1": 0.5769230769230769,
+        "auc": 0.630325814536341
+      },
+      "timestamp": "2025-12-03T23:03:06.627520"
+    },
+    {
+      "param_name": "min_samples_split",
+      "param_value": 5,
+      "metrics": {
+        "accuracy": 0.6460176991150443,
+        "precision": 0.6818181818181818,
+        "recall": 0.5357142857142857,
+        "f1": 0.6,
+        "auc": 0.6871867167919801
+      },
+      "timestamp": "2025-12-03T23:03:06.630127"
+    },
+    {
+      "param_name": "min_samples_split",
+      "param_value": 10,
+      "metrics": {
+        "accuracy": 0.6902654867256637,
+        "precision": 0.6779661016949152,
+        "recall": 0.7142857142857143,
+        "f1": 0.6956521739130435,
+        "auc": 0.7233709273182958
+      },
+      "timestamp": "2025-12-03T23:03:06.632977"
+    },
+    {
+      "param_name": "min_samples_split",
+      "param_value": 20,
+      "metrics": {
+        "accuracy": 0.7433628318584071,
+        "precision": 0.7454545454545455,
+        "recall": 0.7321428571428571,
+        "f1": 0.7387387387387387,
+        "auc": 0.7601817042606517
+      },
+      "timestamp": "2025-12-03T23:03:06.635864"
+    },
+    {
+      "param_name": "min_samples_split",
+      "param_value": 50,
+      "metrics": {
+        "accuracy": 0.7699115044247787,
+        "precision": 0.7884615384615384,
+        "recall": 0.7321428571428571,
+        "f1": 0.7592592592592593,
+        "auc": 0.8106203007518797
+      },
+      "timestamp": "2025-12-03T23:03:06.638346"
+    },
+    {
+      "param_name": "min_samples_split",
+      "param_value": 100,
+      "metrics": {
+        "accuracy": 0.7876106194690266,
+        "precision": 0.82,
+        "recall": 0.7321428571428571,
+        "f1": 0.7735849056603774,
+        "auc": 0.7938596491228069
+      },
+      "timestamp": "2025-12-03T23:03:06.640655"
+    },
+    {
+      "param_name": "min_samples_leaf",
+      "param_value": 1,
+      "metrics": {
+        "accuracy": 0.6106194690265486,
+        "precision": 0.625,
+        "recall": 0.5357142857142857,
+        "f1": 0.5769230769230769,
+        "auc": 0.630325814536341
+      },
+      "timestamp": "2025-12-03T23:03:06.768328"
+    },
+    {
+      "param_name": "min_samples_leaf",
+      "param_value": 2,
+      "metrics": {
+        "accuracy": 0.6548672566371682,
+        "precision": 0.6888888888888889,
+        "recall": 0.5535714285714286,
+        "f1": 0.6138613861386139,
+        "auc": 0.7136591478696743
+      },
+      "timestamp": "2025-12-03T23:03:06.771004"
+    },
+    {
+      "param_name": "min_samples_leaf",
+      "param_value": 5,
+      "metrics": {
+        "accuracy": 0.7522123893805309,
+        "precision": 0.7592592592592593,
+        "recall": 0.7321428571428571,
+        "f1": 0.7454545454545455,
+        "auc": 0.781171679197995
+      },
+      "timestamp": "2025-12-03T23:03:06.773539"
+    },
+    {
+      "param_name": "min_samples_leaf",
+      "param_value": 10,
+      "metrics": {
+        "accuracy": 0.7433628318584071,
+        "precision": 0.7368421052631579,
+        "recall": 0.75,
+        "f1": 0.7433628318584071,
+        "auc": 0.7844611528822054
+      },
+      "timestamp": "2025-12-03T23:03:06.775929"
+    },
+    {
+      "param_name": "min_samples_leaf",
+      "param_value": 20,
+      "metrics": {
+        "accuracy": 0.7964601769911505,
+        "precision": 0.8235294117647058,
+        "recall": 0.75,
+        "f1": 0.7850467289719626,
+        "auc": 0.8280075187969925
+      },
+      "timestamp": "2025-12-03T23:03:06.778345"
+    },
+    {
+      "param_name": "min_samples_leaf",
+      "param_value": 50,
+      "metrics": {
+        "accuracy": 0.8053097345132744,
+        "precision": 0.8269230769230769,
+        "recall": 0.7678571428571429,
+        "f1": 0.7962962962962963,
+        "auc": 0.8286340852130325
+      },
+      "timestamp": "2025-12-03T23:03:06.780995"
+    },
+    {
+      "param_name": "criterion",
+      "param_value": "gini",
+      "metrics": {
+        "accuracy": 0.6106194690265486,
+        "precision": 0.625,
+        "recall": 0.5357142857142857,
+        "f1": 0.5769230769230769,
+        "auc": 0.630325814536341
+      },
+      "timestamp": "2025-12-03T23:03:06.898984"
+    },
+    {
+      "param_name": "criterion",
+      "param_value": "entropy",
+      "metrics": {
+        "accuracy": 0.6194690265486725,
+        "precision": 0.6274509803921569,
+        "recall": 0.5714285714285714,
+        "f1": 0.5981308411214953,
+        "auc": 0.6256265664160401
+      },
+      "timestamp": "2025-12-03T23:03:06.901619"
+    },
+    {
+      "param_name": "criterion",
+      "param_value": "log_loss",
+      "metrics": {
+        "accuracy": 0.6194690265486725,
+        "precision": 0.6274509803921569,
+        "recall": 0.5714285714285714,
+        "f1": 0.5981308411214953,
+        "auc": 0.6256265664160401
+      },
+      "timestamp": "2025-12-03T23:03:06.904346"
+    }
+  ]
+}

@@ -1,30 +1,85 @@
 ================================================================================
-KNN HYPERPARAMETER SENSITIVITY ANALYSIS - SMARTPHONE DATASET
+KNN SENSITIVITY RESULTS
+Dataset: smartphone_har
+Timestamp: 2025-12-04T00:07:28.696773
 ================================================================================
 
-TEST 1: n_neighbors (k) SENSITIVITY
+PARAMETER: n_neighbors
 --------------------------------------------------------------------------------
 
-k = 1: Train Acc = 1.0000, Test Acc = 0.8548
-k = 3: Train Acc = 0.9924, Test Acc = 0.8741
-k = 5: Train Acc = 0.9842, Test Acc = 0.8843
-k = 7: Train Acc = 0.9789, Test Acc = 0.8897
-k = 9: Train Acc = 0.9765, Test Acc = 0.8941
-k = 11: Train Acc = 0.9742, Test Acc = 0.8880
-k = 15: Train Acc = 0.9669, Test Acc = 0.8907
-k = 20: Train Acc = 0.9656, Test Acc = 0.8918
-k = 25: Train Acc = 0.9595, Test Acc = 0.8863
-k = 30: Train Acc = 0.9570, Test Acc = 0.8863
-k = 50: Train Acc = 0.9437, Test Acc = 0.8765
+n_neighbors = 1:
+  Test Metrics: Accuracy=0.8548, Precision=0.8606, Recall=0.8548, F1=0.8542, Auc=0.9126
 
-TEST 2: WEIGHTS COMPARISON
+n_neighbors = 3:
+  Test Metrics: Accuracy=0.8741, Precision=0.8813, Recall=0.8741, F1=0.8731, Auc=0.9646
+
+n_neighbors = 5:
+  Test Metrics: Accuracy=0.8843, Precision=0.8920, Recall=0.8843, F1=0.8834, Auc=0.9762
+
+n_neighbors = 7:
+  Test Metrics: Accuracy=0.8897, Precision=0.8978, Recall=0.8897, F1=0.8887, Auc=0.9827
+
+n_neighbors = 9:
+  Test Metrics: Accuracy=0.8941, Precision=0.9018, Recall=0.8941, F1=0.8932, Auc=0.9862
+
+n_neighbors = 11:
+  Test Metrics: Accuracy=0.8880, Precision=0.8976, Recall=0.8880, F1=0.8870, Auc=0.9880
+
+n_neighbors = 15:
+  Test Metrics: Accuracy=0.8907, Precision=0.8999, Recall=0.8907, F1=0.8897, Auc=0.9901
+
+n_neighbors = 20:
+  Test Metrics: Accuracy=0.8918, Precision=0.9014, Recall=0.8918, F1=0.8904, Auc=0.9911
+
+n_neighbors = 25:
+  Test Metrics: Accuracy=0.8863, Precision=0.8979, Recall=0.8863, F1=0.8849, Auc=0.9925
+
+n_neighbors = 30:
+  Test Metrics: Accuracy=0.8863, Precision=0.8977, Recall=0.8863, F1=0.8848, Auc=0.9930
+
+Statistics:
+  Min Accuracy: 0.8548
+  Max Accuracy: 0.8941
+  Range: 0.0394
+  Mean: 0.8840
+
+================================================================================
+
+PARAMETER: weights
 --------------------------------------------------------------------------------
 
-uniform: Train Acc = 0.9842, Test Acc = 0.8843
-distance: Train Acc = 1.0000, Test Acc = 0.8856
+weights = uniform:
+  Test Metrics: Accuracy=0.8843, Precision=0.8920, Recall=0.8843, F1=0.8834, Auc=0.9762
+  Additional: n_neighbors=5
 
-TEST 3: DISTANCE METRIC COMPARISON
+weights = distance:
+  Test Metrics: Accuracy=0.8856, Precision=0.8930, Recall=0.8856, F1=0.8847, Auc=0.9766
+  Additional: n_neighbors=5
+
+Statistics:
+  Min Accuracy: 0.8843
+  Max Accuracy: 0.8856
+  Range: 0.0014
+  Mean: 0.8850
+
+================================================================================
+
+PARAMETER: distance_metric
 --------------------------------------------------------------------------------
 
-euclidean: Train Acc = 0.9842, Test Acc = 0.8843
-manhattan: Train Acc = 0.9916, Test Acc = 0.9019
+distance_metric = euclidean:
+  Test Metrics: Accuracy=0.8843, Precision=0.8920, Recall=0.8843, F1=0.8834, Auc=0.9762
+  Additional: n_neighbors=5
+
+distance_metric = manhattan:
+  Test Metrics: Accuracy=0.9019, Precision=0.9091, Recall=0.9019, F1=0.9007, Auc=0.9820
+  Additional: n_neighbors=5
+
+Statistics:
+  Min Accuracy: 0.8843
+  Max Accuracy: 0.9019
+  Range: 0.0176
+  Mean: 0.8931
+
+================================================================================
+

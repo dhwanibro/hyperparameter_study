@@ -1,0 +1,57 @@
+================================================================================
+LOGISTIC REGRESSION SENSITIVITY RESULTS
+Dataset: sonar
+Timestamp: 2025-12-04T11:41:33.380451
+================================================================================
+
+PARAMETER: C
+--------------------------------------------------------------------------------
+
+C = 0.001:
+  Test Metrics: Accuracy=0.7381, Precision=0.6897, Recall=0.9091, F1=0.7843
+
+C = 0.01:
+  Test Metrics: Accuracy=0.8095, Precision=0.8182, Recall=0.8182, F1=0.8182
+
+C = 0.1:
+  Test Metrics: Accuracy=0.7857, Precision=0.8421, Recall=0.7273, F1=0.7805
+
+C = 1:
+  Test Metrics: Accuracy=0.8333, Precision=0.8261, Recall=0.8636, F1=0.8444
+
+C = 10:
+  Test Metrics: Accuracy=0.7619, Precision=0.8000, Recall=0.7273, F1=0.7619
+
+C = 100:
+  Test Metrics: Accuracy=0.7619, Precision=0.8000, Recall=0.7273, F1=0.7619
+
+C = 1000:
+  Test Metrics: Accuracy=0.7619, Precision=0.8000, Recall=0.7273, F1=0.7619
+
+Statistics:
+  Min Accuracy: 0.7381
+  Max Accuracy: 0.8333
+  Range: 0.0952
+  Mean: 0.7789
+
+================================================================================
+
+PARAMETER: penalty
+--------------------------------------------------------------------------------
+
+penalty = l1:
+  Test Metrics: Accuracy=0.7857, Precision=0.7826, Recall=0.8182, F1=0.8000
+  Additional: solver=liblinear
+
+penalty = l2:
+  Test Metrics: Accuracy=0.8333, Precision=0.8261, Recall=0.8636, F1=0.8444
+  Additional: solver=lbfgs
+
+Statistics:
+  Min Accuracy: 0.7857
+  Max Accuracy: 0.8333
+  Range: 0.0476
+  Mean: 0.8095
+
+================================================================================
+

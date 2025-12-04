@@ -1,0 +1,54 @@
+================================================================================
+LOGISTIC REGRESSION SENSITIVITY RESULTS
+Dataset: thoracic
+Timestamp: 2025-12-04T00:04:12.270077
+================================================================================
+
+PARAMETER: C
+--------------------------------------------------------------------------------
+
+C = 0.001:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.6455
+
+C = 0.01:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.6705
+
+C = 0.1:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.7009
+
+C = 1:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.7045
+
+C = 10:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.7063
+
+C = 100:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.7063
+
+Statistics:
+  Min Accuracy: 0.8404
+  Max Accuracy: 0.8511
+  Range: 0.0106
+  Mean: 0.8440
+
+================================================================================
+
+PARAMETER: penalty
+--------------------------------------------------------------------------------
+
+penalty = l1:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.6929
+  Additional: solver=liblinear
+
+penalty = l2:
+  Test Metrics: Accuracy=0.8404, Precision=0.7229, Recall=0.8404, F1=0.7773, Auc=0.7018
+  Additional: solver=liblinear
+
+Statistics:
+  Min Accuracy: 0.8404
+  Max Accuracy: 0.8404
+  Range: 0.0000
+  Mean: 0.8404
+
+================================================================================
+

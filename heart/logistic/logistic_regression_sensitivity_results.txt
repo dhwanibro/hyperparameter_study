@@ -1,0 +1,58 @@
+================================================================================
+LOGISTIC REGRESSION SENSITIVITY RESULTS
+Dataset: heart
+Timestamp: 2025-12-04T11:43:12.940309
+================================================================================
+
+PARAMETER: C
+--------------------------------------------------------------------------------
+
+C = 0.001:
+  Test Metrics: Accuracy=0.7222, Precision=0.9091, Recall=0.4167, F1=0.5714, Auc=0.9000
+
+C = 0.01:
+  Test Metrics: Accuracy=0.8519, Precision=0.8333, Recall=0.8333, F1=0.8333, Auc=0.9083
+
+C = 0.1:
+  Test Metrics: Accuracy=0.8519, Precision=0.7857, Recall=0.9167, F1=0.8462, Auc=0.9083
+
+C = 1:
+  Test Metrics: Accuracy=0.8519, Precision=0.7857, Recall=0.9167, F1=0.8462, Auc=0.8986
+
+C = 10:
+  Test Metrics: Accuracy=0.8519, Precision=0.7857, Recall=0.9167, F1=0.8462, Auc=0.8917
+
+C = 100:
+  Test Metrics: Accuracy=0.8519, Precision=0.7857, Recall=0.9167, F1=0.8462, Auc=0.8917
+
+Statistics:
+  Min Accuracy: 0.7222
+  Max Accuracy: 0.8519
+  Range: 0.1296
+  Mean: 0.8302
+
+================================================================================
+
+PARAMETER: penalty
+--------------------------------------------------------------------------------
+
+penalty = l1:
+  Test Metrics: Accuracy=0.8519, Precision=0.7857, Recall=0.9167, F1=0.8462, Auc=0.8986
+  Additional: C=1.0
+
+penalty = l2:
+  Test Metrics: Accuracy=0.8519, Precision=0.7857, Recall=0.9167, F1=0.8462, Auc=0.8986
+  Additional: C=1.0
+
+penalty = elasticnet:
+  Test Metrics: Accuracy=0.8519, Precision=0.7857, Recall=0.9167, F1=0.8462, Auc=0.9000
+  Additional: C=1.0
+
+Statistics:
+  Min Accuracy: 0.8519
+  Max Accuracy: 0.8519
+  Range: 0.0000
+  Mean: 0.8519
+
+================================================================================
+

@@ -1,47 +1,88 @@
-KNN HYPERPARAMETER SENSITIVITY ANALYSIS - DIABETES DATASET
+================================================================================
+KNN SENSITIVITY RESULTS
+Dataset: diabetes
+Timestamp: 2025-12-03T23:05:56.145404
+================================================================================
 
-TEST 1: n_neighbors (k) SENSITIVITY
+PARAMETER: n_neighbors
+--------------------------------------------------------------------------------
 
-Individual k value results:
-k = 1: Train Acc = 0.9946, Test Acc = 0.7814
-k = 3: Train Acc = 0.8932, Test Acc = 0.8192
-k = 5: Train Acc = 0.8750, Test Acc = 0.8322
-k = 7: Train Acc = 0.8682, Test Acc = 0.8380
-k = 9: Train Acc = 0.8643, Test Acc = 0.8413
-k = 11: Train Acc = 0.8621, Test Acc = 0.8430
-k = 15: Train Acc = 0.8597, Test Acc = 0.8456
-k = 20: Train Acc = 0.8565, Test Acc = 0.8489
-k = 25: Train Acc = 0.8562, Test Acc = 0.8492
-k = 30: Train Acc = 0.8547, Test Acc = 0.8500
-k = 50: Train Acc = 0.8531, Test Acc = 0.8507
+n_neighbors = 1:
+  Test Metrics: Accuracy=0.7814, Precision=0.2897, Recall=0.2958, F1=0.2927, Auc=0.5824
 
-Relative sensitivity to k: 8.8759%
-Min accuracy: 0.7814
-Max accuracy: 0.8507
-Plot saved as: knn_k_sensitivity_plot.png
+n_neighbors = 3:
+  Test Metrics: Accuracy=0.8192, Precision=0.3639, Recall=0.2433, F1=0.2917, Auc=0.6695
 
-TEST 2: WEIGHTS COMPARISON (k=5)
+n_neighbors = 5:
+  Test Metrics: Accuracy=0.8322, Precision=0.4062, Recall=0.2104, F1=0.2772, Auc=0.7095
 
-uniform: Train Acc = 0.8750, Test Acc = 0.8322
-distance: Train Acc = 0.9946, Test Acc = 0.8244
+n_neighbors = 7:
+  Test Metrics: Accuracy=0.8380, Precision=0.4324, Recall=0.1895, F1=0.2635, Auc=0.7307
 
-Absolute difference: 0.0078
-Relative difference: 0.9435%
-Plot saved as: knn_weights_comparison_plot.png
+n_neighbors = 9:
+  Test Metrics: Accuracy=0.8413, Precision=0.4511, Recall=0.1748, F1=0.2520, Auc=0.7442
 
-TEST 3: DISTANCE METRIC COMPARISON (k=5)
+n_neighbors = 11:
+  Test Metrics: Accuracy=0.8430, Precision=0.4616, Recall=0.1601, F1=0.2378, Auc=0.7530
 
-euclidean: Train Acc = 0.8750, Test Acc = 0.8322
-manhattan: Train Acc = 0.8747, Test Acc = 0.8320
+n_neighbors = 15:
+  Test Metrics: Accuracy=0.8456, Precision=0.4836, Recall=0.1453, F1=0.2235, Auc=0.7660
 
-Absolute difference: 0.0002
-Relative difference: 0.0262%
-Plot saved as: knn_metric_comparison_plot.png
+n_neighbors = 20:
+  Test Metrics: Accuracy=0.8489, Precision=0.5316, Recall=0.1031, F1=0.1728, Auc=0.7762
 
-SUMMARY
-Most sensitive to: n_neighbors (8.88%)
+n_neighbors = 25:
+  Test Metrics: Accuracy=0.8492, Precision=0.5313, Recall=0.1197, F1=0.1953, Auc=0.7827
 
-Sensitivity ranking:
-n_neighbors: 8.88%
-weights: 0.94%
-metric: 0.03%
+n_neighbors = 30:
+  Test Metrics: Accuracy=0.8500, Precision=0.5557, Recall=0.0966, F1=0.1646, Auc=0.7859
+
+n_neighbors = 50:
+  Test Metrics: Accuracy=0.8507, Precision=0.5808, Recall=0.0861, F1=0.1499, Auc=0.7946
+
+Statistics:
+  Min Accuracy: 0.7814
+  Max Accuracy: 0.8507
+  Range: 0.0694
+  Mean: 0.8363
+
+================================================================================
+
+PARAMETER: weights
+--------------------------------------------------------------------------------
+
+weights = uniform:
+  Test Metrics: Accuracy=0.8322, Precision=0.4062, Recall=0.2104, F1=0.2772, Auc=0.7095
+  Additional: n_neighbors=5
+
+weights = distance:
+  Test Metrics: Accuracy=0.8244, Precision=0.3726, Recall=0.2166, F1=0.2739, Auc=0.7022
+  Additional: n_neighbors=5
+
+Statistics:
+  Min Accuracy: 0.8244
+  Max Accuracy: 0.8322
+  Range: 0.0078
+  Mean: 0.8283
+
+================================================================================
+
+PARAMETER: distance_metric
+--------------------------------------------------------------------------------
+
+distance_metric = euclidean:
+  Test Metrics: Accuracy=0.8322, Precision=0.4062, Recall=0.2104, F1=0.2772, Auc=0.7095
+  Additional: n_neighbors=5
+
+distance_metric = manhattan:
+  Test Metrics: Accuracy=0.8320, Precision=0.4047, Recall=0.2093, F1=0.2759, Auc=0.7082
+  Additional: n_neighbors=5
+
+Statistics:
+  Min Accuracy: 0.8320
+  Max Accuracy: 0.8322
+  Range: 0.0002
+  Mean: 0.8321
+
+================================================================================
+

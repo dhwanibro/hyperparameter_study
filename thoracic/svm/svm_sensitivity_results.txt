@@ -1,0 +1,72 @@
+================================================================================
+SVM SENSITIVITY RESULTS
+Dataset: thoracic
+Timestamp: 2025-12-04T00:04:43.008024
+================================================================================
+
+PARAMETER: C
+--------------------------------------------------------------------------------
+
+C = 0.001:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.4750
+  Additional: n_support_vectors=117, training_time=0.005233049392700195
+
+C = 0.01:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.4982
+  Additional: n_support_vectors=176, training_time=0.006931781768798828
+
+C = 0.1:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.4991
+  Additional: n_support_vectors=188, training_time=0.008222818374633789
+
+C = 1:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.4982
+  Additional: n_support_vectors=188, training_time=0.009215116500854492
+
+C = 10:
+  Test Metrics: Accuracy=0.8298, Precision=0.7216, Recall=0.8298, F1=0.7719, Auc=0.4884
+  Additional: n_support_vectors=186, training_time=0.011476993560791016
+
+C = 100:
+  Test Metrics: Accuracy=0.8085, Precision=0.7502, Recall=0.8085, F1=0.7748, Auc=0.5464
+  Additional: n_support_vectors=176, training_time=0.016302824020385742
+
+C = 1000:
+  Test Metrics: Accuracy=0.7447, Precision=0.7092, Recall=0.7447, F1=0.7265, Auc=0.5071
+  Additional: n_support_vectors=169, training_time=0.0249178409576416
+
+Statistics:
+  Min Accuracy: 0.7447
+  Max Accuracy: 0.8511
+  Range: 0.1064
+  Mean: 0.8267
+
+================================================================================
+
+PARAMETER: kernel
+--------------------------------------------------------------------------------
+
+kernel = linear:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.6687
+  Additional: n_support_vectors=177, training_time=0.00557708740234375
+
+kernel = rbf:
+  Test Metrics: Accuracy=0.8511, Precision=0.7243, Recall=0.8511, F1=0.7826, Auc=0.4982
+  Additional: n_support_vectors=188, training_time=0.009216070175170898
+
+kernel = poly:
+  Test Metrics: Accuracy=0.8511, Precision=0.8053, Recall=0.8511, F1=0.8004, Auc=0.5214
+  Additional: n_support_vectors=163, training_time=0.005997896194458008
+
+kernel = sigmoid:
+  Test Metrics: Accuracy=0.8617, Precision=0.8810, Recall=0.8617, F1=0.8070, Auc=0.6652
+  Additional: n_support_vectors=115, training_time=0.008405923843383789
+
+Statistics:
+  Min Accuracy: 0.8511
+  Max Accuracy: 0.8617
+  Range: 0.0106
+  Mean: 0.8537
+
+================================================================================
+

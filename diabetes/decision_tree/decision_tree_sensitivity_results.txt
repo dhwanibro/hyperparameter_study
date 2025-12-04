@@ -1,0 +1,122 @@
+================================================================================
+DECISION TREE SENSITIVITY RESULTS
+Dataset: diabetes
+Timestamp: 2025-12-03T23:05:00.023543
+================================================================================
+
+PARAMETER: max_depth
+--------------------------------------------------------------------------------
+
+max_depth = 1:
+  Test Metrics: Accuracy=0.8471, Precision=0.0000, Recall=0.0000, F1=0.0000, Auc=0.6759
+
+max_depth = 2:
+  Test Metrics: Accuracy=0.8471, Precision=0.0000, Recall=0.0000, F1=0.0000, Auc=0.7354
+
+max_depth = 3:
+  Test Metrics: Accuracy=0.8471, Precision=0.0000, Recall=0.0000, F1=0.0000, Auc=0.7598
+
+max_depth = 5:
+  Test Metrics: Accuracy=0.8522, Precision=0.6044, Recall=0.0969, F1=0.1670, Auc=0.7942
+
+max_depth = 7:
+  Test Metrics: Accuracy=0.8522, Precision=0.6241, Recall=0.0849, F1=0.1495, Auc=0.8039
+
+max_depth = 10:
+  Test Metrics: Accuracy=0.8511, Precision=0.5510, Recall=0.1440, F1=0.2284, Auc=0.7992
+
+max_depth = 15:
+  Test Metrics: Accuracy=0.8297, Precision=0.3979, Recall=0.2218, F1=0.2849, Auc=0.7149
+
+max_depth = 20:
+  Test Metrics: Accuracy=0.7988, Precision=0.3196, Recall=0.2792, F1=0.2981, Auc=0.6281
+
+max_depth = None:
+  Test Metrics: Accuracy=0.7737, Precision=0.2868, Recall=0.3226, F1=0.3036, Auc=0.5887
+
+Statistics:
+  Min Accuracy: 0.7737
+  Max Accuracy: 0.8522
+  Range: 0.0785
+  Mean: 0.8332
+
+================================================================================
+
+PARAMETER: min_samples_split
+--------------------------------------------------------------------------------
+
+min_samples_split = 2:
+  Test Metrics: Accuracy=0.7737, Precision=0.2868, Recall=0.3226, F1=0.3036, Auc=0.5887
+
+min_samples_split = 5:
+  Test Metrics: Accuracy=0.7943, Precision=0.3098, Recall=0.2808, F1=0.2946, Auc=0.6114
+
+min_samples_split = 10:
+  Test Metrics: Accuracy=0.8092, Precision=0.3462, Recall=0.2787, F1=0.3088, Auc=0.6515
+
+min_samples_split = 20:
+  Test Metrics: Accuracy=0.8254, Precision=0.3915, Recall=0.2559, F1=0.3095, Auc=0.6965
+
+min_samples_split = 50:
+  Test Metrics: Accuracy=0.8385, Precision=0.4457, Recall=0.2299, F1=0.3034, Auc=0.7461
+
+min_samples_split = 100:
+  Test Metrics: Accuracy=0.8471, Precision=0.5000, Recall=0.2029, F1=0.2886, Auc=0.7753
+
+Statistics:
+  Min Accuracy: 0.7737
+  Max Accuracy: 0.8471
+  Range: 0.0734
+  Mean: 0.8147
+
+================================================================================
+
+PARAMETER: min_samples_leaf
+--------------------------------------------------------------------------------
+
+min_samples_leaf = 1:
+  Test Metrics: Accuracy=0.7737, Precision=0.2868, Recall=0.3226, F1=0.3036, Auc=0.5887
+
+min_samples_leaf = 2:
+  Test Metrics: Accuracy=0.8059, Precision=0.3301, Recall=0.2613, F1=0.2917, Auc=0.6184
+
+min_samples_leaf = 5:
+  Test Metrics: Accuracy=0.8208, Precision=0.3802, Recall=0.2727, F1=0.3176, Auc=0.6773
+
+min_samples_leaf = 10:
+  Test Metrics: Accuracy=0.8351, Precision=0.4249, Recall=0.2208, F1=0.2906, Auc=0.7238
+
+min_samples_leaf = 20:
+  Test Metrics: Accuracy=0.8421, Precision=0.4643, Recall=0.2119, F1=0.2909, Auc=0.7637
+
+min_samples_leaf = 50:
+  Test Metrics: Accuracy=0.8492, Precision=0.5216, Recall=0.1685, F1=0.2548, Auc=0.7907
+
+Statistics:
+  Min Accuracy: 0.7737
+  Max Accuracy: 0.8492
+  Range: 0.0755
+  Mean: 0.8211
+
+================================================================================
+
+PARAMETER: criterion
+--------------------------------------------------------------------------------
+
+criterion = gini:
+  Test Metrics: Accuracy=0.7737, Precision=0.2868, Recall=0.3226, F1=0.3036, Auc=0.5887
+
+criterion = entropy:
+  Test Metrics: Accuracy=0.7784, Precision=0.2931, Recall=0.3180, F1=0.3050, Auc=0.5897
+
+criterion = log_loss:
+  Test Metrics: Accuracy=0.7784, Precision=0.2931, Recall=0.3180, F1=0.3050, Auc=0.5897
+
+Statistics:
+  Min Accuracy: 0.7737
+  Max Accuracy: 0.7784
+  Range: 0.0047
+  Mean: 0.7768
+
+================================================================================
+

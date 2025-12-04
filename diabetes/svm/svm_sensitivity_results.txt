@@ -1,108 +1,56 @@
 ================================================================================
-SVM HYPERPARAMETER SENSITIVITY ANALYSIS - DIABETES DATASET
-Technique: 5-Fold Cross Validation
-Sample Size: 5000 (Stratified)
+SVM SENSITIVITY RESULTS
+Dataset: diabetes
+Timestamp: 2025-12-03T23:05:33.097128
 ================================================================================
 
-TEST 1: C (REGULARIZATION PARAMETER) SENSITIVITY
+PARAMETER: C
 --------------------------------------------------------------------------------
 
-Individual C results (Averages across 5 folds):
 C = 0.01:
-  Test Metrics: Acc=0.8470, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.7101
-  Train Metrics: Acc=0.8470, F1=0.0000
-  Avg Support Vectors: 1253
-  Avg Training Time: 0.35s
-  Overfitting Gap (Train-Test Acc): 0.0000
-  Stability (Test Acc Variance): 0.000000
+  Test Metrics: Accuracy=0.8470, Precision=0.0000, Recall=0.0000, F1=0.0000, Auc=0.7101
+  Additional: n_support_vectors=1253, training_time=0.3489990234375, kernel=linear
 
 C = 0.1:
-  Test Metrics: Acc=0.8470, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.6793
-  Train Metrics: Acc=0.8470, F1=0.0000
-  Avg Support Vectors: 1292
-  Avg Training Time: 0.36s
-  Overfitting Gap (Train-Test Acc): 0.0000
-  Stability (Test Acc Variance): 0.000000
+  Test Metrics: Accuracy=0.8470, Precision=0.0000, Recall=0.0000, F1=0.0000, Auc=0.6793
+  Additional: n_support_vectors=1292, training_time=0.364926815032959, kernel=linear
 
 C = 1:
-  Test Metrics: Acc=0.8470, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.7196
-  Train Metrics: Acc=0.8470, F1=0.0000
-  Avg Support Vectors: 1618
-  Avg Training Time: 0.60s
-  Overfitting Gap (Train-Test Acc): 0.0000
-  Stability (Test Acc Variance): 0.000000
+  Test Metrics: Accuracy=0.8470, Precision=0.0000, Recall=0.0000, F1=0.0000, Auc=0.7196
+  Additional: n_support_vectors=1618, training_time=0.6066383838653564, kernel=linear
 
 C = 10:
-  Test Metrics: Acc=0.7210, Prec=0.2615, Rec=0.3922, F1=0.3098, AUC=0.6391
-  Train Metrics: Acc=0.7080, F1=0.2920
-  Avg Support Vectors: 2026
-  Avg Training Time: 1.32s
-  Overfitting Gap (Train-Test Acc): -0.0130
-  Stability (Test Acc Variance): 0.004420
+  Test Metrics: Accuracy=0.7210, Precision=0.2615, Recall=0.3922, F1=0.3098, Auc=0.6391
+  Additional: n_support_vectors=2026, training_time=1.3103728294372559, kernel=linear
 
 C = 100:
-  Test Metrics: Acc=0.5910, Prec=0.1778, Rec=0.3830, F1=0.2336, AUC=0.5184
-  Train Metrics: Acc=0.5915, F1=0.2406
-  Avg Support Vectors: 1816
-  Avg Training Time: 1.29s
-  Overfitting Gap (Train-Test Acc): 0.0005
-  Stability (Test Acc Variance): 0.018498
+  Test Metrics: Accuracy=0.5910, Precision=0.1778, Recall=0.3830, F1=0.2336, Auc=0.5184
+  Additional: n_support_vectors=1816, training_time=1.3114070415496826, kernel=linear
 
+Statistics:
+  Min Accuracy: 0.5910
+  Max Accuracy: 0.8470
+  Range: 0.2560
+  Mean: 0.7706
 
-Best C by metric:
-  accuracy: 0.01
-  precision: 10
-  recall: 10
-  f1: 10
-  auc: 1
+================================================================================
 
-Plot saved as: svm_C_sensitivity_plot.png
-
-WHY: C controls the regularization strength.
-With 5-Fold CV, we can see if higher C leads to overfitting (High Train Acc vs Low Test Acc).
-
-TEST 2: KERNEL TYPE COMPARISON
+PARAMETER: kernel
 --------------------------------------------------------------------------------
 
-linear:
-  Test Metrics: Acc=0.8470, Prec=0.0000, Rec=0.0000, F1=0.0000, AUC=0.7196
-  Train Metrics: Acc=0.8470, F1=0.0000
-  Avg Support Vectors: 1618
-  Avg Training Time: 0.59s
+kernel = linear:
+  Test Metrics: Accuracy=0.8470, Precision=0.0000, Recall=0.0000, F1=0.0000, Auc=0.7196
+  Additional: n_support_vectors=1618, training_time=0.5981328010559082, C=1.0
 
-rbf:
-  Test Metrics: Acc=0.8520, Prec=0.6333, Rec=0.0876, F1=0.1528, AUC=0.7345
-  Train Metrics: Acc=0.8751, F1=0.3318
-  Avg Support Vectors: 1586
-  Avg Training Time: 1.10s
+kernel = rbf:
+  Test Metrics: Accuracy=0.8520, Precision=0.6333, Recall=0.0876, F1=0.1528, Auc=0.7345
+  Additional: n_support_vectors=1586, training_time=1.2894726276397706, C=1.0
 
-
-Best kernel by metric:
-  accuracy: rbf
-  precision: rbf
-  recall: rbf
-  f1: rbf
-  auc: rbf
-
-Plot saved as: svm_kernel_comparison_plot.png
+Statistics:
+  Min Accuracy: 0.8470
+  Max Accuracy: 0.8520
+  Range: 0.0050
+  Mean: 0.8495
 
 ================================================================================
-COMPREHENSIVE SUMMARY
-================================================================================
 
-
-Best hyperparameters by metric:
-
-  For ACCURACY:
-    C: 0.01
-    kernel: rbf
-
-  For F1:
-    C: 10
-    kernel: rbf
-
-================================================================================
-KEY OBSERVATIONS:
-1. If C is high and Overfitting Gap is large, reduce C.
-2. 'max_iter' was used to prevent the SVM from hanging on non-converging folds.
-3. If Linear and RBF have similar accuracy, Linear is preferred for speed.

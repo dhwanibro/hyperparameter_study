@@ -1,0 +1,54 @@
+================================================================================
+LOGISTIC REGRESSION SENSITIVITY RESULTS
+Dataset: obesity
+Timestamp: 2025-12-03T23:20:58.187549
+================================================================================
+
+PARAMETER: C
+--------------------------------------------------------------------------------
+
+C = 0.001:
+  Test Metrics: Accuracy=0.5694, Precision=0.5833, Recall=0.5694, F1=0.5209, Auc=0.8783
+
+C = 0.01:
+  Test Metrics: Accuracy=0.6603, Precision=0.6295, Recall=0.6603, F1=0.6269, Auc=0.9125
+
+C = 0.1:
+  Test Metrics: Accuracy=0.7679, Precision=0.7593, Recall=0.7679, F1=0.7578, Auc=0.9539
+
+C = 1:
+  Test Metrics: Accuracy=0.8900, Precision=0.8912, Recall=0.8900, F1=0.8874, Auc=0.9855
+
+C = 10:
+  Test Metrics: Accuracy=0.9426, Precision=0.9437, Recall=0.9426, F1=0.9424, Auc=0.9950
+
+C = 100:
+  Test Metrics: Accuracy=0.9617, Precision=0.9628, Recall=0.9617, F1=0.9618, Auc=0.9959
+
+Statistics:
+  Min Accuracy: 0.5694
+  Max Accuracy: 0.9617
+  Range: 0.3923
+  Mean: 0.7986
+
+================================================================================
+
+PARAMETER: penalty
+--------------------------------------------------------------------------------
+
+penalty = l1:
+  Test Metrics: Accuracy=0.9522, Precision=0.9533, Recall=0.9522, F1=0.9522, Auc=0.9964
+  Additional: C=1.0
+
+penalty = l2:
+  Test Metrics: Accuracy=0.8923, Precision=0.8939, Recall=0.8923, F1=0.8901, Auc=0.9854
+  Additional: C=1.0
+
+Statistics:
+  Min Accuracy: 0.8923
+  Max Accuracy: 0.9522
+  Range: 0.0598
+  Mean: 0.9222
+
+================================================================================
+

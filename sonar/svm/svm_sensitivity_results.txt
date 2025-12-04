@@ -1,0 +1,61 @@
+================================================================================
+SVM SENSITIVITY RESULTS
+Dataset: sonar
+Timestamp: 2025-12-04T11:41:24.239649
+================================================================================
+
+PARAMETER: C
+--------------------------------------------------------------------------------
+
+C = 0.001:
+  Test Metrics: Accuracy=0.5238, Precision=0.5238, Recall=1.0000, F1=0.6875
+
+C = 0.01:
+  Test Metrics: Accuracy=0.5238, Precision=0.5238, Recall=1.0000, F1=0.6875
+
+C = 0.1:
+  Test Metrics: Accuracy=0.5952, Precision=0.5641, Recall=1.0000, F1=0.7213
+
+C = 1:
+  Test Metrics: Accuracy=0.9286, Precision=0.8800, Recall=1.0000, F1=0.9362
+
+C = 10:
+  Test Metrics: Accuracy=0.9286, Precision=0.8800, Recall=1.0000, F1=0.9362
+
+C = 100:
+  Test Metrics: Accuracy=0.9286, Precision=0.8800, Recall=1.0000, F1=0.9362
+
+C = 1000:
+  Test Metrics: Accuracy=0.9286, Precision=0.8800, Recall=1.0000, F1=0.9362
+
+Statistics:
+  Min Accuracy: 0.5238
+  Max Accuracy: 0.9286
+  Range: 0.4048
+  Mean: 0.7653
+
+================================================================================
+
+PARAMETER: kernel
+--------------------------------------------------------------------------------
+
+kernel = linear:
+  Test Metrics: Accuracy=0.8571, Precision=0.9000, Recall=0.8182, F1=0.8571
+
+kernel = rbf:
+  Test Metrics: Accuracy=0.9286, Precision=0.8800, Recall=1.0000, F1=0.9362
+
+kernel = poly:
+  Test Metrics: Accuracy=0.8571, Precision=0.8077, Recall=0.9545, F1=0.8750
+
+kernel = sigmoid:
+  Test Metrics: Accuracy=0.7143, Precision=0.7083, Recall=0.7727, F1=0.7391
+
+Statistics:
+  Min Accuracy: 0.7143
+  Max Accuracy: 0.9286
+  Range: 0.2143
+  Mean: 0.8393
+
+================================================================================
+

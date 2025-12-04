@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "dataset": "thoracic",
+    "algorithm": "logistic_regression",
+    "timestamp": "2025-12-04T00:04:12.270077",
+    "version": "1.0"
+  },
+  "experiments": [
+    {
+      "param_name": "C",
+      "param_value": 0.001,
+      "metrics": {
+        "accuracy": 0.851063829787234,
+        "precision": 0.724309642372114,
+        "recall": 0.851063829787234,
+        "f1": 0.7825874296894105,
+        "auc": 0.6455357142857143
+      },
+      "timestamp": "2025-12-04T00:04:12.286947"
+    },
+    {
+      "param_name": "C",
+      "param_value": 0.01,
+      "metrics": {
+        "accuracy": 0.851063829787234,
+        "precision": 0.724309642372114,
+        "recall": 0.851063829787234,
+        "f1": 0.7825874296894105,
+        "auc": 0.6705357142857143
+      },
+      "timestamp": "2025-12-04T00:04:12.289663"
+    },
+    {
+      "param_name": "C",
+      "param_value": 0.1,
+      "metrics": {
+        "accuracy": 0.8404255319148937,
+        "precision": 0.7229466941203385,
+        "recall": 0.8404255319148937,
+        "f1": 0.7772721682449883,
+        "auc": 0.7008928571428572
+      },
+      "timestamp": "2025-12-04T00:04:12.292407"
+    },
+    {
+      "param_name": "C",
+      "param_value": 1,
+      "metrics": {
+        "accuracy": 0.8404255319148937,
+        "precision": 0.7229466941203385,
+        "recall": 0.8404255319148937,
+        "f1": 0.7772721682449883,
+        "auc": 0.7044642857142858
+      },
+      "timestamp": "2025-12-04T00:04:12.295492"
+    },
+    {
+      "param_name": "C",
+      "param_value": 10,
+      "metrics": {
+        "accuracy": 0.8404255319148937,
+        "precision": 0.7229466941203385,
+        "recall": 0.8404255319148937,
+        "f1": 0.7772721682449883,
+        "auc": 0.70625
+      },
+      "timestamp": "2025-12-04T00:04:12.299079"
+    },
+    {
+      "param_name": "C",
+      "param_value": 100,
+      "metrics": {
+        "accuracy": 0.8404255319148937,
+        "precision": 0.7229466941203385,
+        "recall": 0.8404255319148937,
+        "f1": 0.7772721682449883,
+        "auc": 0.70625
+      },
+      "timestamp": "2025-12-04T00:04:12.302241"
+    },
+    {
+      "param_name": "penalty",
+      "param_value": "l1",
+      "metrics": {
+        "accuracy": 0.8404255319148937,
+        "precision": 0.7229466941203385,
+        "recall": 0.8404255319148937,
+        "f1": 0.7772721682449883,
+        "auc": 0.6928571428571428
+      },
+      "timestamp": "2025-12-04T00:04:12.638902",
+      "additional_info": {
+        "solver": "liblinear"
+      }
+    },
+    {
+      "param_name": "penalty",
+      "param_value": "l2",
+      "metrics": {
+        "accuracy": 0.8404255319148937,
+        "precision": 0.7229466941203385,
+        "recall": 0.8404255319148937,
+        "f1": 0.7772721682449883,
+        "auc": 0.7017857142857143
+      },
+      "timestamp": "2025-12-04T00:04:12.641173",
+      "additional_info": {
+        "solver": "liblinear"
+      }
+    }
+  ]
+}

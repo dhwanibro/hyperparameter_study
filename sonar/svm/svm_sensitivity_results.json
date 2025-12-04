@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "dataset": "sonar",
+    "algorithm": "svm",
+    "timestamp": "2025-12-04T11:41:24.239649",
+    "version": "1.0"
+  },
+  "experiments": [
+    {
+      "param_name": "C",
+      "param_value": 0.001,
+      "metrics": {
+        "accuracy": 0.5238095238095238,
+        "precision": 0.5238095238095238,
+        "recall": 1.0,
+        "f1": 0.6875
+      },
+      "timestamp": "2025-12-04T11:41:24.251072"
+    },
+    {
+      "param_name": "C",
+      "param_value": 0.01,
+      "metrics": {
+        "accuracy": 0.5238095238095238,
+        "precision": 0.5238095238095238,
+        "recall": 1.0,
+        "f1": 0.6875
+      },
+      "timestamp": "2025-12-04T11:41:24.254102"
+    },
+    {
+      "param_name": "C",
+      "param_value": 0.1,
+      "metrics": {
+        "accuracy": 0.5952380952380952,
+        "precision": 0.5641025641025641,
+        "recall": 1.0,
+        "f1": 0.7213114754098361
+      },
+      "timestamp": "2025-12-04T11:41:24.256902"
+    },
+    {
+      "param_name": "C",
+      "param_value": 1,
+      "metrics": {
+        "accuracy": 0.9285714285714286,
+        "precision": 0.88,
+        "recall": 1.0,
+        "f1": 0.9361702127659575
+      },
+      "timestamp": "2025-12-04T11:41:24.260080"
+    },
+    {
+      "param_name": "C",
+      "param_value": 10,
+      "metrics": {
+        "accuracy": 0.9285714285714286,
+        "precision": 0.88,
+        "recall": 1.0,
+        "f1": 0.9361702127659575
+      },
+      "timestamp": "2025-12-04T11:41:24.263259"
+    },
+    {
+      "param_name": "C",
+      "param_value": 100,
+      "metrics": {
+        "accuracy": 0.9285714285714286,
+        "precision": 0.88,
+        "recall": 1.0,
+        "f1": 0.9361702127659575
+      },
+      "timestamp": "2025-12-04T11:41:24.266077"
+    },
+    {
+      "param_name": "C",
+      "param_value": 1000,
+      "metrics": {
+        "accuracy": 0.9285714285714286,
+        "precision": 0.88,
+        "recall": 1.0,
+        "f1": 0.9361702127659575
+      },
+      "timestamp": "2025-12-04T11:41:24.269298"
+    },
+    {
+      "param_name": "kernel",
+      "param_value": "linear",
+      "metrics": {
+        "accuracy": 0.8571428571428571,
+        "precision": 0.9,
+        "recall": 0.8181818181818182,
+        "f1": 0.8571428571428571
+      },
+      "timestamp": "2025-12-04T11:41:24.609284"
+    },
+    {
+      "param_name": "kernel",
+      "param_value": "rbf",
+      "metrics": {
+        "accuracy": 0.9285714285714286,
+        "precision": 0.88,
+        "recall": 1.0,
+        "f1": 0.9361702127659575
+      },
+      "timestamp": "2025-12-04T11:41:24.612132"
+    },
+    {
+      "param_name": "kernel",
+      "param_value": "poly",
+      "metrics": {
+        "accuracy": 0.8571428571428571,
+        "precision": 0.8076923076923077,
+        "recall": 0.9545454545454546,
+        "f1": 0.875
+      },
+      "timestamp": "2025-12-04T11:41:24.614644"
+    },
+    {
+      "param_name": "kernel",
+      "param_value": "sigmoid",
+      "metrics": {
+        "accuracy": 0.7142857142857143,
+        "precision": 0.7083333333333334,
+        "recall": 0.7727272727272727,
+        "f1": 0.7391304347826086
+      },
+      "timestamp": "2025-12-04T11:41:24.618072"
+    }
+  ]
+}

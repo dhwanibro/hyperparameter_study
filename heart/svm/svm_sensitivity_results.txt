@@ -1,195 +1,61 @@
 ================================================================================
-SVM HYPERPARAMETER SENSITIVITY ANALYSIS - HAR DATASET
+SVM SENSITIVITY RESULTS
+Dataset: heart
+Timestamp: 2025-12-04T11:35:42.730475
 ================================================================================
 
-TEST 1: C (REGULARIZATION PARAMETER) SENSITIVITY
+PARAMETER: C
 --------------------------------------------------------------------------------
 
-Individual C results:
 C = 0.001:
-  Test Metrics: Acc=0.5556, Prec=0.3086, Rec=0.5556, F1=0.3968, AUC=0.0000
-  Train Metrics: Acc=0.5556, F1=0.3968
-  Support Vectors: 193
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.0000
+  Test Metrics: Accuracy=0.5556, Precision=0.0000, Recall=0.0000, F1=0.0000
 
 C = 0.01:
-  Test Metrics: Acc=0.5556, Prec=0.3086, Rec=0.5556, F1=0.3968, AUC=0.0000
-  Train Metrics: Acc=0.5556, F1=0.3968
-  Support Vectors: 194
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.0000
+  Test Metrics: Accuracy=0.5556, Precision=0.0000, Recall=0.0000, F1=0.0000
 
 C = 0.1:
-  Test Metrics: Acc=0.8333, Prec=0.8331, Rec=0.8333, F1=0.8329, AUC=0.0000
-  Train Metrics: Acc=0.8750, F1=0.8731
-  Support Vectors: 177
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.0417
+  Test Metrics: Accuracy=0.8333, Precision=0.8261, Recall=0.7917, F1=0.8085
 
 C = 1:
-  Test Metrics: Acc=0.8148, Prec=0.8181, Rec=0.8148, F1=0.8153, AUC=0.0000
-  Train Metrics: Acc=0.9259, F1=0.9254
-  Support Vectors: 126
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.1111
+  Test Metrics: Accuracy=0.8148, Precision=0.7692, Recall=0.8333, F1=0.8000
 
 C = 10:
-  Test Metrics: Acc=0.7963, Prec=0.8025, Rec=0.7963, F1=0.7969, AUC=0.0000
-  Train Metrics: Acc=0.9861, F1=0.9861
-  Support Vectors: 112
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.1898
+  Test Metrics: Accuracy=0.7963, Precision=0.7407, Recall=0.8333, F1=0.7843
 
 C = 100:
-  Test Metrics: Acc=0.7222, Prec=0.7356, Rec=0.7222, F1=0.7227, AUC=0.0000
-  Train Metrics: Acc=1.0000, F1=1.0000
-  Support Vectors: 107
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.2778
+  Test Metrics: Accuracy=0.7222, Precision=0.6552, Recall=0.7917, F1=0.7170
 
 C = 1000:
-  Test Metrics: Acc=0.7222, Prec=0.7356, Rec=0.7222, F1=0.7227, AUC=0.0000
-  Train Metrics: Acc=1.0000, F1=1.0000
-  Support Vectors: 107
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.2778
+  Test Metrics: Accuracy=0.7222, Precision=0.6552, Recall=0.7917, F1=0.7170
 
-Variance for each metric:
-  accuracy: 0.011646
-  precision: 0.047533
-  recall: 0.011646
-  f1: 0.031225
-  auc: 0.000000
+Statistics:
+  Min Accuracy: 0.5556
+  Max Accuracy: 0.8333
+  Range: 0.2778
+  Mean: 0.7143
 
-Best C by metric:
-  accuracy: 0.1
-  precision: 0.1
-  recall: 0.1
-  f1: 0.1
-  auc: 0.001
+================================================================================
 
-Plot saved as: svm_C_sensitivity_plot.png
-
-WHY: C controls the regularization strength (inverse relationship).
-- Small C → Strong regularization → Soft margin → More training errors allowed
-  → Simpler model → Better generalization → More support vectors
-- Large C → Weak regularization → Hard margin → Fewer training errors
-  → Complex model → Risk of overfitting → Fewer support vectors
-
-This is typically the MOST IMPORTANT parameter for SVM performance.
-Notice how support vectors decrease as C increases (model gets more strict).
-
-TEST 2: KERNEL TYPE COMPARISON
+PARAMETER: kernel
 --------------------------------------------------------------------------------
 
-linear:
-  Test Metrics: Acc=0.8519, Prec=0.8550, Rec=0.8519, F1=0.8523, AUC=0.0000
-  Train Metrics: Acc=0.8565, F1=0.8558
-  Support Vectors: 76
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.0046
+kernel = linear:
+  Test Metrics: Accuracy=0.8519, Precision=0.8077, Recall=0.8750, F1=0.8400
 
-rbf:
-  Test Metrics: Acc=0.8148, Prec=0.8181, Rec=0.8148, F1=0.8153, AUC=0.0000
-  Train Metrics: Acc=0.9259, F1=0.9254
-  Support Vectors: 126
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.1111
+kernel = rbf:
+  Test Metrics: Accuracy=0.8148, Precision=0.7692, Recall=0.8333, F1=0.8000
 
-poly:
-  Test Metrics: Acc=0.8519, Prec=0.8550, Rec=0.8519, F1=0.8523, AUC=0.0000
-  Train Metrics: Acc=0.9352, F1=0.9348
-  Support Vectors: 133
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.0833
+kernel = poly:
+  Test Metrics: Accuracy=0.8519, Precision=0.8077, Recall=0.8750, F1=0.8400
 
-sigmoid:
-  Test Metrics: Acc=0.8333, Prec=0.8395, Rec=0.8333, F1=0.8338, AUC=0.0000
-  Train Metrics: Acc=0.8472, F1=0.8462
-  Support Vectors: 89
-  Training Time: 0.00s
-  Overfitting Gap (Train-Test Acc): 0.0139
+kernel = sigmoid:
+  Test Metrics: Accuracy=0.8333, Precision=0.7778, Recall=0.8750, F1=0.8235
 
-Variance for each metric:
-  accuracy: 0.000236
-  precision: 0.000229
-  recall: 0.000236
-  f1: 0.000234
-  auc: 0.000000
-
-Best kernel by metric:
-  accuracy: linear
-  precision: linear
-  recall: linear
-  f1: linear
-  auc: linear
-
-Plot saved as: svm_kernel_comparison_plot.png
-
-WHY: Kernel choice determines how data is transformed into higher dimensions.
-- linear: No transformation, creates linear decision boundary. Fastest, good for
-  linearly separable data. Can underfit non-linear patterns.
-- rbf: Radial Basis Function, most versatile. Creates smooth, non-linear boundaries.
-  Usually best default choice for unknown data patterns.
-- poly: Polynomial kernel, creates polynomial decision boundaries. Good for
-  modeling feature interactions. Can be slow and numerically unstable.
-- sigmoid: Similar to neural network activation. Less commonly used, can be
-  unstable. Rarely the best choice.
-
-Kernel choice is CRITICAL - wrong kernel = poor performance regardless of tuning.
+Statistics:
+  Min Accuracy: 0.8148
+  Max Accuracy: 0.8519
+  Range: 0.0370
+  Mean: 0.8380
 
 ================================================================================
-COMPREHENSIVE SUMMARY
-================================================================================
-
-Most sensitive parameter: C (avg variance = 0.020410)
-Least sensitive parameter: kernel (avg variance = 0.000187)
-
-Sensitivity ranking (by average variance across all metrics):
-  C: 0.020410
-  kernel: 0.000187
-
-Best hyperparameters by metric:
-
-  For ACCURACY:
-    C: 0.1
-    kernel: linear
-
-  For PRECISION:
-    C: 0.1
-    kernel: linear
-
-  For RECALL:
-    C: 0.1
-    kernel: linear
-
-  For F1:
-    C: 0.1
-    kernel: linear
-
-  For AUC:
-    C: 0.001
-    kernel: linear
-
-================================================================================
-KEY INSIGHTS FOR SVM:
-================================================================================
-
-1. FEATURE SCALING: SVM is extremely sensitive to feature scaling. Always use
-   StandardScaler or similar before training.
-
-2. SUPPORT VECTORS: The number of support vectors indicates model complexity.
-   More support vectors = more complex decision boundary.
-
-3. OVERFITTING CHECK: Compare train vs test accuracy. Large gap = overfitting.
-   If overfitting: decrease C (stronger regularization) or use simpler kernel.
-
-4. COMPUTATIONAL COST: RBF and poly kernels are slower than linear. Training time
-   scales poorly with dataset size (roughly O(n^2) to O(n^3)).
-
-5. HYPERPARAMETER TUNING ORDER:
-   a) First: Choose kernel (try RBF as default)
-   b) Second: Tune C (most impactful for performance)
-   c) Third: If using RBF/poly, tune gamma (not done in this analysis)
 

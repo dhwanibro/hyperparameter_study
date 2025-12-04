@@ -1,0 +1,134 @@
+================================================================================
+KNN SENSITIVITY RESULTS
+Dataset: sonar
+Timestamp: 2025-12-04T11:41:41.847979
+================================================================================
+
+PARAMETER: k
+--------------------------------------------------------------------------------
+
+k = 1:
+  Test Metrics: Accuracy=0.9286, Precision=0.9130, Recall=0.9545, F1=0.9333
+
+k = 2:
+  Test Metrics: Accuracy=0.9286, Precision=1.0000, Recall=0.8636, F1=0.9268
+
+k = 3:
+  Test Metrics: Accuracy=0.8095, Precision=0.7692, Recall=0.9091, F1=0.8333
+
+k = 4:
+  Test Metrics: Accuracy=0.8333, Precision=0.8261, Recall=0.8636, F1=0.8444
+
+k = 5:
+  Test Metrics: Accuracy=0.7857, Precision=0.7600, Recall=0.8636, F1=0.8085
+
+k = 6:
+  Test Metrics: Accuracy=0.8095, Precision=0.7917, Recall=0.8636, F1=0.8261
+
+k = 7:
+  Test Metrics: Accuracy=0.7857, Precision=0.7600, Recall=0.8636, F1=0.8085
+
+k = 8:
+  Test Metrics: Accuracy=0.8333, Precision=0.8261, Recall=0.8636, F1=0.8444
+
+k = 9:
+  Test Metrics: Accuracy=0.7857, Precision=0.7407, Recall=0.9091, F1=0.8163
+
+k = 10:
+  Test Metrics: Accuracy=0.8333, Precision=0.8000, Recall=0.9091, F1=0.8511
+
+k = 11:
+  Test Metrics: Accuracy=0.7619, Precision=0.7143, Recall=0.9091, F1=0.8000
+
+k = 12:
+  Test Metrics: Accuracy=0.7619, Precision=0.7143, Recall=0.9091, F1=0.8000
+
+k = 13:
+  Test Metrics: Accuracy=0.7619, Precision=0.7143, Recall=0.9091, F1=0.8000
+
+k = 14:
+  Test Metrics: Accuracy=0.7619, Precision=0.7308, Recall=0.8636, F1=0.7917
+
+k = 15:
+  Test Metrics: Accuracy=0.7381, Precision=0.7037, Recall=0.8636, F1=0.7755
+
+k = 16:
+  Test Metrics: Accuracy=0.7857, Precision=0.7600, Recall=0.8636, F1=0.8085
+
+k = 17:
+  Test Metrics: Accuracy=0.7381, Precision=0.7037, Recall=0.8636, F1=0.7755
+
+k = 18:
+  Test Metrics: Accuracy=0.7857, Precision=0.7600, Recall=0.8636, F1=0.8085
+
+k = 19:
+  Test Metrics: Accuracy=0.7857, Precision=0.7600, Recall=0.8636, F1=0.8085
+
+k = 20:
+  Test Metrics: Accuracy=0.7857, Precision=0.7600, Recall=0.8636, F1=0.8085
+
+k = 21:
+  Test Metrics: Accuracy=0.7619, Precision=0.7308, Recall=0.8636, F1=0.7917
+
+k = 22:
+  Test Metrics: Accuracy=0.7857, Precision=0.7600, Recall=0.8636, F1=0.8085
+
+k = 23:
+  Test Metrics: Accuracy=0.7143, Precision=0.6786, Recall=0.8636, F1=0.7600
+
+k = 24:
+  Test Metrics: Accuracy=0.7143, Precision=0.6923, Recall=0.8182, F1=0.7500
+
+k = 25:
+  Test Metrics: Accuracy=0.7143, Precision=0.6786, Recall=0.8636, F1=0.7600
+
+Statistics:
+  Min Accuracy: 0.7143
+  Max Accuracy: 0.9286
+  Range: 0.2143
+  Mean: 0.7876
+
+================================================================================
+
+PARAMETER: weights
+--------------------------------------------------------------------------------
+
+weights = uniform:
+  Test Metrics: Accuracy=0.9286, Precision=0.9130, Recall=0.9545, F1=0.9333
+  Additional: k=1
+
+weights = distance:
+  Test Metrics: Accuracy=0.9286, Precision=0.9130, Recall=0.9545, F1=0.9333
+  Additional: k=1
+
+Statistics:
+  Min Accuracy: 0.9286
+  Max Accuracy: 0.9286
+  Range: 0.0000
+  Mean: 0.9286
+
+================================================================================
+
+PARAMETER: metric
+--------------------------------------------------------------------------------
+
+metric = euclidean:
+  Test Metrics: Accuracy=0.9286, Precision=0.9130, Recall=0.9545, F1=0.9333
+  Additional: k=1
+
+metric = manhattan:
+  Test Metrics: Accuracy=0.9048, Precision=0.8750, Recall=0.9545, F1=0.9130
+  Additional: k=1
+
+metric = minkowski:
+  Test Metrics: Accuracy=0.9286, Precision=0.9130, Recall=0.9545, F1=0.9333
+  Additional: k=1
+
+Statistics:
+  Min Accuracy: 0.9048
+  Max Accuracy: 0.9286
+  Range: 0.0238
+  Mean: 0.9206
+
+================================================================================
+

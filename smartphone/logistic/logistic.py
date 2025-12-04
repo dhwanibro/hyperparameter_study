@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 import matplotlib.pyplot as plt
@@ -40,6 +40,13 @@ def load_and_preprocess(train_path, test_path, target_col):
     Y_train = train_df[target_col]
     X_test = test_df.drop(target_col, axis=1)
     Y_test = test_df[target_col]
+    label_encoder = LabelEncoder()
+    Y_train = label_encoder.fit_transform(Y_train)
+    Y_test = label_encoder.transform(Y_test)
+    
+    print(f"\nLabel encoding mapping:")
+    for i, label in enumerate(label_encoder.classes_):
+        print(f"{i}: {label}")
     
     # Check class balance
     print(f"\nTrain class distribution:")

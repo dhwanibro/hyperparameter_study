@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "dataset": "sms_spam",
+    "algorithm": "logistic_regression",
+    "timestamp": "2025-12-04T11:27:05.891169",
+    "version": "1.0"
+  },
+  "experiments": [
+    {
+      "param_name": "C",
+      "param_value": 0.001,
+      "metrics": {
+        "accuracy": 0.875968992248062,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.9391333655973452
+      },
+      "timestamp": "2025-12-04T11:27:05.969240"
+    },
+    {
+      "param_name": "C",
+      "param_value": 0.01,
+      "metrics": {
+        "accuracy": 0.875968992248062,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.9702105226769911
+      },
+      "timestamp": "2025-12-04T11:27:05.973615"
+    },
+    {
+      "param_name": "C",
+      "param_value": 0.1,
+      "metrics": {
+        "accuracy": 0.875968992248062,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "auc": 0.9773316509955753
+      },
+      "timestamp": "2025-12-04T11:27:05.979220"
+    },
+    {
+      "param_name": "C",
+      "param_value": 1,
+      "metrics": {
+        "accuracy": 0.9583333333333334,
+        "precision": 0.9885057471264368,
+        "recall": 0.671875,
+        "f1": 0.8,
+        "auc": 0.9827848451327433
+      },
+      "timestamp": "2025-12-04T11:27:05.985556"
+    },
+    {
+      "param_name": "C",
+      "param_value": 10,
+      "metrics": {
+        "accuracy": 0.9767441860465116,
+        "precision": 0.9642857142857143,
+        "recall": 0.84375,
+        "f1": 0.9,
+        "auc": 0.9823527378318584
+      },
+      "timestamp": "2025-12-04T11:27:05.993018"
+    },
+    {
+      "param_name": "C",
+      "param_value": 100,
+      "metrics": {
+        "accuracy": 0.9786821705426356,
+        "precision": 0.9568965517241379,
+        "recall": 0.8671875,
+        "f1": 0.9098360655737705,
+        "auc": 0.9779884540929203
+      },
+      "timestamp": "2025-12-04T11:27:06.001773"
+    },
+    {
+      "param_name": "penalty",
+      "param_value": "l1",
+      "metrics": {
+        "accuracy": 0.9612403100775194,
+        "precision": 0.94,
+        "recall": 0.734375,
+        "f1": 0.8245614035087719,
+        "auc": 0.9681364076327434
+      },
+      "timestamp": "2025-12-04T11:27:06.320648",
+      "additional_info": {
+        "C": 1.0
+      }
+    },
+    {
+      "param_name": "penalty",
+      "param_value": "l2",
+      "metrics": {
+        "accuracy": 0.9583333333333334,
+        "precision": 0.9885057471264368,
+        "recall": 0.671875,
+        "f1": 0.8,
+        "auc": 0.9827848451327433
+      },
+      "timestamp": "2025-12-04T11:27:06.327378",
+      "additional_info": {
+        "C": 1.0
+      }
+    }
+  ]
+}
