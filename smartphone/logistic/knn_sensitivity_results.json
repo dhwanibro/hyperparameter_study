@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "dataset": "smartphone",
+    "dataset": "smartphone_har",
     "algorithm": "knn",
     "timestamp": "2025-12-03T23:27:17.888724",
     "version": "1.0"

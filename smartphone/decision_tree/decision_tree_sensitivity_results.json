@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "dataset": "har_smartphone",
+    "dataset": "smartphone_har",
     "algorithm": "decision_tree",
     "timestamp": "2025-12-04T10:46:58.611971",
     "version": "1.0"

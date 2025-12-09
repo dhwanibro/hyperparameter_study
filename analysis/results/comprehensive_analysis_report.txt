@@ -5,18 +5,16 @@ COMPREHENSIVE HYPERPARAMETER SENSITIVITY ANALYSIS
 OVERALL STATISTICS
 ----------------------------------------------------------------------------------------------------
 Total experiments analyzed: 609
-Number of datasets: 10
+Number of datasets: 8
 Number of algorithms: 4
 Number of parameters tested: 12
 
 Datasets:
   - diabetes: 54 experiments
-  - har_smartphone: 70 experiments
   - heart: 111 experiments
   - mammogram: 55 experiments
   - obesity: 54 experiments
-  - smartphone: 16 experiments
-  - smartphone_har: 22 experiments
+  - smartphone_har: 108 experiments
   - sms_spam: 58 experiments
   - sonar: 111 experiments
   - thoracic: 58 experiments
@@ -36,13 +34,12 @@ ANALYSIS FOR ACCURACY
 ----------------------------------------------------------------------------------------------------
     1. obesity              - Avg Variance: 0.00948680
     2. sonar                - Avg Variance: 0.00544824
-    3. har_smartphone       - Avg Variance: 0.00285821
-    4. smartphone_har       - Avg Variance: 0.00193110
-    5. mammogram            - Avg Variance: 0.00181261
-    6. heart                - Avg Variance: 0.00177277
-    7. diabetes             - Avg Variance: 0.00144304
-    8. thoracic             - Avg Variance: 0.00094019
-    9. sms_spam             - Avg Variance: 0.00075170
+    3. smartphone_har       - Avg Variance: 0.00243680
+    4. mammogram            - Avg Variance: 0.00181261
+    5. heart                - Avg Variance: 0.00177277
+    6. diabetes             - Avg Variance: 0.00144304
+    7. thoracic             - Avg Variance: 0.00094019
+    8. sms_spam             - Avg Variance: 0.00075170
 
    Most Sensitive:  obesity
    Least Sensitive: sms_spam
@@ -86,7 +83,7 @@ ANALYSIS FOR ACCURACY
     1. obesity + decision_tree + max_depth                          Var=0.05077723 (Range: 0.6364)
     2. sonar + svm + C                                              Var=0.04203110 (Range: 0.4048)
     3. obesity + logistic_regression + C                            Var=0.02565971 (Range: 0.3923)
-    4. har_smartphone + decision_tree + max_depth                   Var=0.01703761 (Range: 0.5107)
+    4. smartphone_har + decision_tree + max_depth                   Var=0.01703761 (Range: 0.5107)
     5. obesity + svm + C                                            Var=0.01577898 (Range: 0.2953)
     6. heart + svm + C                                              Var=0.01358678 (Range: 0.2778)
     7. diabetes + svm + C                                           Var=0.01305680 (Range: 0.2560)
@@ -105,11 +102,10 @@ ANALYSIS FOR F1
     2. heart                - Avg Variance: 0.01434157
     3. obesity              - Avg Variance: 0.01298632
     4. diabetes             - Avg Variance: 0.00498863
-    5. har_smartphone       - Avg Variance: 0.00473563
-    6. smartphone_har       - Avg Variance: 0.00296932
-    7. sonar                - Avg Variance: 0.00287893
-    8. mammogram            - Avg Variance: 0.00226696
-    9. thoracic             - Avg Variance: 0.00022074
+    5. smartphone_har       - Avg Variance: 0.00393276
+    6. sonar                - Avg Variance: 0.00287893
+    7. mammogram            - Avg Variance: 0.00226696
+    8. thoracic             - Avg Variance: 0.00022074
 
    Most Sensitive:  sms_spam
    Least Sensitive: thoracic
@@ -158,7 +154,7 @@ ANALYSIS FOR F1
     6. sms_spam + knn + n_neighbors                                 Var=0.06992303 (Range: 0.7834)
     7. obesity + logistic_regression + C                            Var=0.03239548 (Range: 0.4409)
     8. sms_spam + decision_tree + max_depth                         Var=0.03024420 (Range: 0.5181)
-    9. har_smartphone + decision_tree + max_depth                   Var=0.02830030 (Range: 0.6247)
+    9. smartphone_har + decision_tree + max_depth                   Var=0.02830030 (Range: 0.6247)
    10. diabetes + svm + C                                           Var=0.02286983 (Range: 0.3098)
 
 
@@ -250,10 +246,6 @@ KEY INSIGHTS
       - Most sensitive to: 'kernel' (variance=0.04323181)
       - Best algorithm: logistic_regression (avg accuracy=0.8506)
 
-   HAR_SMARTPHONE:
-      - Most sensitive to: 'max_depth' (variance=0.02379150)
-      - Best algorithm: logistic_regression (avg accuracy=0.9475)
-
    HEART:
       - Most sensitive to: 'C' (variance=0.05538167)
       - Best algorithm: logistic_regression (avg accuracy=0.8374)
@@ -267,8 +259,8 @@ KEY INSIGHTS
       - Best algorithm: svm (avg accuracy=0.8902)
 
    SMARTPHONE_HAR:
-      - Most sensitive to: 'C' (variance=0.00719082)
-      - Best algorithm: svm (avg accuracy=0.9197)
+      - Most sensitive to: 'max_depth' (variance=0.02379150)
+      - Best algorithm: logistic_regression (avg accuracy=0.9475)
 
    SMS_SPAM:
       - Most sensitive to: 'C' (variance=0.13623752)
@@ -296,7 +288,7 @@ KEY INSIGHTS
 
    LOGISTIC REGRESSION:
       - Most sensitive to: 'C' (variance=0.02344158)
-      - Works best on: har_smartphone (avg accuracy=0.9475)
+      - Works best on: smartphone_har (avg accuracy=0.9475)
 
    SVM:
       - Most sensitive to: 'C' (variance=0.03697004)

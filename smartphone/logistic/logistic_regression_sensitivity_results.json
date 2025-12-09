@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "dataset": "har_smartphone",
+    "dataset": "smartphone_har",
     "algorithm": "logistic_regression",
     "timestamp": "2025-12-04T11:24:51.480921",
     "version": "1.0"
